@@ -4,9 +4,11 @@ import classNames from 'classnames';
 import './index.scss';
 import logo from '~/assets/img/logo@1x.png';
 import logoX from '~/assets/img/logo@2x.png';
+import Modal from '../Modal';
 
 function Header() {
   const [route, setRoute] = useSetState(location);
+  const [isModal, setModal] = React.useState(false);
 
   return (
     <div className="block">
@@ -28,10 +30,17 @@ function Header() {
       </nav>
 
       <div id="loginWrap">
-        <button id="register">
+        <button id="register" onClick={() => setModal(true)}>
           登录
         </button>
       </div>
+      <Modal
+        isVisible={isModal}
+        title="登录/注册"
+        content={<p>Add your content here</p>}
+        footer={<button>Cancel</button>}
+        onClose={() => setModal(false)}
+      />
     </div>
   );
 }

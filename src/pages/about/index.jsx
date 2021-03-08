@@ -4,7 +4,7 @@ import '~/style/global.scss'
 import './index.scss'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
-import Tabs from './Tabs'
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,7 +22,7 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tabs />
+    <App />
   </React.StrictMode>,
   document.getElementById('service-tabs')
 )

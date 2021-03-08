@@ -1,0 +1,49 @@
+.qm{
+  &-tabs{
+    width: 1200px;
+  }
+  &-tab{
+    width: 1000px;
+    flex: 1;
+  }
+  &-tab-title{
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 26px;
+  }
+  &-tab-content{
+    p{
+      line-height: 26px;
+      cursor: default;
+
+      + p{
+        margin-top: 20px;
+      }
+    }
+
+    ul{
+      margin: 20px 0;
+      li{
+        cursor: default;
+        +li{
+          margin-top: 20px;
+        }
+        ul{
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+.tab-menu{
+  width: 200px;
+  button{
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+
+

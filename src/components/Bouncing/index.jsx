@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './index.module.scss'
+import './index.scss'
 
 export default () =>
-<div className={styles.bouncing}>
+<div className="bouncing-loader">
   <div></div>
   <div></div>
   <div></div>

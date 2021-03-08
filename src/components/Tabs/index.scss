@@ -1,0 +1,25 @@
+.tab-menu{
+  button {
+    height: 40px;
+    font-size: 16px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    line-height: 26px;
+    color: #999999;
+    font-weight: 400;
+    outline: 0;
+    cursor: pointer;
+    &.focus,
+    &:hover{
+      font-weight: 600;
+      color: #333333;
+    }
+  }
+}
+
+.tab-content {
+  display: none;
+  &.selected {
+    display: block;
+  }
+}
+
