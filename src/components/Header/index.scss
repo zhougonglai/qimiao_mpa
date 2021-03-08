@@ -2,9 +2,9 @@ header{
   height: 80px;
   min-width: 1920px;
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  // position: sticky;
+  // position: -webkit-sticky;
+  // top: 0;
   z-index: 9;
   // background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
   .block{
@@ -64,6 +64,10 @@ header{
           width: 1px;
           background-color: rgba(255, 255, 255, 0.5);
           top: calc(50% - 5px);
+        }
+
+        a{
+          display: block;
         }
       }
     }

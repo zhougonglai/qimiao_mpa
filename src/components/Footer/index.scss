@@ -1,0 +1,281 @@
+footer{
+  background-color: #6236FF;
+  width: 100%;
+  min-width: 1920px;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+
+  .block{
+    width: 1200px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+    .tile{
+      line-height: 40px;
+      font-size: large;
+    }
+
+    ul.list{
+      li.item{
+        font-size: smaller;
+        line-height: 30px;
+        a{
+          display: block;
+          color: rgba(#fff, 0.7);
+          transition: all 0.2s ease-out;
+          &:hover,
+          &:focus,
+          &:active{
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    ul.platforms{
+      li.platform{
+        width: 60px;
+        cursor: pointer;
+        position: relative;
+        .cover{
+          height: 60px;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        &:hover{
+          .label{
+            color: white;
+          }
+        }
+        .label{
+          color: rgba(#fff, 0.75);
+        }
+
+        &.wechat{
+          &::before{
+            content: '';
+            position: absolute;
+            z-index: 5;
+            top: -10px;
+            left: calc(50% - 10px);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-top: 10px solid white;
+            border-right: 10px solid transparent;
+            border-bottom: 0px solid transparent;
+            transform: scale(0);
+          }
+          &::after{
+            content: '';
+            position: absolute;
+            top: -268px;
+            left: calc(50% - 129px);
+            width: 258px;
+            height: 258px;
+            background-image: url('../../assets/img/qrcode-wechat.jpg');
+            background-color: white;
+            box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+            border-radius: 5px;
+            z-index: 4;
+          }
+          &::after{
+            transition: transform 0.2s ease-out;
+            transform-origin: bottom;
+            transform: scale(0);
+          }
+          .cover {
+            background-image: url('../../assets/img/0.png');
+            background-size: 31px 25px;
+          }
+          &:hover{
+            .cover {
+              background-image: url('../../assets/img/0-h.png');
+            }
+            &::before,
+            &::after{
+              transform: scale(1);
+            }
+          }
+        }
+        &.weibo{
+          &::before{
+            content: '';
+            position: absolute;
+            z-index: 5;
+            top: -10px;
+            left: calc(50% - 10px);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-top: 10px solid white;
+            border-right: 10px solid transparent;
+            border-bottom: 0px solid transparent;
+            transform: scale(0);
+          }
+          &::after{
+            content: '';
+            position: absolute;
+            top: -225px;
+            left: calc(50% - 107.5px);
+            width: 215px;
+            height: 215px;
+            background-image: url('../../assets/img/qrcode-weibo.jpg');
+            background-size: contain;
+            background-color: white;
+            box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+            border-radius: 5px;
+            z-index: 4;
+          }
+          &::after{
+            transition: transform 0.2s ease-out;
+            transform-origin: bottom;
+            transform: scale(0);
+          }
+          .cover {
+            background-image: url('../../assets/img/1.png');
+            background-size: 31px 27px;
+          }
+          &:hover{
+            .cover {
+              background-image: url('../../assets/img/1-h.png');
+            }
+            &::before,
+            &::after{
+              transform: scale(1);
+            }
+          }
+        }
+        &.douyin{
+          &::before{
+            content: '';
+            position: absolute;
+            z-index: 5;
+            top: -10px;
+            left: calc(50% - 10px);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-top: 10px solid black;
+            border-right: 10px solid transparent;
+            border-bottom: 0px solid transparent;
+            transform: scale(0);
+          }
+          &::after{
+            content: '';
+            position: absolute;
+            top: -410px;
+            left: calc(50% - 158px);
+            width: 316px;
+            height: 400px;
+            background-image: url('../../assets/img/qrcode-douyin.jpg');
+            background-size: contain;
+            background-color: white;
+            box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+            border-radius: 5px;
+            z-index: 4;
+          }
+          &::after{
+            transition: transform 0.2s ease-out;
+            transform-origin: bottom;
+            transform: scale(0);
+          }
+          .cover {
+            background-image: url('../../assets/img/3.png');
+            background-size: 25px 29px;
+          }
+          &:hover{
+            .cover {
+              background-image: url('../../assets/img/3-h.png');
+            }
+            &::before,
+            &::after{
+              transform: scale(1);
+            }
+          }
+        }
+        &.bilibili{
+          .cover {
+            background-image: url('../../assets/img/4.png');
+            background-size: 53 25px;
+          }
+          &:hover{
+            .cover {
+              background-image: url('../../assets/img/4-h.png');
+            }
+          }
+        }
+      }
+    }
+
+    .contact{
+      width: 160px;
+      .tile{
+        position: relative;
+        &::after{
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: calc(50% - 10px);
+          height: 20px;
+          width: 1px;
+          background-color: rgba(#fff, 0.5);
+        }
+      }
+    }
+
+    .service{
+      width: 160px;
+      text-align: center;
+      .tile{
+        position: relative;
+        &::after{
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: calc(50% - 10px);
+          height: 20px;
+          width: 1px;
+          background-color: rgba(#fff, 0.5);
+        }
+      }
+    }
+
+    .links{
+      width: 400px;
+      .tile{
+        text-indent: 50px;
+      }
+    }
+
+    .about{
+      width: 320px;
+    }
+
+    .kefu{
+      width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+
+    address{
+      width: 100%;
+      font-style: normal;
+      font-weight: lighter;
+      font-size: smaller;
+      line-height: 30px;
+
+      .address-icp{
+        width: 540px;
+      }
+
+    }
+  }
+}

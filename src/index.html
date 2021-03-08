@@ -17,50 +17,20 @@
   <link rel="icon" href="https://www.qimiao.com/favicon.ico?v=20210303214610" />
   <link rel="apple-touch-icon" href="https://www.qimiao.com/favicon.ico?v=20210303214610">
   <link rel="mask-icon" href="https://www.qimiao.com/favicon.ico?v=20210303214610" color="#00aba9">
-  <link href="https://cdn.bootcdn.net/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" rel="stylesheet">
-  <link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/1.9.6/tailwind.min.css" rel="stylesheet">
+  <link href="./assets/lib/modern-normlize.min.css" rel="stylesheet">
+  <link href="./assets/lib/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <header id="header" class="flex items-center justify-center">
-    <div class="block">
-      <nav role="navigation">
-        <div id="logo">
-          <img src="https://www.qimiao.com/images/logo.png" alt="奇妙加速器" />
-        </div>
-        <ul class="nav-list">
-          <li class="nav-item active">
-            <a href="/index.html">首页</a>
-          </li>
-          <li class="nav-item">
-            <a href="/support.html">游戏支持</a>
-          </li>
-          <li class="nav-item">
-            <a href="/about.html">关于我们</a>
-          </li>
-        </ul>
-      </nav>
-
-      <div id="loginWrap">
-        <button id="register">
-          登录
-        </button>
-      </div>
-    </div>
-  </header>
+  <header id="header" class="flex items-center justify-center"></header>
 
   <main>
     <section class="jumbotron">
       <div class="block">
         <div class="left-block">
-          <div class="pup">
-            玩游戏
-          </div>
-          <div class="sup">
-            就用
-          </div>
-          <div class="desc">
-            金融级顶级专线 / 千款游戏多平台 / 硬核稳定不丢包 / 手术级精准加速
+          <div class="left-head">
+            <img width="491" height="161" src="./assets/img/index/jumbotron-title.png"
+              srcset="./assets/img/index/jumbotron-title@2x.png" />
           </div>
           <div class="download">
             <button class="download-btn">
@@ -68,13 +38,14 @@
             </button>
           </div>
         </div>
-        <div class="right-block">
-
+        <div class="right-block flex items-center justify-center">
+          <img width="499" height="548" src="./assets/img/index/bg-data@1x.png"
+            srcset="./assets/img/index/bg-data@2x.png 2x" />
         </div>
         <div class="bottom-block">
           <div class="platform platform-win active">
             <div class="platform-cover">
-              <img src="./assets/win.png" srcset="./assets/win.png 1x, ./assets/win@2x.png 2x" alt="windows平台" />
+              <img src="./assets/img/index/win.png" srcset="./assets/img/index/win@2x.png 2x" alt="windows平台" />
             </div>
             <div class="platform-desc">
               Windwos版本
@@ -88,7 +59,7 @@
 
           <div class="platform platform-win">
             <div class="platform-cover">
-              <img src="./assets/mac.png" srcset="./assets/mac.png 1x, ./assets/mac@2x.png 2x" alt="macOS版本" />
+              <img src="./assets/img/index/mac.png" srcset="./assets/img/index/mac@2x.png 2x" alt="macOS版本" />
             </div>
             <div class="platform-desc">
               macOS版本
@@ -102,7 +73,7 @@
 
           <div class="platform platform-win">
             <div class="platform-cover">
-              <img src="./assets/os.png" srcset="./assets/os.png 1x, ./assets/os@2x.png 2x" alt="iOS版本" />
+              <img src="./assets/img/index/os.png" srcset="./assets/img/index/os@2x.png 2x" alt="iOS版本" />
             </div>
             <div class="platform-desc">
               iOS版本
@@ -116,8 +87,7 @@
 
           <div class="platform platform-win">
             <div class="platform-cover">
-              <img src="./assets/android.png" srcset="./assets/android.png 1x, ./assets/android@2x.png 2x"
-                alt="Android版本" />
+              <img src="./assets/img/index/android.png" srcset="./assets/img/index/android@2x.png 2x" alt="Android版本" />
             </div>
             <div class="platform-desc">
               Android版本
@@ -131,8 +101,7 @@
 
           <div class="platform platform-win">
             <div class="platform-cover">
-              <img src="./assets/android.png" srcset="./assets/android.png 1x, ./assets/android@2x.png 2x"
-                alt="Android版本" />
+              <img src="./assets/img/index/android.png" srcset="./assets/img/index/android@2x.png 2x" alt="Android版本" />
             </div>
             <div class="platform-desc">
               Android版本
@@ -149,8 +118,9 @@
 
     <section class="section-info">
       <div class="block py-4">
-        <div class="block-title mt-4">
-          千款游戏 全平台覆盖
+        <div class="block-title mt-4 flex items-center justify-center">
+          <img width="443" height="60" src="./assets/img/index/title.png" srcset="./assets/img/index/title@2x.png"
+            alt="千款游戏 全平台覆盖" />
         </div>
         <div class="block-desc mt-2">
           PC端/移动端热门游戏，新游超快适配
@@ -179,8 +149,9 @@
 
     <section class="section-desc">
       <div class="block">
-        <div class="block-title mt-4">
-          稳定 延迟低
+        <div class="block-title mt-4 flex items-center justify-center">
+          <img width="471" height="61" src="./assets/img/index/title-2.png"
+            srcset="./assets/img/index/title-2@2x.png 2x" alt="稳定 延迟低" />
         </div>
         <div class="block-desc mt-2">
           <button class="download-btn">免费下载</button>
@@ -188,7 +159,7 @@
         <div class="data-infos mt-16">
           <div class="data-info safe">
             <div class="data-info-top">
-              <img src="./assets/data-1.png" srcset="./assets/data-1.png 1x, ./assets/data-1@2x.png 2x" width="105"
+              <img src="./assets/img/index/data-1.png" srcset="./assets/img/index/data-1@2x.png 2x" width="105"
                 height="132" alt="金融级传输专线" />
             </div>
             <div class="data-info-title">
@@ -201,7 +172,7 @@
 
           <div class="data-info glob">
             <div class="data-info-top">
-              <img src="./assets/data-2.png" srcset="./assets/data-2.png 1x, ./assets/data-2@2x.png 2x" width="98"
+              <img src="./assets/img/index/data-2.png" srcset="./assets/img/index/data-2@2x.png 2x" width="98"
                 height="134" alt="全球节点覆盖" />
             </div>
             <div class="data-info-title">
@@ -214,7 +185,7 @@
 
           <div class="data-info support">
             <div class="data-info-top">
-              <img src="./assets/data-3.png" srcset="./assets/data-3.png 1x, ./assets/data-3@2x.png 2x" width="115"
+              <img src="./assets/img/index/data-3.png" srcset="./assets/img/index/data-3@2x.png 2x" width="115"
                 height="134" alt="金融级传输专线" />
             </div>
             <div class="data-info-title">
@@ -227,7 +198,7 @@
 
           <div class="data-info free">
             <div class="data-info-top">
-              <img src="./assets/data-4.png" srcset="./assets/data-4.png 1x, ./assets/data-4@2x.png 2x" width="131"
+              <img src="./assets/img/index/data-4.png" srcset="./assets/img/index/data-4@2x.png 2x" width="131"
                 height="121" alt="免费加速" />
             </div>
             <div class="data-info-title">
@@ -241,103 +212,10 @@
         </div>
       </div>
     </section>
-
-    <div id="root"></div>
   </main>
 
   <!-- footer -->
-  <footer>
-    <div class="block">
-      <div class="contact">
-        <div class="tile">
-          联系我们
-        </div>
-        <ul class="list">
-          <li class="item">
-            <a href="/about.html" alt="关于我们" role="link">关于我们</a>
-          </li>
-        </ul>
-      </div>
-      <div class="service">
-        <div class="tile">
-          服务中心
-        </div>
-        <ul class="list">
-          <li class="item">
-            <a href="javascrit:;">
-              网站地图
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascrit:;">
-              服务协议
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="links">
-        <div class="tile">
-          友情链接
-        </div>
-      </div>
-
-      <div class="about">
-        <div class="tile">
-          关注我们
-        </div>
-        <ul class="platforms flex justify-around">
-          <li class="platform wechat">
-            <div class="cover border border-red-500">
-
-            </div>
-            <div class="label text-white text-opacity-75 text-sm leading-5 text-center">
-              微信
-            </div>
-          </li>
-          <li class="platform weibo">
-            <div class="cover">
-
-            </div>
-            <div class="label text-white text-opacity-75 text-sm leading-5 text-center">
-              微博
-            </div>
-          </li>
-          <li class="platform douyin">
-            <div class="cover">
-
-            </div>
-            <div class="label text-white text-opacity-75 text-sm leading-5 text-center">
-              抖音
-            </div>
-          </li>
-          <li class="platform bilibili">
-            <div class="cover">
-
-            </div>
-            <div class="label text-white text-opacity-75 text-sm leading-5 text-center">
-              哔哩哔哩
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="kefu">
-        <button>
-          联系客服
-        </button>
-      </div>
-
-      <address>
-        <div class="address-icp inline-block">
-          鄂ICP备18023477号@武汉奇妙网络科技有限公司
-        </div>
-        <div class="detail inline-block">
-          详细地址: 湖北省武汉市洪山区花山大道软件新城A2栋4楼
-        </div>
-      </address>
-    </div>
-  </footer>
+  <footer id="footer"></footer>
 
   <script type="module" src="/pages/index/index.jsx"></script>
 </body>

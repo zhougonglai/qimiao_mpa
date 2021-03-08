@@ -1,14 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '~/style/header.scss'
 import '~/style/global.scss'
-import '~/style/footer.scss'
 import './index.scss'
-import App from './App'
+import Header from '~/components/Header'
+import Footer from '~/components/Footer'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('header')
+)
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Footer />
+  </React.StrictMode>,
+  document.getElementById('footer')
 )

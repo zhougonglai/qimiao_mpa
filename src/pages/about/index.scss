@@ -1,0 +1,34 @@
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F5F5F5;
+
+  section.jumbotron{
+    min-width: 1920px;
+    display: flex;
+    justify-content: center;
+    .block{
+      height: 320px;
+      width: 1920px;
+      background-image: url('../../assets/img/about/about-jumbotron.png');
+      background-size: contain;
+      background-position: center;
+
+    }
+
+    @media only screen and (min-resolution: 2dppx) {
+      .block{
+        background-image: url('../../assets/img/about/about-jumbotron@2x.png');
+      }
+    }
+  }
+
+  section#service-tabs{
+    min-width: 1920px;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+  }
+}
