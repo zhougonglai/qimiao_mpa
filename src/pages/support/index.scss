@@ -1,0 +1,207 @@
+header{
+  background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F5F5F5;
+
+  section.jumbotron{
+    min-width: 1920px;
+    display: flex;
+    justify-content: center;
+    .block{
+      height: 320px;
+      width: 1920px;
+      background-image: url('../../assets/support-jumbotron.png');
+      background-size: contain;
+      background-position: center;
+
+    }
+
+    @media only screen and (min-resolution: 2dppx) {
+      .block{
+        background-image: url('../../assets/support-jumbotron@2x.png');
+      }
+    }
+  }
+
+  section.section-info{
+    min-width: 1920px;
+    display: flex;
+    justify-content: center;
+    .block{
+      width: 1200px;
+      .photo-block{
+        display: flex;
+        justify-content: space-between;
+        .left-block{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .pup{
+            width: 289px;
+            height: 192px;
+            border: 1px solid red;
+          }
+
+          .sup{
+            width: 289px;
+            height: 192px;
+            border: 1px solid red;
+          }
+        }
+
+        .right-block{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .pup{
+            width: 289px;
+            height: 192px;
+            border: 1px solid red;
+          }
+
+          .sup{
+            width: 289px;
+            height: 192px;
+            border: 1px solid red;
+          }
+        }
+
+        .middle-block{
+          width: 592px;
+          height: 399px;
+          border: 1px solid red;
+        }
+      }
+    }
+  }
+
+  section#game-support{
+    width: 1200px;
+
+    .support-header {
+      line-height: 40px;
+      .tag{
+        color: rgba(#666, 0.75);
+        cursor: pointer;
+        width: 60px;
+        position: relative;
+        &:hover,
+        &.active{
+          color: #666;
+        }
+
+        &.active::after{
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 30px;
+          height: 6px;
+          background: #6236FF;
+          border-radius: 3px;
+
+        }
+      }
+
+      .search{
+        &-contrl{
+          width: 360px;
+          height: 40px;
+          background: #FFFFFF;
+          box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.05);
+          border-radius: 100px;
+          overflow: hidden;
+        }
+        &-input{
+          flex: 1;
+          text-indent: 20px;
+          padding-right: 20px;
+          outline: 0;
+        }
+        &-icon{
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+    }
+
+    .support-game {
+      &s{
+        gap: 10px;
+        min-height: 500px;
+        grid-template-rows: repeat(10, minmax(0, 40px));
+      }
+
+      width: 140px;
+      height: 40px;
+      line-height: 40px;
+      background: white;
+      color: #333333;
+      border-radius: 3px;
+      transition: background 0.2s ease-out;
+
+      &:hover{
+        background: linear-gradient(270deg, #9B66FF 0%, #7D59FF 100%);
+        color: white;
+      }
+    }
+
+    .support-pages{
+      .page-contrl {
+        &s{
+
+        }
+        color: #5F6165;
+        width: 80px;
+        line-height: 32px;
+        border-radius: 2px;
+        outline: 0;
+        &:disabled{
+          cursor: not-allowed;
+        }
+        &:not(:disabled):hover{
+          color: #6236FF;
+        }
+        &:not(:disabled):active{
+          background-color: #6236FF;
+          color: white;
+        }
+      }
+
+      .page-placehodle{
+        cursor: default;
+        line-height: 32px;
+        width: 32px;
+        text-align: center;
+      }
+
+      .page-index{
+        color: #5F6165;
+        outline: 0;
+        width: 32px;
+        line-height: 32px;
+        border-radius: 2px;
+        &:hover{
+          color: #6236FF;
+        }
+        &:active,
+        &.active{
+          background-color: #6236FF;
+          color: white;
+        }
+      }
+    }
+
+    .games-empty{
+      height: 500px;
+    }
+  }
+}
