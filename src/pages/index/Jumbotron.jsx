@@ -1,6 +1,6 @@
 import React from 'react';
 import './Jumbotron.scss';
-import jumbotronTitle from '~/assets/img/index/jumbotron-title@1x.png';
+import jumbotronTitle from '~/assets/img/index/jumbotron-title.png';
 import jumbotronTitleX from '~/assets/img/index/jumbotron-title@2x.png';
 
 function Jumbotron() {
