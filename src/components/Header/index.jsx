@@ -10,7 +10,7 @@ function Header() {
     <div className="block">
       <nav role="navigation">
         <div id="logo">
-          <img src="../../assets/img/logo@1x.png" srcSet="../../assets/img/logo@2x.png 2x" alt="奇妙加速器" />
+          <img src="/assets/img/logo@1x.png" srcSet="/assets/img/logo@2x.png 2x" alt="奇妙加速器" />
         </div>
         <ul className="nav-list">
           <li className={classNames("nav-item", {active: ['/', '/index.html'].includes(route.pathname) })}>
