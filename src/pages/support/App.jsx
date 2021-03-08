@@ -145,7 +145,7 @@ function GameSupport() {
         pages: pageGation(cache)
       });
     } else {
-      const { data } = await fetch('/api/game', {
+      const { data } = await fetch(import.meta.env.PROD ? 'http://dev-api.qimiao.com/api/game':'/api/game', {
         method: 'post'
       }).then(res => res.json());
       const games = data.map((game, i) => ({...game, key: i}));
