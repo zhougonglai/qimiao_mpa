@@ -14,6 +14,10 @@ main{
       border: 4px solid #FFFFFF;
       color: #7A491E;
       font-size: 20px;
+      outline: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
       &:hover{
         border: 2px solid #FFFFFF;
@@ -127,7 +131,7 @@ main{
         }
         &.glob{
           .data-info-top::after{
-            background-color: rgba(#23F3AD, 0.1);
+            background-color: rgba(#23F3AD, 0.15);
           }
         }
         &.support{
@@ -137,7 +141,7 @@ main{
         }
         &.free{
           .data-info-top::after{
-            background-color: rgba(#FFF348, 0.1);
+            background-color: rgba(#FFF348, 0.2);
           }
         }
 

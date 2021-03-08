@@ -92,7 +92,9 @@ footer{
             background-image: url('../../assets/img/0.png');
             background-size: 31px 25px;
           }
-          &:hover{
+          &:hover,
+          &:focus,
+          &:active{
             .cover {
               background-image: url('../../assets/img/0-h.png');
             }
@@ -140,7 +142,8 @@ footer{
             background-image: url('../../assets/img/1.png');
             background-size: 31px 27px;
           }
-          &:hover{
+          &:hover,
+          &:active{
             .cover {
               background-image: url('../../assets/img/1-h.png');
             }
@@ -268,12 +271,13 @@ footer{
     address{
       width: 100%;
       font-style: normal;
-      font-weight: lighter;
+      font-weight: 400;
       font-size: smaller;
+      cursor: default;
       line-height: 30px;
 
       .address-icp{
-        width: 540px;
+        width: 360px;
       }
 
     }
