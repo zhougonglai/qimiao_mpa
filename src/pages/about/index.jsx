@@ -23,7 +23,6 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Tabs /> */}
     <App />
   </React.StrictMode>,
   document.getElementById('service-tabs')

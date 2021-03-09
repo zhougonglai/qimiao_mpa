@@ -19,8 +19,20 @@ main{
       align-items: center;
       justify-content: center;
       transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
+
+      .icon{
+        width: 27px;
+        height: 27px;
+        margin-right: 20px;
+      }
+
       &:hover{
         border: 2px solid #FFFFFF;
+        .icon{
+          animation-name: bounce;
+          animation-duration: 1s;
+          transform-origin: center bottom;
+        }
       }
     }
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMouse } from 'ahooks';
 import './Jumbotron.scss';
+import downloadIcon from '~/assets/img/download.svg';
 import jumbotronTitle from '~/assets/img/index/jumbotron-title.png';
 import jumbotronTitleX from '~/assets/img/index/jumbotron-title@2x.png';
 import bgData from '~/assets/img/index/bg-data@1x.png';
@@ -17,8 +18,6 @@ import androidX from '~/assets/img/index/android@2x.png';
 function Jumbotron() {
   const { clientX, clientY } = useMouse();
 
-
-
   return (
     <div className="block">
       <div className="left-block">
@@ -27,6 +26,7 @@ function Jumbotron() {
         </div>
         <div className="download">
           <a className="download-btn" role="button" href="/download.html">
+            <img src={downloadIcon} alt="免费下载" className="icon"/>
             免费下载
           </a>
         </div>
