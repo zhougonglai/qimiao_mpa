@@ -10,6 +10,12 @@ body{
   min-height: 900px;
 }
 
+@media only screen and (min-resolution: 2dppx) {
+  body{
+    background-image: url('../assets/img/bg@2x.png');
+  }
+}
+
 $indent : 1,2,3,4,5;
 
 @each $i in $indent {
