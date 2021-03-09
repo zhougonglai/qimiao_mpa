@@ -8,12 +8,13 @@ const Tabs = ({ defaultIndex = 0, onTabClick, children, ...props}) => {
     if (typeof onTabClick === 'function') onTabClick(newIndex);
     setBindIndex(newIndex);
   };
-  const items = children.filter(item => item.type.name === 'TabItem');
+  // const items = children.filter(item => item.type.name === 'TabItem');
+  // console.log(children)
 
   return (
     <div className={classNames("wrapper", props.className)}>
       <div className="tab-menu">
-        {items.map(({ props: { index, label } }) => (
+        {children.map(({ props: { index, label } }) => (
           <button
             key={`tab-btn-${index}`}
             onClick={() => changeTab(index)}
@@ -24,7 +25,7 @@ const Tabs = ({ defaultIndex = 0, onTabClick, children, ...props}) => {
         ))}
       </div>
       <div className="tab-view">
-        {items.map(({ props }) => (
+        {children.map(({ props }) => (
           <div
             {...props}
             className={classNames('tab-content', bindIndex === props.index ? 'selected' : '', props.className)}

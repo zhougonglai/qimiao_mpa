@@ -6,8 +6,8 @@ import banner from '~/assets/img/about/aboutbanner.png';
 
 function App() {
   return (
-    <Tabs defaultIndex="about" className="qm-tabs flex">
-      <TabItem label="关于我们" index="about" className="qm-tab">
+    <Tabs defaultIndex='about' className="qm-tabs flex">
+      <TabItem label="关于我们" index='about' className="qm-tab">
         <div className="qm-tab-title">
           关于我们
         </div>
@@ -42,7 +42,7 @@ function App() {
           </p>
         </div>
       </TabItem>
-      <TabItem label="用户协议" index="service" className="qm-tab">
+      <TabItem label="用户协议" index='service' className="qm-tab">
         <div className="qm-tab-title">用户协议</div>
         <div className="qm-tab-content mt-4">
           <p className="indent-5">
