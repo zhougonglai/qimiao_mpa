@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useMount, useLocalStorageState, useSetState, useDebounceEffect } from 'ahooks';
 import classNames from 'classnames'
 import Bouncing from '~/components/Bouncing';
+import request from '~/utils/request';
 
 const allType = [
   {
@@ -145,9 +146,9 @@ function GameSupport() {
         pages: pageGation(cache)
       });
     } else {
-      const { data } = await fetch(import.meta.env.PROD ? 'http://dev-api.qimiao.com/api/game':'/api/game', {
+      const { data } = await request(`${import.meta.env.VITE_BASE_PATH}api/game`, {
         method: 'post'
-      }).then(res => res.json());
+      });
       const games = data.map((game, i) => ({...game, key: i}));
       // const filterGames = games.filter(game => game.title.includes(state.search));
       setCache(games);

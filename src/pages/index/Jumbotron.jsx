@@ -14,6 +14,8 @@ import os from '~/assets/img/index/os.png';
 import osX from '~/assets/img/index/os@2x.png';
 import android from '~/assets/img/index/android.png';
 import androidX from '~/assets/img/index/android@2x.png';
+import pc from '~/assets/img/index/pc@1x.png';
+import pcX from '~/assets/img/index/pc@2x.png';
 
 function Jumbotron() {
   const { clientX, clientY } = useMouse();
@@ -95,7 +97,7 @@ function Jumbotron() {
 
         <div className="platform platform-win">
           <div className="platform-cover">
-            <img src={android} srcSet={`${androidX} 2x`} alt="主机加速" />
+            <img src={pc} srcSet={`${pcX} 2x`} alt="主机加速" />
           </div>
           <div className="platform-desc">
             主机加速

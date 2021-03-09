@@ -1,0 +1,98 @@
+.login{
+  display: block;
+  background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
+  color: white;
+  width: 350px;
+  line-height: 50px;
+  font-size: 22px;
+  border-radius: 25px;
+  box-shadow: 0px 5px 5px 0px rgba(0, 51, 157, 0.1);
+  outline: 0 !important;
+  transition: all .25s ease;
+  &:hover{
+    box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+    transform: translate(4px, -4px);
+  }
+  &:focus{
+    transform: translate(0, 0);
+  }
+
+  &-form {
+    width: 100%;
+  }
+
+  &-block {
+    padding-bottom: 4rem;
+
+    .sms-btn{
+      outline: 0;
+      line-height: 20px;
+      background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
+      border-radius: 15px;
+      font-size: 12px;
+      height: 30px;
+      padding: 0 15px;
+      position: absolute;
+      right: 5px;
+      color: white;
+      transition: all .25s ease-out;
+      &:disabled{
+        cursor: not-allowed;
+        background: #d9d9d9;
+        color: black;
+
+      }
+      &:not(:disabled):hover{
+        transform: translate(0, -4px);
+      }
+      &:not(:disabled):focus{
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
+
+
+.form{
+  &-contrl{
+    position: relative;
+    width: 350px;
+
+    & + .form-contrl{
+      margin-top: 20px;
+    }
+  }
+  &-icon{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 16px;
+  }
+  &-input {
+    border: 2px solid transparent;
+    background-color: #f4f7f8;
+    padding: 7px 13px 7px 10px;
+    transition: all .25s ease;
+    border-radius: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    letter-spacing: 0.325rem;
+    font-weight: 400;
+    text-indent: 50px;
+    caret-color: #6236FF;
+    outline: 0;
+    width: 100%;
+    &:focus-within{
+      border-color: #6236FF;
+    }
+  }
+  &-label{
+    position: absolute;
+    left: 55px;
+    font-size: .8rem;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    color: #2c3e50;
+  }
+}

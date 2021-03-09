@@ -29,6 +29,10 @@ export default defineConfig({
       '/api': {
         target: 'http://dev-api.qimiao.com/',
         changeOrigin: true
+      },
+      '/tools': {
+        target: 'http://dev-api.qimiao.com/',
+        changeOrigin: true
       }
     }
   },

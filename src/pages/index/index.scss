@@ -37,6 +37,10 @@ main{
     }
   }
 
+  section{
+    width: 100%;
+  }
+
   section#jumbotron{
     min-width: 1920px;
     height: 820px;
@@ -62,50 +66,6 @@ main{
         font-size: 16px;
         line-height: 22px;
         font-weight: lighter;
-      }
-
-      .photo-block{
-        display: flex;
-        justify-content: space-between;
-        .left-block{
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          .pup{
-            width: 289px;
-            height: 192px;
-            border: 1px solid red;
-          }
-
-          .sup{
-            width: 289px;
-            height: 192px;
-            border: 1px solid red;
-          }
-        }
-
-        .right-block{
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          .pup{
-            width: 289px;
-            height: 192px;
-            border: 1px solid red;
-          }
-
-          .sup{
-            width: 289px;
-            height: 192px;
-            border: 1px solid red;
-          }
-        }
-
-        .middle-block{
-          width: 592px;
-          height: 399px;
-          border: 1px solid red;
-        }
       }
     }
   }

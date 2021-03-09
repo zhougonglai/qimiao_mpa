@@ -1,4 +1,4 @@
-body{
+.has-background {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,13 +8,11 @@ body{
   background-size: 2558px 900px;
   background-position: top center;
   min-height: 900px;
-}
-
-@media only screen and (min-resolution: 2dppx) {
-  body{
+  @media (min-resolution: 2dppx) {
     background-image: url('../assets/img/bg@2x.png');
   }
 }
+
 
 @keyframes bounce {
   from,
@@ -28,12 +26,12 @@ body{
   40%,
   43% {
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -20px, 0) scaleY(1.1);
+    transform: translate3d(0, -10px, 0) scaleY(1.1);
   }
 
   70% {
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -10px, 0) scaleY(1.05);
+    transform: translate3d(0, -7px, 0) scaleY(1.05);
   }
 
   80% {

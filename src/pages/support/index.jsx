@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '~/style/global.scss'
+import '~/style/index.scss'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 import './index.scss'
 import App from './App'
+import Photo from '../index/Photo'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,3 +28,13 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('footer')
 )
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Photo />
+  </React.StrictMode>,
+  document.getElementById('photo')
+)
+
+
+

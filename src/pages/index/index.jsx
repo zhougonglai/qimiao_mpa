@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '~/style/global.scss'
+import '~/style/index.scss'
 import './index.scss'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
-import Jumbotron from './Jumbotron';
+import Jumbotron from './Jumbotron'
+import Photo from './Photo'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,6 +26,13 @@ ReactDOM.render(
     <Jumbotron />
   </React.StrictMode>,
   document.getElementById('jumbotron')
+)
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Photo />
+  </React.StrictMode>,
+  document.getElementById('photo')
 )
 
 
