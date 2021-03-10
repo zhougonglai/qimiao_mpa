@@ -3,6 +3,8 @@ import { useMount, useLocalStorageState, useSetState, useDebounceEffect } from '
 import classNames from 'classnames'
 import Bouncing from '~/components/Bouncing';
 import request from '~/utils/request';
+import searchIcon from '~/assets/img/search.svg';
+import './App.scss';
 
 const allType = [
   {
@@ -180,11 +182,12 @@ function GameSupport() {
           <input type="search"
           className="search-input"
           list="games"
+          placeholder="Search"
           value={state.search}
           onInput={handleSearch}
           />
-          <div className="search-icon">
-            S
+          <div className="search-icon mr-2">
+            <img src={searchIcon} width="25" alt="搜索" />
           </div>
           <datalist id="games">
             {

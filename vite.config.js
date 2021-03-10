@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import glob from 'glob';
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 
@@ -15,12 +16,7 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
     rollupOptions: {
-      input: {
-        index: resolve(__dirname, 'src/index.html'),
-        download: resolve(__dirname, 'src/download.html'),
-        support: resolve(__dirname, 'src/support.html'),
-        about: resolve(__dirname, 'src/about.html'),
-      }
+      input: glob.sync('src/**/*.html')
     }
   },
   server:{

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "ahooks": "^2.9.6",
+    "animejs": "^3.2.1",
     "antd": "^4.13.1",
     "classnames": "^2.2.6",
     "keen-slider": "^5.4.0",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react-refresh": "^1.1.0",
+    "glob": "^7.1.6",
     "sass": "^1.32.8",
     "vite": "^2.0.0-beta.70"
   }

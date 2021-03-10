@@ -1,0 +1,188 @@
+.section{
+  &-header {
+
+    .block{
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      // height: 800px;
+    }
+
+    .buy-block{
+      width: 760px;
+      height: 197px;
+      background-image: url('../../assets/img/activitys/index/price.png');
+      background-size: contain;
+      background-position: center;
+      margin-top: 360px;
+      margin-bottom: 140px;
+      transition: transform 0.2s ease-out;
+
+      // animation: pulse 2s infinite;
+      &:hover{
+        transform: scale(1.1);
+      }
+      @media screen and (min-resolution: 2dppx) {
+        background-image: url('../../assets/img/activitys/index/price@2x.png');
+      }
+    }
+  }
+
+  &-draw{
+    .block{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-title{
+        width: 477px;
+        height: 135px;
+        background-image: url('../../assets/img/activitys/index/t1.png');
+        background-size: contain;
+        background-position: center;
+        @media screen and (min-resolution: 2dppx) {
+          background-image: url('../../assets/img/activitys/index/t1@2x.png');
+        }
+      }
+      &-subtitle{
+        color: white;
+        font-size: small;
+      }
+
+      .draw{
+        &-block{
+          width: 1200px;
+          height: 700px;
+        }
+
+
+        &-action{
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &-btn{
+          width: 253px;
+          height: 91px;
+          outline: 0;
+          background-image: url('../../assets/img/activitys/index/draw-btn.png');
+          background-size: 253px 91px;
+          background-position: center;
+          background-repeat: no-repeat;
+          &:hover{
+            background-image: url('../../assets/img/activitys/index/draw-btn-hover.png');
+            background-size: 248px 71px;
+          }
+          &:active{
+            background-image: url('../../assets/img/activitys/index/draw-btn-active.png');
+            background-size: 248px 57px;
+          }
+          &:disabled{
+            background-image: url('../../assets/img/activitys/index/draw-btn-disable.png');
+            background-size: 248px 71px;
+          }
+        }
+
+        &-desc{
+          height: 125px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &-count{
+          color:white;
+          margin-top: -35px;
+        }
+
+        &-content{
+          width: 508px;
+          height: 541px;
+          background-image: url('../../assets/img/activitys/index/tiger.png');
+          background-size: contain;
+          background-position: center;
+          position: relative;
+          padding-bottom: 10px;
+          padding-right: 42px;
+          padding-left: 3px;
+          @media screen and (min-resolution: 2dppx) {
+            background-image: url('../../assets/img/activitys/index/tiger@2x.png');
+          }
+
+          .slot-machine{
+            position: absolute;
+            width: 310px;
+            height: 150px;
+            left: 80px;
+            top: 150px;
+          }
+
+          .spinner {
+            width: 100px;
+            height: 140px;
+            border-radius: 20px;
+            background: linear-gradient(0deg, #D6D2D1, #FCFCFC, #FCFCFC, #DAD8D9);
+            box-shadow: 0px 0px 5px 0px rgba(29, 29, 29, 0.35);
+          }
+        }
+
+        &-winList{
+          width: 492px;
+          height: 524px;
+          background-image: url('../../assets/img/activitys/index/bg.png');
+          background-size: contain;
+          background-position: center;
+          @media screen and (min-resolution: 2dppx) {
+            background-image: url('../../assets/img/activitys/index/bg@2x.png');
+          }
+        }
+      }
+    }
+  }
+
+  &-rule{
+
+    .block{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-title{
+        width: 340px;
+        height: 134px;
+        background-image: url('../../assets/img/activitys/index/t2.png');
+        background-size: contain;
+        background-position: center;
+        @media screen and (min-resolution: 2dppx) {
+          background-image: url('../../assets/img/activitys/index/t2@2x.png');
+        }
+      }
+
+      &-rule{
+        width: 909px;
+        height: 585px;
+        background-image: url('../../assets/img/activitys/index/block-1.png');
+        background-size: contain;
+        background-position: center;
+        @media screen and (min-resolution: 2dppx) {
+          background-image: url('../../assets/img/activitys/index/block-1@2x.png');
+        }
+      }
+    }
+  }
+}
+
+
+section{
+  &:not(:first-of-type){
+    margin-top: -1px;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .block{
+    width: 1200px;
+    height: 100%;
+  }
+}
