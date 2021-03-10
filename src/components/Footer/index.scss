@@ -162,7 +162,7 @@ footer{
             width: 0;
             height: 0;
             border-left: 10px solid transparent;
-            border-top: 10px solid black;
+            border-top: 10px solid white;
             border-right: 10px solid transparent;
             border-bottom: 0px solid transparent;
             transform: scale(0);
@@ -170,11 +170,11 @@ footer{
           &::after{
             content: '';
             position: absolute;
-            top: -410px;
-            left: calc(50% - 158px);
-            width: 316px;
-            height: 400px;
-            background-image: url('../../assets/img/qrcode-douyin.jpg');
+            top: -260px;
+            left: calc(50% - 125px);
+            width: 250px;
+            height: 250px;
+            background-image: url('../../assets/img/qrcode-douyin.png');
             background-size: contain;
             background-color: white;
             box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);

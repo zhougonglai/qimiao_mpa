@@ -9,7 +9,34 @@
   }
 
   .user-info{
-    width: 45px;
-    height: 45px;
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    cursor: default;
+
+    button{
+      outline: 0;
+      transition: color 0.2s ease-out;
+      &:hover{
+        color: #FF6F4A;
+      }
+    }
+  }
+
+  .login-btn{
+    button{
+      width: 100px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid #FFFFFF;
+      line-height: 38px;
+      color: white;
+      transition: all 0.2s ease-out;
+      outline: 0;
+      &:hover{
+        background-color: white;
+        color: #FF6F4A;
+      }
+    }
   }
 }

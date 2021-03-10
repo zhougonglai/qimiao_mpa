@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import { useCookieState, useMount, useSetState } from 'ahooks';
 import logo from '~/assets/img/logo@1x.png';
 import logoX from '~/assets/img/logo@2x.png';
 import logoTag from '~/assets/img/logo-tag@1x.png';
 import logoTagX from '~/assets/img/logo-tag@2x.png';
 import './index.scss';
+import Modal from '../Modal';
+import Login from '../Login';
 
-function ActivityHeader() {
+export default forwardRef(function ActivityHeader(props, ref) {
+  const [userData, saveUserData] = useCookieState('userData');
+  const [isModal, setModal] = useState(false);
+  const [ userInfo, setUser ] = useState(null);
+
+  useImperativeHandle(ref, () => ({
+    openLogin: () => {
+      setModal(true)
+    }
+  }))
+
+  useMount(() => {
+    if(userData) {
+      setUser(JSON.parse(userData))
+    }
+  })
+
+  const handleLoginCB = (userInfo) => {
+    setModal(false);
+    setUser(userInfo)
+  }
+
+  const handleLogout = () => {
+    saveUserData('', { expires: (() => new Date())()})
+    setUser(null)
+  }
+
   return (
     <header className="activity-header absolute top-0 flex justify-between items-center">
       <nav role="navigation">
@@ -14,11 +43,22 @@ function ActivityHeader() {
           <img width="36" height="15" className="tag ml-2" src={logoTag} srcSet={`${logoTagX} 2x`} alt="免费" />
         </a>
       </nav>
-      <div className="user-info">
-
-      </div>
+      {
+        userInfo
+        ? <div className="user-info">
+            {userInfo.user_info.mobile}
+            &nbsp;
+            <button className="logout" onClick={handleLogout}>【退出】</button>
+          </div>
+        : <div className="login-btn">
+            <button onClick={() => setModal(true)}>登录</button>
+          </div>
+      }
+      <Modal
+        isVisible={isModal}
+        content={<Login loginSuccess={handleLoginCB}/>}
+        onClose={() => setModal(false)}
+      />
     </header>
   );
-}
-
-export default ActivityHeader;
+})

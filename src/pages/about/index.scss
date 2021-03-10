@@ -7,6 +7,7 @@ main{
 
   section.jumbotron{
     min-width: 1920px;
+    width: 100%;
     display: flex;
     justify-content: center;
     .block{
@@ -27,6 +28,7 @@ main{
 
   section#service-tabs{
     min-width: 1920px;
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 40px 0;

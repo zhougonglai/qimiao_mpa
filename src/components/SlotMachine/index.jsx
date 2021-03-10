@@ -16,10 +16,13 @@ const SlotMachine = forwardRef(({ items, defaultState }, ref) => {
       const boolArr = bool ? [1, 1, 1] : [ randomBool(), randomBool() , 0]
 
       leftSpinner.current.runTo(boolArr[0], {
+        delay: 250,
         begin: () => {
           midleSpinner.current.runTo(boolArr[1], {
+            delay: 450,
             begin: () => {
               rightSpinner.current.runTo(boolArr[2], {
+                delay: 650,
                 complete: () => {
                   setStates(boolArr)
                   cb(boolArr)

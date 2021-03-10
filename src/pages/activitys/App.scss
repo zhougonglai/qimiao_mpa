@@ -161,11 +161,72 @@
       &-rule{
         width: 909px;
         height: 585px;
+        padding: 5px 35px;
+        display: flex;
+        flex-direction: column;
         background-image: url('../../assets/img/activitys/index/block-1.png');
         background-size: contain;
         background-position: center;
         @media screen and (min-resolution: 2dppx) {
           background-image: url('../../assets/img/activitys/index/block-1@2x.png');
+        }
+
+        .rule{
+          &-title{
+            color: white;
+            font-size: 16px;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 30px;
+            text-align: center;
+            line-height: 60px;
+          }
+          &-content{
+            flex: 1;
+          }
+
+          &-tile{
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding-left: 25px;
+            .mark-yellow{
+              color: #FFEA00;
+            }
+          }
+
+          &-tag{
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            &::after{
+              content: '';
+              position: absolute;
+              right: 0;
+              width: 2px;
+              background-color: rgba(white, 0.24);
+              height: 45px;
+              bottom: 17.5px;
+            }
+          }
+
+          &-item{
+            width: 553px;
+            height: 84px;
+            border: 2px solid rgba(white, 0.24);
+            border-radius: 21px;
+            display: flex;
+
+            & + .rule-item{
+              margin-top: 25px;
+            }
+          }
+
         }
       }
     }

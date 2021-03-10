@@ -12,13 +12,12 @@ const Spinner = forwardRef(({ items, defaultState }, ref) => {
       const itemHeight = spinnerRef.current.scrollHeight / (drawData.drawItems.length * 2);
       const scrollTo = itemHeight * 2 * (drawData.drawItems.length - 1) - (bool ? ( 2 * itemHeight) : itemHeight);
 
-      console.log(bool, itemHeight, drawData.drawItems.length, scrollTo)
+      // console.log(bool, itemHeight, drawData.drawItems.length, scrollTo)
 
       anime({
         targets: spinnerRef.current,
         duration: 5000,
         easing: 'easeOutCubic',
-        delay: 650,
         scrollTop: [ defaultState ?  0  : itemHeight , scrollTo],
         ...options
       })

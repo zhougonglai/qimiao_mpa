@@ -25,6 +25,7 @@ function Header() {
 
   const handleLoginCB = (userInfo) => {
     setModal(false);
+    setUser(userInfo);
   }
 
   return (
