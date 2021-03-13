@@ -1,15 +1,18 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import './index.scss';
 
-const Tabs = ({ defaultIndex = 0, onTabClick, children, ...props}) => {
+export default forwardRef(function Tabs({ defaultIndex = 0, onTabClick, children, ...props}, ref) {
   const [bindIndex, setBindIndex] = React.useState(defaultIndex);
+
   const changeTab = newIndex => {
     if (typeof onTabClick === 'function') onTabClick(newIndex);
     setBindIndex(newIndex);
   };
-  // const items = children.filter(item => item.type.name === 'TabItem');
-  // console.log(children)
+
+  useImperativeHandle(ref, () => ({
+    changeTab
+  }))
 
   return (
     <div className={classNames("wrapper", props.className)}>
@@ -35,6 +38,4 @@ const Tabs = ({ defaultIndex = 0, onTabClick, children, ...props}) => {
       </div>
     </div>
   );
-};
-
-export default Tabs;
+});

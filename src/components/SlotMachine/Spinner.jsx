@@ -21,6 +21,14 @@ const Spinner = forwardRef(({ items, defaultState }, ref) => {
         scrollTop: [ defaultState ?  0  : itemHeight , scrollTo],
         ...options
       })
+    },
+    reset: () => {
+      anime({
+        targets: spinnerRef.current,
+        duration: 2000,
+        easing: 'easeOutCubic',
+        scrollTop: 0,
+      })
     }
   }))
 

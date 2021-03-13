@@ -1,0 +1,20 @@
+.prize{
+  &-list{
+    border: 1px solid #EBEEF5;
+    overflow: hidden;
+  }
+
+  &-header,
+  &-item{
+    line-height: 40px;
+    padding: 0 10px;
+    text-indent: 20px;
+  }
+
+  &-item{
+    border-top: 1px solid #F5F5F5;
+  }
+  &-header{
+    background-color: #F5F5F5;
+  }
+}

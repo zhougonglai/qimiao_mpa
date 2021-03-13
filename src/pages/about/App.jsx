@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Tabs from '~/components/Tabs';
 import TabItem from '~/components/Tabs/Tab';
 import './App.scss';
 import banner from '~/assets/img/about/aboutbanner.png';
+import { useMount, useSetState } from 'ahooks';
 
 function App() {
+  const tabRef = useRef()
+  const [ route, setRoute ] = useSetState(location)
+  const [ state, setState ] = useSetState({ index: 'about' })
+
+  useEffect(() => {
+    if(route.search) {
+      const params = new URLSearchParams(route.search);
+      setState({
+        index: params.get('index')
+      })
+      tabRef.current.changeTab(params.get('index'))
+    }
+  }, [])
+
+  const handleTabChange = () => {
+    if(route.search && route.search.includes('index')) {
+      const params = new URLSearchParams(route.search);
+      params.delete('index');
+      const search = params.toString();
+      history.replaceState(null, document.title, `${location.pathname}${search ? `?${search}` : ''}`)
+    }
+  }
+
   return (
-    <Tabs defaultIndex='about' className="qm-tabs flex">
+    <Tabs defaultIndex={state.index} className="qm-tabs flex" ref={tabRef} onTabClick={handleTabChange}>
       <TabItem label="关于我们" index='about' className="qm-tab">
         <div className="qm-tab-title">
           关于我们

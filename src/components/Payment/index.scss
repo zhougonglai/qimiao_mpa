@@ -1,0 +1,35 @@
+.pay{
+  &-amount{
+    // color: #6236FF;
+  }
+
+  &-tip{
+    width: 200px;
+    &-icon{
+      width: 40px;
+      height: 40px;
+    }
+    &-desc{
+      color: #666;
+    }
+  }
+
+  &-btn{
+    display: block;
+    background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
+    color: white;
+    line-height: 50px;
+    font-size: 22px;
+    border-radius: 25px;
+    box-shadow: 0px 5px 5px 0px rgba(0, 51, 157, 0.1);
+    outline: 0 !important;
+    transition: all .25s ease;
+    &:hover{
+      box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+      transform: translate(4px, -4px);
+    }
+    &:active{
+      transform: translate(0, 0);
+    }
+  }
+}

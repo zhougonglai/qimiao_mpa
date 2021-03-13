@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useBoolean, useCookieState, useMount, useSessionStorageState } from 'ahooks';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useBoolean, useCookieState, useMount, useSessionStorageState, useSetState, useThrottleFn } from 'ahooks';
 import SlotMachine from '~/components/SlotMachine';
 import TrueItem from '~/assets/img/activitys/index/data-1.png';
 import TrueItemX from '~/assets/img/activitys/index/data-1@2x.png';
@@ -9,8 +9,10 @@ import {
   getActivity,
   getActivityPackage,
   getActivityPresent,
-  getPrizeList,
-  activityDraw
+  packageBuy,
+  activityDraw,
+  getPackageLevel,
+  getInvoicePrice,
 } from '~/service/activity';
 import ActivityHeader from '~/components/ActivityHeader';
 import rule1 from '~/assets/img/activitys/index/01.png';
@@ -21,23 +23,88 @@ import rule3 from '~/assets/img/activitys/index/03.png';
 import rule3X from '~/assets/img/activitys/index/03@2x.png';
 import rule4 from '~/assets/img/activitys/index/04.png';
 import rule4X from '~/assets/img/activitys/index/04@2x.png';
+import payDone from '~/assets/img/done.svg';
 import moment from 'moment'
 
 import './App.scss';
-import { randomPhoneNumber } from '~/utils/index';
+import { randomPhoneNumber, scrollToTop } from '~/utils/index';
+import Modal from '~/components/Modal';
+import Recharge from '~/components/Recharge';
+import Payment from '~/components/Payment';
+import UpgradeTip from '~/components/Payment/UpgradeTip';
+import { Button } from 'antd';
+import anime from 'animejs/lib/anime.es';
+import { take, concat, tail } from 'lodash';
+import PrizeRecord from '~/components/PrizeRecord';
 
 const activity_id = 1;
 
 function App() {
   const drawRef = useRef();
   const headerRef = useRef();
-  const [userData, saveUserData] = useCookieState('userData');
-  const [ userInfo, setUser ] = useState(null);
-  const [runing, { setTrue, setFalse }] = useBoolean(false);
+  const winRef = useRef();
+  const [ userData, saveUserData] = useCookieState('userData');
+  const [ userInfo, setUser ] = React.useState(null);
+
+  const [ runing, { setTrue, setFalse }] = useBoolean(false);
+  const [ recharge, { setTrue:openRecharge , setFalse:closeRecharge } ] = useBoolean(false);
+  const [ payment, { setTrue: openPayment, setFalse: closePayment } ] = useBoolean(false);
+  const [ drawTip, { setTrue: openDrawTip, setFalse: closeDrawTip } ] = useBoolean(false);
+  const [ upgradeTip, { setTrue: openUpgradeTip, setFalse: closeUpgradeTip } ] = useBoolean(false);
+  const [ rechargeTip, { setTrue: openRechargeTip, setFalse: closeRechargeTip } ] = useBoolean(false);
+  const [ rechargeSuc, { setTrue: openRechargeSuc, setFalse: closeRechargeSuc } ] = useBoolean(false);
+  const [ prizeRecord, { setTrue: openPrizeRecord, setFalse: closePrizeRecord } ] = useBoolean(false);
+  const [ winTip, { setTrue: openWinTip, setFalse: closeWinTip } ] = useBoolean(false);
+
   const [ activityInfo, updateActivity ] = useSessionStorageState('activity')
   const [ packages, updatePackage ] = useSessionStorageState('packages')
-  const [ present, updatePresent ] = useSessionStorageState('present')
-  const [ prize, updatePrize ] = useSessionStorageState('prize')
+  const [ state, setState ] = useSetState({
+    packager: null,
+    payInfo: null,
+    present: [],
+    invoicePrice: null,
+    upgradePackage: null,
+    prize: null,
+  })
+
+  const { run: handleDraw } = useThrottleFn(async () => {
+    if(userInfo) {
+      if(activityInfo.points < activityInfo.detail.fee){
+        openRechargeTip()
+        return
+      }
+      const { data, code, msg } = await activityDraw({
+        activity_id,
+        account_token: userInfo.login_info.account_token
+      })
+      updateActivity({
+        ...activityInfo,
+        points: data.points
+      })
+      setTrue()
+      if(code) {
+        drawRef.current.run(0, () => {
+          setTimeout(() => {
+            openDrawTip()
+            setFalse()
+          }, 500)
+        })
+      } else {
+        drawRef.current.run(1, () => {
+          setState({
+            prize: data
+          })
+          setTimeout(() => {
+            openWinTip()
+            setFalse()
+          }, 550)
+        })
+      }
+
+    } else {
+      headerRef.current.openLogin()
+    }
+  }, { trailing: false })
 
   const items = [
     {
@@ -54,50 +121,67 @@ function App() {
     }
   ]
 
-  const handleDraw = async () => {
-    if(activityInfo.points < activityInfo.detail.fee){
-      // TODO: 没有积分弹窗
-      return
-    }
+  // 选取充值套餐
+  const handlePackageSelect = (packager) => {
+    console.log(userInfo)
     if(userInfo) {
-      const { data, code, msg } = await activityDraw({
-        activity_id,
-        account_token: userInfo.login_info.account_token
-      })
-
-      updateActivity({
-        ...activityInfo,
-        ...data
-      })
-      setTrue()
-      if(code) {
-        drawRef.current.run(0, () => {
-          setFalse()
-        })
-      } else {
-        drawRef.current.run(1, () => {
-          setFalse()
-        })
-      }
-
+      setState({ packager });
+      openRecharge();
     } else {
       headerRef.current.openLogin()
     }
   }
 
+  // 打开奖品列表
+  const handleOpenPrizeRecord = () => {
+    if(userInfo) {
+      openPrizeRecord()
+    } else {
+      headerRef.current.openLogin()
+    }
+  }
+
+  // 支付订单
+  const handlePackageBuy = async payInfo => {
+    setState({
+      payInfo
+    })
+    openPayment();
+  }
+
+  // 支付成功
+  const handlePaySuccess = async paymentInfo => {
+    closePayment()
+    closeRecharge();
+    handleTokenUpdate();
+    openRechargeSuc();
+    // if(!state.invoicePrice) {
+    //   openUpgradeTip()
+    // }
+  }
+
+  // init project
   useEffect(async () => {
+    console.log('userData',userData)
     if(userData) {
-      const userProfile = JSON.parse(userData)
-      setUser(userProfile)
+      const user = JSON.parse(userData)
+      setUser(user)
+      handleTokenUpdate(user)
+    } else {
+      setUser(null);
+      handleTokenUpdate()
+    }
+  }, [userData])
+
+  // token更新
+  const handleTokenUpdate = async (user = userInfo) => {
+    if(user) {
       updateActivity(await getActivity(activity_id, {
         activity_id,
-        account_token: userProfile.login_info.account_token,
+        account_token: user.login_info.account_token,
         type: 1,
         plat_type: 1
       }).then(activity => activity.data));
-      updatePrize(await getPrizeList({
-        account_token: userProfile.login_info.account_token
-      }).then(res => res.data))
     } else {
       updateActivity(await getActivity(activity_id, {
         activity_id,
@@ -105,41 +189,247 @@ function App() {
         plat_type: 1
       }).then(res => res.data));
     }
-  }, [userData])
+  }
+
+  const handleTokenExpired = (silent = true) => {
+    saveUserData();
+    setUser();
+    drawRef.current.reset();
+    if(!silent) {
+      headerRef.current.openLogin();
+    }
+  }
+
+  // 处理套餐升级
+  const handlePackageUpgrade = async () => {
+    if(userInfo){
+      const { data } = await getInvoicePrice({
+        price_id: packages[0].price[0].price_id,
+        account_token: userInfo.login_info.account_token
+      })
+      if (
+        data.length && data.some(pkg => pkg.status
+            && pkg.process_time <= activityInfo.detail.end_time
+            && pkg.process_time >= activityInfo.detail.start_time
+        )
+      ) {
+        setState({
+          invoicePrice: data
+        })
+        handlePackageLeve()
+      }
+    }
+  }
+
+  const handlePackageLeve = async () => {
+    const { data } = await getPackageLevel({
+      price_id: [packages[0].price[0].price_id],
+    })
+
+    setState({
+      upgradePackage: data
+    })
+  }
+
+  useEffect(() => {
+    const presentItem = winRef.current.scrollHeight / state.present.length
+    anime({
+      targets: winRef.current,
+      scrollTop: [0 , presentItem],
+      loop: true,
+      delay: 2000,
+      duration: 1000,
+      easing: 'linear',
+      loopComplete: () => {
+        setState({
+          present: concat(tail(state.present), take(state.present))
+        })
+      }
+    })
+    return () => anime.remove(winRef.current)
+  }, [state.present])
 
   useMount(async () => {
     updatePackage(await getActivityPackage({
       activity_id,
       price_type: 0
     }).then(res => res.data))
+
     const present = await getActivityPresent({
       activity_id,
       present_type: 6
     }).then(res => res.data)
     if(present.total <= 10) {
-      const object = {
-        create_time: '',
+      const presenter = (
+        phone = randomPhoneNumber(),
+        user_id = Math.round(Math.random() * 3000),
+        create_time = moment(present.list[0].create_time).subtract(Math.round(Math.random() * 24 * 60 * 60), 'seconds').format("YYYY-MM-DD HH:mm:ss")
+      ) => ({
+        create_time,
         mail: '',
-        mobile_num: randomPhoneNumber(),
-        nickname: randomPhoneNumber(),
-        title: '',
-        user_id: Math.round(Math.random() * 3000),
+        mobile_num: phone,
+        nickname: phone,
+        title: present.list[0].title,
+        user_id,
         user_name: ''
-      }
-      // TODO 伪造奖品
+      })
+      present.list.push(presenter(), presenter(), presenter(), presenter(), presenter(), presenter(), presenter())
+      setState({
+        present: present.list
+      })
     } else {
-      updatePresent(present)
+      setState({
+        present: present.list
+      })
     }
-
   })
 
   return (
     <>
-      <ActivityHeader ref={headerRef} />
+      <ActivityHeader ref={headerRef}
+        loginSuccess={(user) => {
+            setUser(user)
+            handleTokenUpdate(user)
+          }
+        }
+        logout={handleTokenExpired}/>
+      <Modal
+        isVisible={recharge}
+        title="选择支付方式"
+        onClose={closeRecharge}
+        content={
+          <Recharge
+            account_token={ userInfo?.login_info?.account_token }
+            done={handlePackageBuy}
+            packager={state.packager} />}
+      />
+      <Modal size="small"
+        isVisible={payment}
+        title={state.payInfo?.payLabel}
+        onClose={closePayment}
+        content={
+          <Payment payInfo={state.payInfo}
+            closePayment={closePayment}
+            activity_id={activity_id}
+            paySuccess={handlePaySuccess}
+            account_token={ userInfo?.login_info?.account_token } />
+        }
+      />
+      <Modal round
+        size="small"
+        isVisible={drawTip}
+        onClose={closeDrawTip}
+        content={
+          <div className="flex h-32 justify-center items-center">
+            <p className="text-center text-lg">很遗憾，未中奖！</p>
+          </div>
+        }
+        footer={
+          <div className="w-full flex justify-center items-center">
+            <Button type="primary" size="large" shape="round" onClick={closeDrawTip}>好的</Button>
+          </div>
+        }
+      />
+      <Modal
+        isVisible={upgradeTip}
+        title='温馨提示!'
+        onClose={closeUpgradeTip}
+        content={<UpgradeTip />}
+        footer={
+          <div className="w-full flex items-center justify-center">
+            <Button type="primary" shape="round" onClick={() => {
+              handlePackageUpgrade()
+              handlePackageSelect({
+                ...updatePackage[0].price[0],
+                package_id: updatePackage[0].package_id
+              })
+            }}>再次购买</Button>
+          </div>
+        }
+      />
+      <Modal isVisible={winTip}
+        size="small" round
+        onClose={closeWinTip}
+        content={<div className="flex flex-col w-full items-center justify-center h-64">
+          <h3 className="text-lg">
+            恭喜您获得 <span className="text-primary">“{state.prize?.title}”</span>
+          </h3>
+          <p className="text-gray-500 w-64 text-center mt-4">
+            请到中奖记录进行兑换，我们将于活动结束后7个工作日内原路退还该套餐的支付金额，请注意查收！
+          </p>
+        </div>}
+        footer={
+          <div className="w-full flex items-center justify-center">
+            <Button type="primary" className="w-32" size="large" shape="round" onClick={closeWinTip}>好的</Button>
+          </div>
+        }
+      />
+      <Modal round
+        size="small"
+        isVisible={rechargeSuc}
+        onClose={closeRechargeSuc}
+        content={
+          <div className="flex flex-col h-56 items-center justify-center">
+              <div className="icon w-20">
+                <img src={payDone} alt="支付成功"/>
+              </div>
+              <p className="text-lg">
+                支付成功
+              </p>
+          </div>
+        }
+        footer={
+          <div className="w-full flex items-center mb-4 justify-center">
+            <Button type="primary" className="w-32" size="large" shape="round" onClick={closeRechargeSuc}>好的</Button>
+          </div>
+        }
+        />
+      <Modal round
+        size="small"
+        isVisible={rechargeTip}
+        title='温馨提示!'
+        onClose={closeRechargeTip}
+        content={
+          <div className="upgrade-tip flex items-center justify-center py-4">
+            <div className="upgrade-info">
+              <p className="text-center text-xl">
+                需要充值
+              </p>
+            </div>
+          </div>
+        }
+        footer={
+          <div className="w-full flex items-center justify-center">
+            <Button type="primary" className="w-32" shape="round" onClick={() => {
+              closeRechargeTip()
+              scrollToTop()
+            }}>去充值</Button>
+          </div>
+        }
+      />
+      <Modal isVisible={prizeRecord}
+        title="中奖记录"
+        onClose={closePrizeRecord}
+        content={userInfo && <PrizeRecord tokenExpired={bool => {
+          closePrizeRecord()
+          handleTokenExpired(bool)
+        }} account_token={userInfo?.login_info?.account_token}/>}
+      />
       <section className="section-header">
         <div className="block">
-          <div className="buy-block cursor-pointer">
+          <div className="buy-block">
+            <button className="buy-btn" onClick={() => handlePackageSelect(
+              state.invoicePrice
+              ? {
+                ...updatePackage[0].price[0],
+                package_id: updatePackage[0].package_id
+              } : {
+                ...packages[0].price[0],
+                package_id: packages[0].package_id,
+              }
+            )}>
 
+            </button>
           </div>
         </div>
       </section>
@@ -160,8 +450,31 @@ function App() {
               </div>
             </div>
 
-            <div className="draw-winList">
-
+            <div className="draw-winList flex flex-col">
+              <div className="win-title">
+                中奖名单
+              </div>
+              <div className="win-content flex-1 flex justify-center items-center">
+                <ul className="win-list w-64 h-64 overflow-hidden" ref={winRef}>
+                  {
+                    state.present?.map((presen, i) =>
+                    <li className="win-item" key={`${presen.user_id}-${presen.create_time}-${i}`}>
+                      <small>{presen.create_time}</small>
+                      <div className="win-item-tile flex justify-between items-center">
+                        <div className="desc">恭喜 {presen.mobile_num}</div>
+                        <b className="extra">
+                          {presen.title}
+                        </b>
+                      </div>
+                    </li>)
+                  }
+                </ul>
+              </div>
+              <div className="win-action text-lg h-16 flex items-center justify-center">
+                <button className="win-btn" onClick={handleOpenPrizeRecord}>
+                    查看中奖纪录
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -194,7 +507,6 @@ function App() {
                       多买多得，赠送年卡时长实时到帐，不可转赠；
                     </p>
                   </div>
-
                 </li>
                 <li className="rule-item">
                   <div className="rule-tag">

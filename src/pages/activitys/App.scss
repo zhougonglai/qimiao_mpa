@@ -9,21 +9,32 @@
     }
 
     .buy-block{
-      width: 760px;
-      height: 197px;
+      width: 620px;
+      height: 162px;
       background-image: url('../../assets/img/activitys/index/price.png');
       background-size: contain;
       background-position: center;
       margin-top: 360px;
       margin-bottom: 140px;
       transition: transform 0.2s ease-out;
+      position: relative;
 
-      // animation: pulse 2s infinite;
-      &:hover{
-        transform: scale(1.1);
-      }
-      @media screen and (min-resolution: 2dppx) {
-        background-image: url('../../assets/img/activitys/index/price@2x.png');
+      .buy-btn{
+        width: 78px;
+        height: 78px;
+        background-image: url('../../assets/img/activitys/index/price-btn@2x.png');
+        background-size: contain;
+        background-position: center;
+        animation: pulse 1.6s infinite;
+        position: absolute;
+        right: 35px;
+        top: 55px;
+        outline: 0;
+
+        &:hover{
+          transform: scale(1.1);
+          animation: none;
+        }
       }
     }
   }
@@ -135,6 +146,44 @@
           background-position: center;
           @media screen and (min-resolution: 2dppx) {
             background-image: url('../../assets/img/activitys/index/bg@2x.png');
+          }
+          padding: 20px;
+
+          .win{
+            &-title{
+              color: #FF6F4A;
+              width: 100%;
+              height: 80px;
+              line-height: 3.6;
+              font-size: 25px;
+              text-indent: 25px;
+            }
+            &-item{
+              height: 50px;
+
+              // + .win-item {
+              //   margin-top: 10px;
+              // }
+              small{
+                color: #999;
+              }
+              .desc{
+                color: #333;
+              }
+              .extra{
+                color: #F65E3D;
+              }
+            }
+
+            &-btn{
+              width: 264px;
+              height: 50px;
+              outline: 0;
+              background: rgba(255, 169, 81, 0);
+              border: 2px solid #FF8869;
+              border-radius: 25px;
+              color: #FF6F4A;
+            }
           }
         }
       }

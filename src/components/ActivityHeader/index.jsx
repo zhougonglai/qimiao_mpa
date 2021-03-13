@@ -8,7 +8,7 @@ import './index.scss';
 import Modal from '../Modal';
 import Login from '../Login';
 
-export default forwardRef(function ActivityHeader(props, ref) {
+export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, logout }, ref) {
   const [userData, saveUserData] = useCookieState('userData');
   const [isModal, setModal] = useState(false);
   const [ userInfo, setUser ] = useState(null);
@@ -27,12 +27,14 @@ export default forwardRef(function ActivityHeader(props, ref) {
 
   const handleLoginCB = (userInfo) => {
     setModal(false);
-    setUser(userInfo)
+    setUser(userInfo);
+    loginSuccess(userInfo);
   }
 
   const handleLogout = () => {
-    saveUserData('', { expires: (() => new Date())()})
-    setUser(null)
+    saveUserData()
+    setUser()
+    logout()
   }
 
   return (
@@ -55,6 +57,7 @@ export default forwardRef(function ActivityHeader(props, ref) {
           </div>
       }
       <Modal
+        round
         isVisible={isModal}
         content={<Login loginSuccess={handleLoginCB}/>}
         onClose={() => setModal(false)}

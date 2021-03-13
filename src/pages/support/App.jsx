@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useMount, useLocalStorageState, useSetState, useDebounceEffect } from 'ahooks';
 import classNames from 'classnames'
-import Bouncing from '~/components/Bouncing';
 import request from '~/utils/request';
 import searchIcon from '~/assets/img/search.svg';
 import './App.scss';

@@ -1,6 +1,6 @@
 import { random } from 'lodash'
 
-const scrollToTop = () => {
+export const scrollToTop = () => {
   const c = document.documentElement.scrollTop || document.body.scrollTop;
   if (c > 0) {
     window.requestAnimationFrame(scrollToTop);

@@ -10,12 +10,12 @@
   40%,
   43% {
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -10px, 0) scaleY(1.1);
+    transform: translate3d(0, -20px, 0) scaleY(1.1);
   }
 
   70% {
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -7px, 0) scaleY(1.05);
+    transform: translate3d(0, -15px, 0) scaleY(1.05);
   }
 
   80% {
@@ -37,12 +37,35 @@
   }
 
   50% {
-      -webkit-transform: scale3d(1.05,1.05,1.05);
-      transform: scale3d(1.05,1.05,1.05)
+      -webkit-transform: scale3d(1.05,1.05,1.1);
+      transform: scale3d(1.05,1.05,1.1)
   }
 
   to {
       -webkit-transform: scaleX(1);
       transform: scaleX(1)
   }
+}
+
+
+.text-primary{
+  color: #6236FF;
+  transition: color .2s ease;
+  &:hover{
+    color: #9B66FF;
+  }
+}
+
+p, ul{
+  margin: 0;
+}
+
+.line{
+  border: none;
+  border-bottom: 1px dashed #E6E6E6;
+}
+
+
+body{
+  overflow-x: hidden;
 }

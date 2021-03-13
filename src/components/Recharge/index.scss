@@ -1,0 +1,112 @@
+.alert{
+  // background-color: #f4f7f8;
+
+
+  &-list{
+    width: 377px;
+    height: 124px;
+    padding: 10px;
+    margin: 0;
+    background-image: url('../../assets/img/components/recharge.png');
+    background-size: 377px 124px;
+    background-repeat: no-repeat;
+  }
+
+  &-item{
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height:20px;
+    height: 55px;
+    color: #666666;
+  }
+
+  .price{
+    color: #ED3735;
+  }
+}
+
+.qm{
+  &-list{
+    display: flex;
+    flex-direction: column;
+    width: 377px;
+    padding: 10px;
+  }
+  &-item{
+    // padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid transparent;
+    // border-radius: 10px;
+    min-height: 56px;
+
+    // &.active{
+    //   border-color: #6236FF;
+    //   box-shadow: 0 3px 15px 0 rgba(#6236FF,.35) ;
+    // }
+
+    // + .qm-item{
+    //   margin-top: 10px;
+    // }
+
+    &-icon{
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img{
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    &-tile{
+      flex: 1;
+      text-indent: 10px;
+    }
+  }
+
+  &-input{
+    border: 2px solid transparent;
+    background-color: #f4f7f8;
+    padding: 5px 10px;
+    transition: all .25s ease;
+    border-radius: 10px;
+    line-height: 18px;
+    font-size: 14px;
+    letter-spacing: 0.325rem;
+    font-weight: 400;
+    text-indent: 10px;
+    caret-color: #6236FF;
+    outline: 0;
+    &:focus-within{
+      border-color: #6236FF;
+    }
+  }
+
+  &-btn{
+    display: block;
+    background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
+    color: white;
+    width: 350px;
+    line-height: 50px;
+    font-size: 22px;
+    border-radius: 25px;
+    box-shadow: 0px 5px 5px 0px rgba(0, 51, 157, 0.1);
+    outline: 0 !important;
+    transition: all .25s ease;
+    &:hover{
+      box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+      transform: translate(4px, -4px);
+    }
+
+    &:active{
+      transform: translate(0, 0);
+    }
+
+  }
+}

@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,9 +13,6 @@
   animation-name: appear;
   animation-duration: 300ms;
   &-dialog {
-    width: 100%;
-    max-width: 550px;
-    border-radius: 40px;
     background: white;
     position: relative;
     margin: 0 20px;
@@ -29,6 +26,38 @@
     -webkit-animation-duration: 0.4s;
     animation-name: slide-in;
     animation-duration: 0.5s;
+
+    &.normal{
+      width: 100%;
+      max-width: 550px;
+    }
+
+    &.small{
+      max-width: 460px;
+      width: 100%;
+    }
+
+    &.round{
+      border-radius: 40px;
+    }
+  }
+  &-title{
+    position: relative;
+    z-index: 4;
+    font-weight: 400;
+    font-size: large;
+    cursor: default;
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      z-index: -1;
+      height: 6px;
+      border-radius: 3px;
+      width: 60px;
+      left: calc(50% - 30px);
+      background-color:#6236FF;
+    }
   }
 }
 
@@ -41,7 +70,7 @@
 }
 
 .modal-header {
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .modal-footer {

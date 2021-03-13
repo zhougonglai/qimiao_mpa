@@ -6,6 +6,10 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "_moduleAliases": {
+    "@babel/standalone": "node_modules/@babel/core",
+    "babel-preset-env": "node_modules/@babel/preset-env"
+  },
   "dependencies": {
     "ahooks": "^2.9.6",
     "animejs": "^3.2.1",
@@ -18,8 +22,13 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@vitejs/plugin-legacy": "^1.3.1",
     "@vitejs/plugin-react-refresh": "^1.1.0",
     "glob": "^7.1.6",
+    "less": "^4.1.1",
+    "module-alias": "^2.2.2",
     "sass": "^1.32.8",
     "vite": "^2.0.0-beta.70"
   }

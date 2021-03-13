@@ -58,6 +58,7 @@ function Header() {
           </div>
       }
       <Modal
+        round
         isVisible={isModal}
         content={<Login loginSuccess={handleLoginCB}/>}
         onClose={() => setModal(false)}

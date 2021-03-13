@@ -32,6 +32,11 @@ const SlotMachine = forwardRef(({ items, defaultState }, ref) => {
           })
         },
       })
+    },
+    reset: () => {
+      leftSpinner.current.reset()
+      midleSpinner.current.reset()
+      rightSpinner.current.reset()
     }
   }))
 
