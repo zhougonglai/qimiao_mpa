@@ -24,7 +24,6 @@
   }
 
   90% {
-    -webkit-transform: translate3d(0, -4px, 0) scaleY(1.02);
     transform: translate3d(0, -4px, 0) scaleY(1.02);
   }
 }
@@ -32,17 +31,14 @@
 
 @keyframes pulse {
   0% {
-      -webkit-transform: scaleX(1);
       transform: scaleX(1)
   }
 
   50% {
-      -webkit-transform: scale3d(1.05,1.05,1.1);
-      transform: scale3d(1.05,1.05,1.1)
+      transform: scale3d(1.1,1.1,1.1)
   }
 
   to {
-      -webkit-transform: scaleX(1);
       transform: scaleX(1)
   }
 }
