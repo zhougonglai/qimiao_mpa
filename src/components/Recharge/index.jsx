@@ -178,7 +178,7 @@ export default function Recharge({ packager, done, account_token }) {
               state.useDiscount
                 ? <div className="qm-input-box">
                     <input placeholder="折扣码"
-                      spellCheck={false}
+                      spellCheck={false} maxLength="10"
                       value={state.discount_code}
                       onInput={e => setState({ discount_code: e.target.value })}
                       className="qm-input font-mono" />

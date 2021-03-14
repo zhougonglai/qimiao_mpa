@@ -35,22 +35,11 @@
     padding: 10px;
   }
   &-item{
-    // padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 2px solid transparent;
-    // border-radius: 10px;
     min-height: 56px;
-
-    // &.active{
-    //   border-color: #6236FF;
-    //   box-shadow: 0 3px 15px 0 rgba(#6236FF,.35) ;
-    // }
-
-    // + .qm-item{
-    //   margin-top: 10px;
-    // }
 
     &-icon{
       width: 40px;
@@ -83,6 +72,7 @@
     text-indent: 10px;
     caret-color: #6236FF;
     outline: 0;
+    &:hover,
     &:focus-within{
       border-color: #6236FF;
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useBoolean, useCookieState, useMount, useSessionStorageState, useSetState, useThrottleFn } from 'ahooks';
 import SlotMachine from '~/components/SlotMachine';
 import TrueItem from '~/assets/img/activitys/index/data-1.png';
@@ -9,7 +9,6 @@ import {
   getActivity,
   getActivityPackage,
   getActivityPresent,
-  packageBuy,
   activityDraw,
   getPackageLevel,
   getInvoicePrice,
@@ -24,7 +23,6 @@ import rule3X from '~/assets/img/activitys/index/03@2x.png';
 import rule4 from '~/assets/img/activitys/index/04.png';
 import rule4X from '~/assets/img/activitys/index/04@2x.png';
 import payDone from '~/assets/img/done.svg';
-import moment from 'moment'
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
@@ -34,7 +32,7 @@ import Payment from '~/components/Payment';
 import UpgradeTip from '~/components/Payment/UpgradeTip';
 import { Button } from 'antd';
 import anime from 'animejs/lib/anime.es';
-import { take, concat, tail } from 'lodash';
+import { take, concat, tail, isNumber } from 'lodash';
 import PrizeRecord from '~/components/PrizeRecord';
 
 const activity_id = 1;
@@ -44,9 +42,10 @@ function App() {
   const headerRef = useRef();
   const winRef = useRef();
   const [ userData, saveUserData] = useCookieState('userData');
-  const [ userInfo, setUser ] = React.useState(null);
+  const [ userInfo, setUser ] = useSessionStorageState('userInfo');
 
   const [ runing, { setTrue, setFalse }] = useBoolean(false);
+  const [ overTime, { setTrue: openOverTip , setFalse: closeOverTip }] = useBoolean(false);
   const [ recharge, { setTrue:openRecharge , setFalse:closeRecharge } ] = useBoolean(false);
   const [ payment, { setTrue: openPayment, setFalse: closePayment } ] = useBoolean(false);
   const [ drawTip, { setTrue: openDrawTip, setFalse: closeDrawTip } ] = useBoolean(false);
@@ -58,6 +57,7 @@ function App() {
 
   const [ activityInfo, updateActivity ] = useSessionStorageState('activity')
   const [ packages, updatePackage ] = useSessionStorageState('packages')
+
   const [ state, setState ] = useSetState({
     packager: null,
     payInfo: null,
@@ -65,44 +65,49 @@ function App() {
     invoicePrice: null,
     upgradePackage: null,
     prize: null,
+    inActivityTime: null,
   })
 
   const { run: handleDraw } = useThrottleFn(async () => {
-    if(userInfo) {
-      if(activityInfo.points < activityInfo.detail.fee){
-        openRechargeTip()
-        return
-      }
-      const { data, code, msg } = await activityDraw({
-        activity_id,
-        account_token: userInfo.login_info.account_token
-      })
-      updateActivity({
-        ...activityInfo,
-        points: data.points
-      })
-      setTrue()
-      if(code) {
-        drawRef.current.run(0, () => {
-          setTimeout(() => {
-            openDrawTip()
-            setFalse()
-          }, 500)
+    if(state.inActivityTime === 1) {
+      if(userInfo) {
+        if(activityInfo.points < activityInfo.detail.fee){
+          openRechargeTip()
+          return
+        }
+        const { data, code, msg } = await activityDraw({
+          activity_id,
+          account_token: userInfo.login_info.account_token
         })
-      } else {
-        drawRef.current.run(1, () => {
-          setState({
-            prize: data
+        updateActivity({
+          ...activityInfo,
+          points: data.points
+        })
+        setTrue()
+        if(code) {
+          drawRef.current.run(0, () => {
+            setTimeout(() => {
+              openDrawTip()
+              setFalse()
+            }, 500)
           })
-          setTimeout(() => {
-            openWinTip()
-            setFalse()
-          }, 550)
-        })
-      }
+        } else {
+          drawRef.current.run(1, () => {
+            setState({
+              prize: data
+            })
+            setTimeout(() => {
+              openWinTip()
+              setFalse()
+            }, 550)
+          })
+        }
 
+      } else {
+        headerRef.current.openLogin()
+      }
     } else {
-      headerRef.current.openLogin()
+      openOverTip()
     }
   }, { trailing: false })
 
@@ -122,13 +127,23 @@ function App() {
   ]
 
   // 选取充值套餐
-  const handlePackageSelect = (packager) => {
-    console.log(userInfo)
-    if(userInfo) {
-      setState({ packager });
-      openRecharge();
+  const handlePackageSelect = () => {
+    if(state.inActivityTime === 1) {
+      if(userInfo) {
+        setState({ packager: state.invoicePrice
+        ? {
+          ...updatePackage[0].price[0],
+          package_id: updatePackage[0].package_id
+        } : {
+          ...packages[0].price[0],
+          package_id: packages[0].package_id,
+        } });
+        openRecharge();
+      } else {
+        headerRef.current.openLogin()
+      }
     } else {
-      headerRef.current.openLogin()
+      openOverTip()
     }
   }
 
@@ -155,9 +170,6 @@ function App() {
     closeRecharge();
     handleTokenUpdate();
     openRechargeSuc();
-    // if(!state.invoicePrice) {
-    //   openUpgradeTip()
-    // }
   }
 
   // init project
@@ -165,24 +177,41 @@ function App() {
     console.log('userData',userData)
     if(userData) {
       const user = JSON.parse(userData)
-      setUser(user)
       handleTokenUpdate(user)
     } else {
-      setUser(null);
       handleTokenUpdate()
     }
   }, [userData])
 
+  const handleOverTime = async () => {
+    if(!isNumber(state.inActivityTime)){
+      const moment = await (await import('moment')).default();
+      if(moment.isBefore(activityInfo.detail.start_time)) {
+        setState({ inActivityTime: 0 })
+        openOverTip()
+      } else if(moment.isAfter(activityInfo.detail.end_time)) {
+        setState({ inActivityTime: 2 })
+        openOverTip()
+      } else {
+        setState({ inActivityTime: 1 })
+      }
+    }
+  }
+
+  useEffect(handleOverTime, [activityInfo])
+
   // token更新
   const handleTokenUpdate = async (user = userInfo) => {
     if(user) {
-      updateActivity(await getActivity(activity_id, {
+      setUser(user)
+      updateActivity( await getActivity(activity_id, {
         activity_id,
         account_token: user.login_info.account_token,
         type: 1,
         plat_type: 1
       }).then(activity => activity.data));
     } else {
+      setUser(null);
       updateActivity(await getActivity(activity_id, {
         activity_id,
         type: 1,
@@ -260,6 +289,7 @@ function App() {
       present_type: 6
     }).then(res => res.data)
     if(present.total <= 10) {
+      const moment = await(await import('moment')).default;
       const presenter = (
         phone = randomPhoneNumber(),
         user_id = Math.round(Math.random() * 3000),
@@ -288,12 +318,12 @@ function App() {
     <>
       <ActivityHeader ref={headerRef}
         loginSuccess={(user) => {
-            setUser(user)
+            console.log(user)
             handleTokenUpdate(user)
           }
         }
         logout={handleTokenExpired}/>
-      <Modal
+      <Modal size="small"
         isVisible={recharge}
         title="选择支付方式"
         onClose={closeRecharge}
@@ -366,6 +396,23 @@ function App() {
       />
       <Modal round
         size="small"
+        isVisible={overTime}
+        onClose={closeOverTip}
+        content={
+          <div className="flex items-center justify-center h-56">
+            <p className="text-xl">
+              { state.isActivityTime > 1 ? '活动已结束' : '活动未开始' }
+            </p>
+          </div>
+        }
+        footer={
+          <div className="w-full flex items-center mb-4 justify-center">
+            <Button type="primary" className="w-32" size="large" shape="round" onClick={closeOverTip}>好的</Button>
+          </div>
+        }
+        />
+      <Modal round
+        size="small"
         isVisible={rechargeSuc}
         onClose={closeRechargeSuc}
         content={
@@ -418,17 +465,7 @@ function App() {
       <section className="section-header">
         <div className="block">
           <div className="buy-block">
-            <button className="buy-btn" onClick={() => handlePackageSelect(
-              state.invoicePrice
-              ? {
-                ...updatePackage[0].price[0],
-                package_id: updatePackage[0].package_id
-              } : {
-                ...packages[0].price[0],
-                package_id: packages[0].package_id,
-              }
-            )}>
-
+            <button className="buy-btn" onClick={() => handlePackageSelect()}>
             </button>
           </div>
         </div>

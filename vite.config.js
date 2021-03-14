@@ -35,7 +35,12 @@ export default defineConfig({
         },
         javascriptEnabled: true
       }
-    }
+    },
+    postcss: {
+      plugins: process.env.NODE_ENV === 'production' ?  [
+        require('autoprefixer'),
+      ] : []
+    },
   },
   server:{
     host: '0.0.0.0',
@@ -54,11 +59,11 @@ export default defineConfig({
     include: [
       'react',
       'react-dom',
-      "animejs",
-      'lodash',
-      'whatwg-fetch',
-      'ahooks',
-      'antd',
+      // "animejs",
+      // 'lodash',
+      // 'whatwg-fetch',
+      // 'ahooks',
+      // 'antd',
     ],
   }
 })

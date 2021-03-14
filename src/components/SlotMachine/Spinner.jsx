@@ -12,8 +12,6 @@ const Spinner = forwardRef(({ items, defaultState }, ref) => {
       const itemHeight = spinnerRef.current.scrollHeight / (drawData.drawItems.length * 2);
       const scrollTo = itemHeight * 2 * (drawData.drawItems.length - 1) - (bool ? ( 2 * itemHeight) : itemHeight);
 
-      // console.log(bool, itemHeight, drawData.drawItems.length, scrollTo)
-
       anime({
         targets: spinnerRef.current,
         duration: 5000,
@@ -35,7 +33,6 @@ const Spinner = forwardRef(({ items, defaultState }, ref) => {
   useMount(() => {
     setDrawData({
       drawItems: new Array(10).fill(items)
-      // drawItems: [].concat([items], [items], [items], [items], [items], [items], [items], [items], [items], [items])
     })
   })
 

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSetState, useMount, useCookieState, useCountDown, useBoolean } from 'ahooks';
 import { message } from 'antd';
 import logo from '~/assets/img/logo.png';
@@ -7,7 +7,7 @@ import smsIcon from '~/assets/img/sms.svg';
 import request from '~/utils/request';
 import './index.scss';
 
-const Login = ({ loginSuccess = () => {} }) => {
+const Login = ({ loginSuccess }) => {
   const [ formData, setForm ] = useSetState({
     mobile_num: '',
     country_code: 86,
@@ -23,13 +23,12 @@ const Login = ({ loginSuccess = () => {} }) => {
     onEnd: () => setFalse()
   })
 
-  useMount(async () => {
-    // console.log(import.meta.env, import.meta.env.VITE_BASE_PATH)
+  useEffect(async () => {
+    inputRef.current.focus();
     const { data } = await request(`${import.meta.env.VITE_BASE_PATH}tools/captcha/geetest/config`, {
       method: 'post',
       body: JSON.stringify({ type: 'web' })
     })
-    // console.log(data);
     window.initGeetest({
       ...data,
       offline: !data.success,
@@ -39,7 +38,6 @@ const Login = ({ loginSuccess = () => {} }) => {
         setForm({ captchaObj })
       }).onSuccess(async () => {
         const validata = captchaObj.getValidate();
-        console.log(formData, inputRef.current.value)
 
         const { code, data, msg } = await request(`${import.meta.env.VITE_BASE_PATH}tools/smscode`, {
           method: 'post',
@@ -51,15 +49,17 @@ const Login = ({ loginSuccess = () => {} }) => {
           })
         })
         if(code) {
-          message.info(msg);
+          message.warn(msg);
+          captchaObj.reset();
         } else {
           setForm({smscode_key: data.smscode_key})
           setTargetDate(Date.now() + 60 * 1000)
           setTrue()
+          captchaObj.destroy();
         }
       });
     })
-  })
+  }, [])
 
   const handleSendSms = () => {
     formData.captchaObj.verify();
@@ -84,7 +84,7 @@ const Login = ({ loginSuccess = () => {} }) => {
       saveUserData(JSON.stringify(data), {
         expires: (() => new Date(data.login_info.expiry_time))()
       })
-      loginSuccess(data);
+      if(typeof loginSuccess === 'function') loginSuccess(data);
     }
   }
 
@@ -97,24 +97,22 @@ const Login = ({ loginSuccess = () => {} }) => {
         <div className="form-contrl my-4 flex items-center justify-start">
           <img src={phoneIcon} className="form-icon" alt="手机号"/>
           <input
-          id="mobile_num"
-          placeholder="手机号"
-          maxLength="16"
-          ref={inputRef}
-          value={formData.mobile_num}
-          onInput={handleInput}
-          tabIndex="1"
-          className="form-input font-mono"/>
+            id="mobile_num"
+            placeholder="手机号"
+            maxLength="16"
+            ref={inputRef}
+            value={formData.mobile_num}
+            onInput={handleInput}
+            className="form-input font-mono"/>
           {/* <label htmlFor="mobile_num" className="form-label">手机号</label> */}
         </div>
         <div className="form-contrl my-4 flex items-center justify-start">
           <img src={smsIcon} className="form-icon" alt="验证码"/>
           <input id="smscode" placeholder="验证码" maxLength="6"
             onInput={e => setForm({ smscode: e.target.value })}
-            tabIndex="3"
             className="form-input font-mono" />
           {/* <label htmlFor="smscode" className="form-label">验证码</label> */}
-          <button type="button" className="sms-btn" disabled={timer} onClick={handleSendSms} tabIndex="2" >
+          <button type="button" id="smsbtn" className="sms-btn" disabled={timer} onClick={handleSendSms}>
             {
               timer
               ? '(' + Math.round(countdown / 1000) + ')'
@@ -123,7 +121,7 @@ const Login = ({ loginSuccess = () => {} }) => {
           </button>
         </div>
         <div className="form-actions mt-8 flex items-center justify-center">
-          <button type="button" className="login" tabIndex="4" onClick={handleSubmit}>
+          <button type="button" className="login" onClick={handleSubmit}>
             立即登录
           </button>
         </div>

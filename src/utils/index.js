@@ -2,7 +2,7 @@ import { random } from 'lodash'
 
 export const scrollToTop = () => {
   const c = document.documentElement.scrollTop || document.body.scrollTop;
-  if (c > 0) {
+  if (c > 10) { // 部分浏览器计算问题.
     window.requestAnimationFrame(scrollToTop);
     window.scrollTo(0, c - c / 8);
   }

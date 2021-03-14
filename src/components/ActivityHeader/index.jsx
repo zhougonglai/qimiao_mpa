@@ -1,5 +1,5 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import { useCookieState, useMount, useSetState } from 'ahooks';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import { useCookieState, useSessionStorageState } from 'ahooks';
 import logo from '~/assets/img/logo@1x.png';
 import logoX from '~/assets/img/logo@2x.png';
 import logoTag from '~/assets/img/logo-tag@1x.png';
@@ -11,7 +11,7 @@ import Login from '../Login';
 export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, logout }, ref) {
   const [userData, saveUserData] = useCookieState('userData');
   const [isModal, setModal] = useState(false);
-  const [ userInfo, setUser ] = useState(null);
+  const [ userInfo, setUser ] = useSessionStorageState('userInfo');
 
   useImperativeHandle(ref, () => ({
     openLogin: () => {
@@ -19,11 +19,11 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
     }
   }))
 
-  useMount(() => {
+  useEffect(() => {
     if(userData) {
       setUser(JSON.parse(userData))
     }
-  })
+  }, [userData])
 
   const handleLoginCB = (userInfo) => {
     setModal(false);
