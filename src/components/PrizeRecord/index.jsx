@@ -51,12 +51,11 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
   return (
     <>
       <Modal isVisible={receive}
-        round
         size="small"
         title="兑换成功！"
         onClose={closeReceive}
         content={
-          <div className="h-32 flex items-center justify-center">
+          <div className="h-16 flex items-center justify-center">
             <p className="text-gray-500 w-64 text-center">
               我们将于活动结束后7个工作日内原路退还该套餐的支付金额，请注意查收！
             </p>
@@ -69,12 +68,11 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
         }
       />
       <Modal isVisible={detail}
-        round
         size="small"
         title="奖品发放中"
         onClose={closeDtail}
         content={
-          <div className="h-32 flex items-center justify-center">
+          <div className="h-16 flex items-center justify-center">
             <p className="text-gray-500 w-64 text-center">
               我们将于活动结束后7个工作日内完成退款，如有问题请，联系在线客服。
             </p>
@@ -87,7 +85,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
         }
       />
       <div className="prize-record flex flex-col items-center justify-center">
-        <div className="record-content w-full py-4 px-2">
+        <div className="record-content w-full pb-4 px-2">
           <ul className="prize-list">
             <li className="prize-header flex">
               <div className="prize-title flex-1">
@@ -113,8 +111,8 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
                   <div className="prize-action flex-1 text-center">
                     {
                     prizer.status === 0
-                    ? <Button size="small" type="primary" onClick={() => handleReceive(prizer)}>立即兑换</Button>
-                    : <Button size="small" onClick={openDtail}>查看详情</Button>}
+                    ? <Button type="primary" onClick={() => handleReceive(prizer)}>立即兑换</Button>
+                    : <Button onClick={openDtail}>查看详情</Button>}
                   </div>
                 </li>)
               : <div className="prize-empty w-full h-32 text-center text-4xl">

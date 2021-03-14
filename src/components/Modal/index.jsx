@@ -2,11 +2,12 @@ import classNames from 'classnames';
 import React from 'react';
 import './index.scss';
 
-const Modal = ({ isVisible = false, round = false , size = 'normal',  title, content, footer, onClose }) => {
-  const keydownHandler = ({ key }) => {
-    switch (key) {
+const Modal = ({ isVisible = false, round = false , size = 'normal', className, title, content, footer, onClose }) => {
+  const keydownHandler = (e) => {
+    switch (e.key) {
       case 'Escape':
         onClose();
+        console.log(e)
         break;
       default:
     }
@@ -19,10 +20,10 @@ const Modal = ({ isVisible = false, round = false , size = 'normal',  title, con
 
   return !isVisible ? null : (
     <div className="modal" onClick={onClose}>
-      <div className={classNames("modal-dialog", { round }, size )} onClick={e => e.stopPropagation()}>
-        <div className="modal-close" onClick={onClose}>
+      <div className={classNames("modal-dialog", { round }, size, className )} onClick={e => e.stopPropagation()}>
+        { size === 'small' ? null : <div className="modal-close" onClick={onClose}>
           &times;
-        </div>
+        </div> }
         <div className="modal-header">
           {
             title ? <h3 className="modal-title">{title}</h3> : null

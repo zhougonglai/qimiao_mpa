@@ -323,7 +323,7 @@ function App() {
           }
         }
         logout={handleTokenExpired}/>
-      <Modal size="small"
+      <Modal
         isVisible={recharge}
         title="选择支付方式"
         onClose={closeRecharge}
@@ -345,7 +345,7 @@ function App() {
             account_token={ userInfo?.login_info?.account_token } />
         }
       />
-      <Modal round
+      <Modal
         size="small"
         isVisible={drawTip}
         onClose={closeDrawTip}
@@ -369,18 +369,16 @@ function App() {
           <div className="w-full flex items-center justify-center">
             <Button type="primary" shape="round" onClick={() => {
               handlePackageUpgrade()
-              handlePackageSelect({
-                ...updatePackage[0].price[0],
-                package_id: updatePackage[0].package_id
-              })
+              handlePackageSelect()
             }}>再次购买</Button>
           </div>
         }
       />
-      <Modal isVisible={winTip}
-        size="small" round
+      <Modal
+        size="small"
+        isVisible={winTip}
         onClose={closeWinTip}
-        content={<div className="flex flex-col w-full items-center justify-center h-64">
+        content={<div className="flex flex-col w-full p-8 items-center justify-center h-32">
           <h3 className="text-lg">
             恭喜您获得 <span className="text-primary">“{state.prize?.title}”</span>
           </h3>
@@ -394,12 +392,12 @@ function App() {
           </div>
         }
       />
-      <Modal round
+      <Modal
         size="small"
         isVisible={overTime}
         onClose={closeOverTip}
         content={
-          <div className="flex items-center justify-center h-56">
+          <div className="flex items-center justify-center h-24">
             <p className="text-xl">
               { state.isActivityTime > 1 ? '活动已结束' : '活动未开始' }
             </p>
@@ -411,12 +409,12 @@ function App() {
           </div>
         }
         />
-      <Modal round
+      <Modal
         size="small"
         isVisible={rechargeSuc}
         onClose={closeRechargeSuc}
         content={
-          <div className="flex flex-col h-56 items-center justify-center">
+          <div className="flex flex-col h-24 items-center justify-center">
               <div className="icon w-20">
                 <img src={payDone} alt="支付成功"/>
               </div>
@@ -454,7 +452,8 @@ function App() {
           </div>
         }
       />
-      <Modal isVisible={prizeRecord}
+      <Modal size="large"
+        isVisible={prizeRecord}
         title="中奖记录"
         onClose={closePrizeRecord}
         content={userInfo && <PrizeRecord tokenExpired={bool => {

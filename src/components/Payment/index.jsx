@@ -34,7 +34,7 @@ function Payment({ payInfo, account_token, activity_id, paySuccess, closePayment
   })
 
   return (
-    <div className="pay-info flex flex-col items-center pb-8">
+    <div className="pay-info flex flex-col items-center pb-8 px-12">
       {
         payInfo
         ? <>

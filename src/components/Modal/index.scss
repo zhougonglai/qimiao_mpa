@@ -26,6 +26,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: slide-in;
     animation-duration: 0.5s;
+    border-radius: 4px;
 
     &.normal{
       width: 100%;
@@ -33,8 +34,11 @@
     }
 
     &.small{
-      max-width: 460px;
-      width: 100%;
+      min-width: 250px;
+    }
+
+    &.large{
+      min-width: 650px;
     }
 
     &.round{
@@ -82,8 +86,8 @@
   color: #666;
   position: absolute;
   font-size: 25px;
-  right: 30px;
-  top: 30px;
+  right: 20px;
+  top: 20px;
   width: 30px;
   line-height: 30px;
   text-align: center;
@@ -97,7 +101,7 @@
 }
 
 .modal-content {
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 }
 
 @keyframes appear {
