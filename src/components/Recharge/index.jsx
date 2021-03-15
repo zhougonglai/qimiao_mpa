@@ -13,7 +13,7 @@ import { packageBuy } from '~/service/activity';
 import oneForOne from '~/assets/img/components/one_for_one.png';
 import oneForOneX from '~/assets/img/components/one_for_one@2x.png';
 
-export default function Recharge({ packager, done, account_token }) {
+export default function Recharge({ packager, done, account_token, tokenExpired }) {
   const [ state, setState ] = useSetState({
     pay_type: null,
     discount_code: '',
@@ -35,6 +35,9 @@ export default function Recharge({ packager, done, account_token }) {
     onSuccess: ({ data, code , msg }) => {
       if(code) {
         message.warn(msg)
+        if(code === 400006) {
+          tokenExpired()
+        }
       } else {
         done({
           ...state,
@@ -76,7 +79,7 @@ export default function Recharge({ packager, done, account_token }) {
   }
 
   useMount(async () => {
-    const [ { key, value } ] = await getSetting({key_name: 'default_pay_type' }).then(res => res.data);
+    const [ { key, value } ] = await getSetting({ key_name: 'default_pay_type' }).then(res => res.data);
     const action = [ null, () => {
       setState({
         pay_type: 2
@@ -181,7 +184,7 @@ export default function Recharge({ packager, done, account_token }) {
                       spellCheck={false} maxLength="10"
                       value={state.discount_code}
                       onInput={e => setState({ discount_code: e.target.value })}
-                      className="qm-input font-mono" />
+                      className="qm-input" />
                   </div>
                 : null
             }

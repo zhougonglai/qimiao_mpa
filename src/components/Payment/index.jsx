@@ -54,23 +54,8 @@ function Payment({ payInfo, account_token, activity_id, paySuccess, closePayment
             <div className="pay-desc text-sm my-2">
               二维码将在 {minutes} 分钟后失效
             </div>
-            {/* <div className="pay-tip flex items-center justify-around">
-              <div className="pay-tip-icon">
-                <img src={scanCode} alt="扫码"/>
-              </div>
-              <div className="pay-tip-desc">
-                <p className="m-0">
-                  请使用支付宝扫一扫 <br />
-                  扫描二维码完成支付
-                </p>
-              </div>
-            </div> */}
             <div className="pay-action mt-4">
-              <Button className="w-32 mr-8" size="large" shape="round" onClick={closePayment} >返回上一步</Button>
-              <Button className="w-32" loading={loading} type="primary" size="large" shape="round" onClick={() => handleInvoiceState(false)}>
-                已支付
-              </Button>
-              {/* <button className="pay-btn" onClick={handleInvoiceState}>已支付</button> */}
+              <Button className="w-32" size="large" shape="round" onClick={closePayment} >返回上一步</Button>
             </div>
           </>
         : <Bouncing />

@@ -1,3 +1,5 @@
+@import './reset';
+
 @keyframes bounce {
   from,
   20%,
@@ -29,39 +31,16 @@
 }
 
 
-@keyframes pulse {
+@keyframes activity-pulse {
   0% {
       transform: scaleX(1)
   }
 
   50% {
-      transform: scale3d(1.1,1.1,1.1)
+      transform: scale3d(1.2,1.2,1.2)
   }
 
   to {
       transform: scaleX(1)
   }
-}
-
-
-.text-primary{
-  color: #6236FF;
-  transition: color .2s ease;
-  &:hover{
-    color: #9B66FF;
-  }
-}
-
-p, ul{
-  margin: 0;
-}
-
-.line{
-  border: none;
-  border-bottom: 1px dashed #E6E6E6;
-}
-
-
-body{
-  overflow-x: hidden;
 }

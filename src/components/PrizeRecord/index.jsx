@@ -23,7 +23,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
     })
     if(code) {
       if(code === 400006) {
-        tokenExpired(false)
+        tokenExpired()
       }
       message.info(msg);
     } else {
@@ -50,7 +50,8 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
 
   return (
     <>
-      <Modal isVisible={receive}
+      <Modal
+        isVisible={receive}
         size="small"
         title="兑换成功！"
         onClose={closeReceive}
@@ -62,12 +63,13 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
           </div>
         }
         footer={
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center mb-5">
             <Button className="w-32" type="primary" size="large" shape="round" onClick={closeReceive}>好的</Button>
           </div>
         }
       />
-      <Modal isVisible={detail}
+      <Modal
+        isVisible={detail}
         size="small"
         title="奖品发放中"
         onClose={closeDtail}
@@ -79,16 +81,16 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
           </div>
         }
         footer={
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center mb-5">
             <Button className="w-32" type="primary" size="large" shape="round" onClick={closeDtail}>好的</Button>
           </div>
         }
       />
       <div className="prize-record flex flex-col items-center justify-center">
-        <div className="record-content w-full pb-4 px-2">
+        <div className="record-content w-full pb-4">
           <ul className="prize-list">
             <li className="prize-header flex">
-              <div className="prize-title flex-1">
+              <div className="prize-title flex-1 text-center">
                 中奖礼品
               </div>
               <div className="prize-state flex-1 text-center">
@@ -102,7 +104,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
               state.prize?.list?.length
               ? state.prize.list.map(prizer =>
                 <li className="prize-item flex" key={prizer.id}>
-                  <div className="prize-title flex-1">
+                  <div className="prize-title flex-1 text-center">
                     {prizer.present_title}
                   </div>
                   <div className="prize-state flex-1 text-center">
@@ -115,7 +117,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
                     : <Button onClick={openDtail}>查看详情</Button>}
                   </div>
                 </li>)
-              : <div className="prize-empty w-full h-32 text-center text-4xl">
+              : <div className="prize-empty w-full py-12 text-center text-lg">
                 暂无数据
               </div>
             }
@@ -123,7 +125,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
         </div>
         <div className="record-page">
           {
-            state.prize ? <Pagination defaultCurrent={state.prize.current_page} total={state.prize.total} onChange={handlePageChange}/> : null
+            state.prize?.list.length ? <Pagination defaultCurrent={state.prize.current_page} total={state.prize.total} onChange={handlePageChange}/> : null
           }
         </div>
       </div>

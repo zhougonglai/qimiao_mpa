@@ -42,8 +42,11 @@ const Spinner = forwardRef(({ items, defaultState }, ref) => {
         drawData.drawItems.length
         ? drawData.drawItems.map((items,i) =>
             items.map((item, $i) =>
-              <div className="img-wrap" key={`${i}-${$i}-${item.id}`}>
-                <img src={item.img} />
+              <div className="img-wrap flex flex-col" key={`${i}-${$i}-${item.id}`}>
+                <div className="img-cover flex-1 flex items-end justify-center">
+                  <img src={item.img} />
+                </div>
+                <label>{item.label}</label>
               </div>
             )
           )

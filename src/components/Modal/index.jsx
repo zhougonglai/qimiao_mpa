@@ -2,31 +2,40 @@ import classNames from 'classnames';
 import React from 'react';
 import './index.scss';
 
-const Modal = ({ isVisible = false, round = false , size = 'normal', className, title, content, footer, onClose }) => {
-  const keydownHandler = (e) => {
-    switch (e.key) {
+const Modal = ({
+  isVisible = false,
+  round = false,
+  closable = true,
+  keyboard = false,
+  maskClosable = false,
+  defaultStyle = true,
+  size = 'normal',
+  className, title, content, footer, onClose }) => {
+  const keydownHandler = ({key}) => {
+    switch (key) {
       case 'Escape':
         onClose();
-        console.log(e)
         break;
       default:
     }
   };
 
   React.useEffect(() => {
-    document.addEventListener('keydown', keydownHandler);
-    return () => document.removeEventListener('keydown', keydownHandler);
+    if(keyboard) {
+      document.addEventListener('keydown', keydownHandler);
+      return () => document.removeEventListener('keydown', keydownHandler);
+    }
   });
 
   return !isVisible ? null : (
-    <div className="modal" onClick={onClose}>
+    <div className="modal" onClick={() => maskClosable && onClose() }>
       <div className={classNames("modal-dialog", { round }, size, className )} onClick={e => e.stopPropagation()}>
-        { size === 'small' ? null : <div className="modal-close" onClick={onClose}>
+        { closable ? <div className="modal-close" onClick={onClose}>
           &times;
-        </div> }
+        </div> : null }
         <div className="modal-header">
           {
-            title ? <h3 className="modal-title">{title}</h3> : null
+            title ? <h3 className={classNames("modal-title", { 'text-left w-full' : defaultStyle })}>{title}</h3> : null
           }
         </div>
         <div className="modal-body">

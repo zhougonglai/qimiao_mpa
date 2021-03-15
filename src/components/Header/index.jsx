@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCookieState, useMount, useSetState } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useCookieState, useMount, useSessionStorageState, useSetState } from 'ahooks';
 import classNames from 'classnames';
 import './index.scss';
 import 'whatwg-fetch';
@@ -11,21 +11,29 @@ import Modal from '../Modal';
 import Login from '../Login';
 import UserAvatar from './UserAvatar';
 
-function Header() {
+function Header({ logout = () => {} }) {
   const [route, setRoute] = useSetState(location);
   const [isModal, setModal] = React.useState(false);
   const [ userData, saveUserData ] = useCookieState('userData');
-  const [userInfo, setUser ] = useSetState(null);
+  const [userInfo, setUser ] = useSessionStorageState('userInfo');
 
-  useMount(() => {
-    if(userData){
+  useEffect(() => {
+    if(userData) {
       setUser(JSON.parse(userData))
+    } else {
+      setUser()
     }
-  })
+  }, [userData])
 
   const handleLoginCB = (userInfo) => {
     setModal(false);
     setUser(userInfo);
+  }
+
+  const handleLogout = () => {
+    saveUserData()
+    setUser()
+    logout()
   }
 
   return (
@@ -50,7 +58,7 @@ function Header() {
 
       {
         userInfo
-        ? <UserAvatar userInfo={userInfo.user_info}/>
+        ? <UserAvatar userInfo={userInfo.user_info} logout={handleLogout}/>
         : <div id="loginWrap">
             <button id="register" onClick={() => setModal(true)}>
               登录

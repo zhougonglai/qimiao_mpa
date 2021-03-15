@@ -1,0 +1,43 @@
+$primary-color : #6236FF;
+$primary-active-color: #9B66FF;
+
+.text-primary{
+  color: $primary-color;
+  transition: color .2s ease;
+  &:hover{
+    color: $primary-active-color;
+  }
+}
+p,
+ol,
+ul,
+dl {
+  margin: 0;
+}
+
+button{
+  outline: 0 !important;
+}
+
+.line{
+  border: none;
+  border-bottom: 1px dashed #E6E6E6;
+}
+
+.anticon{
+  vertical-align: 0.125rem;
+}
+
+
+body{
+  overflow-x: hidden;
+}
+
+$indent : 1,2,3,4,5;
+
+@each $i in $indent {
+  .indent-#{$i}{
+    text-indent: $i * 10px;
+  }
+}
+

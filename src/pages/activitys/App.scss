@@ -3,9 +3,7 @@
 
     .block{
       display: flex;
-      // align-items: center;
       justify-content: center;
-      // height: 800px;
     }
 
     .buy-block{
@@ -25,7 +23,7 @@
         background-image: url('../../assets/img/activitys/index/price-btn@2x.png');
         background-size: contain;
         background-position: center;
-        animation: pulse 1.6s infinite;
+        animation: activity-pulse 1s infinite;
         position: absolute;
         right: 35px;
         top: 55px;
@@ -83,15 +81,12 @@
           background-repeat: no-repeat;
           &:hover{
             background-image: url('../../assets/img/activitys/index/draw-btn-hover.png');
-            background-size: 248px 71px;
           }
           &:active{
             background-image: url('../../assets/img/activitys/index/draw-btn-active.png');
-            background-size: 248px 57px;
           }
           &:disabled{
             background-image: url('../../assets/img/activitys/index/draw-btn-disable.png');
-            background-size: 248px 71px;
           }
         }
 
@@ -156,14 +151,13 @@
               height: 80px;
               line-height: 3.6;
               font-size: 25px;
-              text-indent: 25px;
+              text-indent: 40px;
+            }
+            &-list{
+              height: 275px;
             }
             &-item{
-              height: 50px;
-
-              // + .win-item {
-              //   margin-top: 10px;
-              // }
+              height: 55px;
               small{
                 color: #999;
               }

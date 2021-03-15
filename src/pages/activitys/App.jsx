@@ -23,6 +23,7 @@ import rule3X from '~/assets/img/activitys/index/03@2x.png';
 import rule4 from '~/assets/img/activitys/index/04.png';
 import rule4X from '~/assets/img/activitys/index/04@2x.png';
 import payDone from '~/assets/img/done.svg';
+import moment from 'moment';
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
@@ -30,7 +31,7 @@ import Modal from '~/components/Modal';
 import Recharge from '~/components/Recharge';
 import Payment from '~/components/Payment';
 import UpgradeTip from '~/components/Payment/UpgradeTip';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import anime from 'animejs/lib/anime.es';
 import { take, concat, tail, isNumber } from 'lodash';
 import PrizeRecord from '~/components/PrizeRecord';
@@ -41,7 +42,6 @@ function App() {
   const drawRef = useRef();
   const headerRef = useRef();
   const winRef = useRef();
-  const [ userData, saveUserData] = useCookieState('userData');
   const [ userInfo, setUser ] = useSessionStorageState('userInfo');
 
   const [ runing, { setTrue, setFalse }] = useBoolean(false);
@@ -79,12 +79,10 @@ function App() {
           activity_id,
           account_token: userInfo.login_info.account_token
         })
-        updateActivity({
-          ...activityInfo,
-          points: data.points
-        })
-        setTrue()
         if(code) {
+          if(code === 400006) {
+            handleTokenExpired()
+          }
           drawRef.current.run(0, () => {
             setTimeout(() => {
               openDrawTip()
@@ -102,6 +100,11 @@ function App() {
             }, 550)
           })
         }
+        updateActivity({
+          ...activityInfo,
+          points: data.points
+        })
+        setTrue()
 
       } else {
         headerRef.current.openLogin()
@@ -115,12 +118,14 @@ function App() {
     {
       id: 1,
       value: true,
+      label: '奇妙免单券',
       img: TrueItem,
       large: TrueItemX
     },
     {
       id: 0,
       value: false,
+      label: '谢谢参与',
       img: FalseItem,
       large: FalseItemX
     }
@@ -168,32 +173,26 @@ function App() {
   const handlePaySuccess = async paymentInfo => {
     closePayment()
     closeRecharge();
-    handleTokenUpdate();
+    handleTokenUpdate(userInfo);
     openRechargeSuc();
   }
 
-  // init project
-  useEffect(async () => {
-    console.log('userData',userData)
-    if(userData) {
-      const user = JSON.parse(userData)
-      handleTokenUpdate(user)
-    } else {
-      handleTokenUpdate()
-    }
-  }, [userData])
-
   const handleOverTime = async () => {
-    if(!isNumber(state.inActivityTime)){
-      const moment = await (await import('moment')).default();
-      if(moment.isBefore(activityInfo.detail.start_time)) {
-        setState({ inActivityTime: 0 })
-        openOverTip()
-      } else if(moment.isAfter(activityInfo.detail.end_time)) {
-        setState({ inActivityTime: 2 })
-        openOverTip()
-      } else {
-        setState({ inActivityTime: 1 })
+    if(activityInfo){
+      if(!isNumber(state.inActivityTime)){
+        const now = moment();
+        if(now.isBefore(activityInfo.detail.start_time)) {
+          console.log('isBefore')
+          setState({ inActivityTime: 0 })
+          openOverTip()
+        } else if(now.isAfter(activityInfo.detail.end_time)) {
+          console.log('isAfter')
+          setState({ inActivityTime: 2 })
+          openOverTip()
+        } else {
+          console.log('inRange')
+          setState({ inActivityTime: 1 })
+        }
       }
     }
   }
@@ -201,7 +200,7 @@ function App() {
   useEffect(handleOverTime, [activityInfo])
 
   // token更新
-  const handleTokenUpdate = async (user = userInfo) => {
+  const handleTokenUpdate = async user => {
     if(user) {
       setUser(user)
       updateActivity( await getActivity(activity_id, {
@@ -221,8 +220,7 @@ function App() {
   }
 
   const handleTokenExpired = (silent = true) => {
-    saveUserData();
-    setUser();
+    headerRef.current.logout()
     drawRef.current.reset();
     if(!silent) {
       headerRef.current.openLogin();
@@ -270,8 +268,11 @@ function App() {
       duration: 1000,
       easing: 'linear',
       loopComplete: () => {
-        setState({
-          present: concat(tail(state.present), take(state.present))
+        // 涉及到图绘
+        requestAnimationFrame(() => {
+          setState({
+            present: concat(tail(state.present), take(state.present))
+          })
         })
       }
     })
@@ -289,7 +290,6 @@ function App() {
       present_type: 6
     }).then(res => res.data)
     if(present.total <= 10) {
-      const moment = await(await import('moment')).default;
       const presenter = (
         phone = randomPhoneNumber(),
         user_id = Math.round(Math.random() * 3000),
@@ -317,23 +317,26 @@ function App() {
   return (
     <>
       <ActivityHeader ref={headerRef}
-        loginSuccess={(user) => {
-            console.log(user)
-            handleTokenUpdate(user)
-          }
-        }
-        logout={handleTokenExpired}/>
-      <Modal
+        loginSuccess={handleTokenUpdate}
+        logout={handleTokenUpdate}/>
+      <Modal size="small"
+        defaultStyle={false}
+        className="w-full"
         isVisible={recharge}
         title="选择支付方式"
         onClose={closeRecharge}
         content={
           <Recharge
+            tokenExpired={() => {
+              closeRecharge()
+              handleTokenExpired()
+            }}
             account_token={ userInfo?.login_info?.account_token }
             done={handlePackageBuy}
             packager={state.packager} />}
       />
-      <Modal size="small"
+      <Modal
+        defaultStyle={false}
         isVisible={payment}
         title={state.payInfo?.payLabel}
         onClose={closePayment}
@@ -347,16 +350,17 @@ function App() {
       />
       <Modal
         size="small"
+        title="中奖信息"
         isVisible={drawTip}
         onClose={closeDrawTip}
         content={
-          <div className="flex h-32 justify-center items-center">
+          <div className="flex py-4 justify-center items-center">
             <p className="text-center text-lg">很遗憾，未中奖！</p>
           </div>
         }
         footer={
-          <div className="w-full flex justify-center items-center">
-            <Button type="primary" size="large" shape="round" onClick={closeDrawTip}>好的</Button>
+          <div className="w-full flex justify-center items-center mb-5">
+            <Button type="primary" size="large" className="w-32" shape="round" onClick={closeDrawTip}>好的</Button>
           </div>
         }
       />
@@ -375,61 +379,63 @@ function App() {
         }
       />
       <Modal
-        size="small"
+        title="中奖信息"
         isVisible={winTip}
         onClose={closeWinTip}
-        content={<div className="flex flex-col w-full p-8 items-center justify-center h-32">
+        content={<div className="flex flex-col w-full px-8 items-center justify-center">
           <h3 className="text-lg">
             恭喜您获得 <span className="text-primary">“{state.prize?.title}”</span>
           </h3>
-          <p className="text-gray-500 w-64 text-center mt-4">
+          <p className="text-gray-500 w-64 text-center mt-2">
             请到中奖记录进行兑换，我们将于活动结束后7个工作日内原路退还该套餐的支付金额，请注意查收！
           </p>
         </div>}
         footer={
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center mb-5 justify-center">
             <Button type="primary" className="w-32" size="large" shape="round" onClick={closeWinTip}>好的</Button>
           </div>
         }
       />
       <Modal
         size="small"
+        title=" &nbsp; "
         isVisible={overTime}
         onClose={closeOverTip}
         content={
           <div className="flex items-center justify-center h-24">
             <p className="text-xl">
-              { state.isActivityTime > 1 ? '活动已结束' : '活动未开始' }
+              { state.inActivityTime > 1 ? '活动已结束' : '活动未开始' }
             </p>
           </div>
         }
         footer={
-          <div className="w-full flex items-center mb-4 justify-center">
+          <div className="w-full flex items-center mb-5 justify-center">
             <Button type="primary" className="w-32" size="large" shape="round" onClick={closeOverTip}>好的</Button>
           </div>
         }
         />
       <Modal
+        title="支付成功"
         size="small"
         isVisible={rechargeSuc}
         onClose={closeRechargeSuc}
         content={
-          <div className="flex flex-col h-24 items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
               <div className="icon w-20">
                 <img src={payDone} alt="支付成功"/>
               </div>
-              <p className="text-lg">
-                支付成功
+              <p className="w-64 text-center mt-4">
+                您购买的"奇妙-年卡"已到账，请前往奇妙客户端进行查看
               </p>
           </div>
         }
         footer={
-          <div className="w-full flex items-center mb-4 justify-center">
+          <div className="w-full flex items-center mb-5 justify-center">
             <Button type="primary" className="w-32" size="large" shape="round" onClick={closeRechargeSuc}>好的</Button>
           </div>
         }
         />
-      <Modal round
+      <Modal
         size="small"
         isVisible={rechargeTip}
         title='温馨提示!'
@@ -444,8 +450,8 @@ function App() {
           </div>
         }
         footer={
-          <div className="w-full flex items-center justify-center">
-            <Button type="primary" className="w-32" shape="round" onClick={() => {
+          <div className="w-full flex mb-5 items-center justify-center">
+            <Button type="primary" className="w-32" size="large" shape="round" onClick={() => {
               closeRechargeTip()
               scrollToTop()
             }}>去充值</Button>
@@ -458,7 +464,7 @@ function App() {
         onClose={closePrizeRecord}
         content={userInfo && <PrizeRecord tokenExpired={bool => {
           closePrizeRecord()
-          handleTokenExpired(bool)
+          handleTokenExpired()
         }} account_token={userInfo?.login_info?.account_token}/>}
       />
       <section className="section-header">
@@ -491,14 +497,14 @@ function App() {
                 中奖名单
               </div>
               <div className="win-content flex-1 flex justify-center items-center">
-                <ul className="win-list w-64 h-64 overflow-hidden" ref={winRef}>
+                <ul className="win-list w-4/5 overflow-hidden" ref={winRef}>
                   {
                     state.present?.map((presen, i) =>
                     <li className="win-item" key={`${presen.user_id}-${presen.create_time}-${i}`}>
                       <small>{presen.create_time}</small>
-                      <div className="win-item-tile flex justify-between items-center">
-                        <div className="desc">恭喜 {presen.mobile_num}</div>
-                        <b className="extra">
+                      <div className="win-item-tile flex justify-start items-center">
+                        <div className="desc">恭喜 {presen.mobile_num} 获得</div>
+                        <b className="extra ml-4">
                           {presen.title}
                         </b>
                       </div>
@@ -508,7 +514,7 @@ function App() {
               </div>
               <div className="win-action text-lg h-16 flex items-center justify-center">
                 <button className="win-btn" onClick={handleOpenPrizeRecord}>
-                    查看中奖纪录
+                    查看中奖记录
                 </button>
               </div>
             </div>
@@ -530,7 +536,7 @@ function App() {
                     <img src={rule1} srcSet={`${rule1X} 2x`} />
                   </div>
                   <div className="rule-tile">
-                    活动时间: <span className="mark-yellow">2021年3月15日</span>
+                    活动时间: {activityInfo ? <span className="mark-yellow">{moment(activityInfo.detail.start_time).format('YYYY年MM月DD日')}~{moment(activityInfo.detail.end_time).format('YYYY年MM月DD日')}</span> : null}
                   </div>
                 </li>
                 <li className="rule-item">

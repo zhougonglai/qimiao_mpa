@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '~/components/Button';
 import './index.scss';
 
 function Footer() {
@@ -83,9 +84,9 @@ function Footer() {
       </div>
 
       <div className="kefu">
-        <button>
+        <Button>
           联系客服
-        </button>
+        </Button>
       </div>
 
       <address>

@@ -103,14 +103,14 @@ const Login = ({ loginSuccess }) => {
             ref={inputRef}
             value={formData.mobile_num}
             onInput={handleInput}
-            className="form-input font-mono"/>
+            className="form-input font-sans"/>
           {/* <label htmlFor="mobile_num" className="form-label">手机号</label> */}
         </div>
         <div className="form-contrl my-4 flex items-center justify-start">
           <img src={smsIcon} className="form-icon" alt="验证码"/>
           <input id="smscode" placeholder="验证码" maxLength="6"
             onInput={e => setForm({ smscode: e.target.value })}
-            className="form-input font-mono" />
+            className="form-input font-sans" />
           {/* <label htmlFor="smscode" className="form-label">验证码</label> */}
           <button type="button" id="smsbtn" className="sms-btn" disabled={timer} onClick={handleSendSms}>
             {

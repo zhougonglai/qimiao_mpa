@@ -29,16 +29,16 @@
     border-radius: 4px;
 
     &.normal{
-      width: 100%;
-      max-width: 550px;
+      min-width: 460px;
     }
 
     &.small{
-      min-width: 250px;
+      min-width: 320px;
+      max-width: 460px;
     }
 
     &.large{
-      min-width: 650px;
+      min-width: 750px;
     }
 
     &.round{
@@ -48,10 +48,10 @@
   &-title{
     position: relative;
     z-index: 4;
-    font-weight: 400;
+    font-weight: bold;
     font-size: large;
     cursor: default;
-    &::after{
+    &:not(.text-left):after{
       content: '';
       position: absolute;
       bottom: 0px;
@@ -90,6 +90,7 @@
   top: 20px;
   width: 30px;
   line-height: 30px;
+  z-index: 9;
   text-align: center;
   &:hover{
     color:black;

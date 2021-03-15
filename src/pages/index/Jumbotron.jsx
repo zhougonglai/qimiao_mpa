@@ -27,7 +27,7 @@ function Jumbotron() {
           <img width="491" height="161" src={jumbotronTitle} srcSet={`${jumbotronTitleX} 2x`} />
         </div>
         <div className="download">
-          <a className="download-btn" role="button" href="/download.html">
+          <a className="download-btn" role="button" href="/download.html?platform=0">
             <img src={downloadIcon} alt="免费下载" className="icon"/>
             免费下载
           </a>
@@ -39,7 +39,7 @@ function Jumbotron() {
         src={bgData} srcSet={`${bgDataX} 2x`} />
       </div>
       <div className="bottom-block">
-        <div className="platform platform-win active">
+        <a className="platform platform-win active" role="button" href="/download.html?platform=0">
           <div className="platform-cover">
             <img src={win} srcSet={`${winX} 2x`} alt="windows平台" />
           </div>
@@ -51,9 +51,9 @@ function Jumbotron() {
               立即下载
             </button>
           </div>
-        </div>
+        </a>
 
-        <div className="platform platform-win">
+        <a className="platform platform-win" role="button">
           <div className="platform-cover">
             <img src={mac} srcSet={`${macX} 2x`} alt="macOS版本" />
           </div>
@@ -65,9 +65,9 @@ function Jumbotron() {
               立即下载
             </button>
           </div>
-        </div>
+        </a>
 
-        <div className="platform platform-win">
+        <a className="platform platform-win" role="button">
           <div className="platform-cover">
             <img src={os} srcSet={`${osX} 2x`} alt="iOS版本" />
           </div>
@@ -79,9 +79,9 @@ function Jumbotron() {
               立即下载
             </button>
           </div>
-        </div>
+        </a>
 
-        <div className="platform platform-win">
+        <a className="platform platform-win" role="button">
           <div className="platform-cover">
             <img src={android} srcSet={`${androidX} 2x`} alt="Android版本" />
           </div>
@@ -93,9 +93,9 @@ function Jumbotron() {
               立即下载
             </button>
           </div>
-        </div>
+        </a>
 
-        <div className="platform platform-win">
+        <a className="platform platform-win" role="button">
           <div className="platform-cover">
             <img src={pc} srcSet={`${pcX} 2x`} alt="主机加速" />
           </div>
@@ -107,7 +107,7 @@ function Jumbotron() {
               立即下载
             </button>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );

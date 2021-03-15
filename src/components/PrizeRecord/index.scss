@@ -8,7 +8,6 @@
   &-item{
     line-height: 56px;
     padding: 0 10px;
-    text-indent: 20px;
   }
 
   &-item{
@@ -16,12 +15,11 @@
     &:hover{
       background-color: #EBEEF5;
     }
-    // .ant-btn-sm{
-    //   width: 90px;
-    //   height: 30px;
-    // }
   }
   &-header{
     background-color: #F5F5F5;
+  }
+  &-empty{
+    color: #999;
   }
 }
