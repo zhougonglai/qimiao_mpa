@@ -1,11 +1,11 @@
 header{
   height: 80px;
   width: 100%;
+  padding: 10px 0;
   // position: sticky;
   // position: -webkit-sticky;
   // top: 0;
   z-index: 9;
-  // background: linear-gradient(315deg, #9B66FF 0%, #6236FF 100%);
   .block{
     display: flex;
     align-items: center;
@@ -28,6 +28,7 @@ header{
       align-items: center;
       justify-content: space-around;
       line-height: 40px;
+      margin: 0;
 
       li.nav-item{
         font-size: 16px;
@@ -62,6 +63,7 @@ header{
         }
 
         a{
+          color: inherit;
           display: block;
           transition: color 0.2s ease-out;
         }

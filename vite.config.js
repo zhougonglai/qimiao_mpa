@@ -17,9 +17,8 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     legacy({
-      targets: ['defaults', 'ie 11'],
+      targets: ['defaults', "not ie <= 10"],
       polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
-      modernPolyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled']
     }),
   ],
   resolve: {

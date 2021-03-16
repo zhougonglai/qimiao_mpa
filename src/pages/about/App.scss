@@ -16,18 +16,18 @@
       line-height: 26px;
       cursor: default;
 
-      + p{
-        margin-top: 20px;
-      }
+      // + p{
+      //   margin-top: 20px;
+      // }
     }
 
     ul{
       margin: 20px 0;
       li{
         cursor: default;
-        +li{
-          margin-top: 20px;
-        }
+        // +li{
+        //   margin-top: 20px;
+        // }
         ul{
           margin-left: 20px;
         }
