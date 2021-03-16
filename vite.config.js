@@ -17,9 +17,9 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     legacy({
-      target: 'es2015',
-      polyfills: ['es.promise'],
-      modernPolyfills: ['es.promise']
+      targets: ['defaults', 'ie 11'],
+      polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
+      modernPolyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled']
     }),
   ],
   resolve: {
@@ -28,6 +28,7 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2015',
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
     rollupOptions: {

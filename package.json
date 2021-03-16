@@ -37,7 +37,7 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 10"
+    "IE 11"
   ],
   "eslintIgnore": [
     "node_modules",

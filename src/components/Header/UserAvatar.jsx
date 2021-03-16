@@ -8,7 +8,7 @@ function UserAvatar({ userInfo, logout }) {
 
   return (
     <div className="user-info cursor-pointer" onMouseEnter={setTrue} onMouseLeave={setFalse}>
-      <img src={userInfo.avatar} width="45" alt={userInfo.nickname || userInfo.mobile} />
+      <img src={userInfo.avatar || avatarX } className="rounded-sm" width="45" alt={userInfo.nickname || userInfo.mobile} />
       {
         debounceHover
         ? <div className="user-menus" onMouseEnter={setTrue}>
