@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "autoprefix": "npx postcss public/*.css --use autoprefixer -d src/public/"
+    "serve": "vite preview"
   },
   "dependencies": {
     "ahooks": "^2.9.6",
