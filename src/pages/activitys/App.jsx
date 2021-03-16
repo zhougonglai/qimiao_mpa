@@ -82,6 +82,8 @@ function App() {
         if(code) {
           if(code === 400006) {
             handleTokenExpired()
+            message.warn(msg)
+            return
           }
           drawRef.current.run(0, () => {
             setTimeout(() => {
@@ -182,15 +184,12 @@ function App() {
       if(!isNumber(state.inActivityTime)){
         const now = moment();
         if(now.isBefore(activityInfo.detail.start_time)) {
-          console.log('isBefore')
           setState({ inActivityTime: 0 })
           openOverTip()
         } else if(now.isAfter(activityInfo.detail.end_time)) {
-          console.log('isAfter')
           setState({ inActivityTime: 2 })
           openOverTip()
         } else {
-          console.log('inRange')
           setState({ inActivityTime: 1 })
         }
       }
