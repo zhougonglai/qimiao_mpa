@@ -1,14 +1,19 @@
 .user{
   &-info{
-    border-radius: 50%;
     position: relative;
+    img{
+      border-radius: 50%;
+    }
+    label{
+      color: white;
+    }
   }
 
   &-menus{
     border-radius: 4px;
     background-color: white;
     position: absolute;
-    bottom: calc(-100% - 10px );
+    bottom: calc(-50% - 11px );
     padding: 4px 0;
     right: 0;
     animation: menus-in 0.2s ease;

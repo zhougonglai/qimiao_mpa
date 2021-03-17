@@ -7,8 +7,9 @@ function UserAvatar({ userInfo, logout }) {
   const debounceHover = useDebounce(hovering, { wait: 500 });
 
   return (
-    <div className="user-info cursor-pointer" onMouseEnter={setTrue} onMouseLeave={setFalse}>
-      <img src={userInfo.avatar || avatarX } className="rounded-sm" width="45" alt={userInfo.nickname || userInfo.mobile} />
+    <div className="user-info cursor-pointer text-center flex flex-col items-center justify-center" onMouseEnter={setTrue} onMouseLeave={setFalse}>
+      <img id="avatar" src={userInfo.avatar || avatarX } className="rounded-sm" width="45" alt={userInfo.nickname || userInfo.mobile} />
+      <label htmlFor="avatar">{userInfo.nickname || userInfo.mobile}</label>
       {
         debounceHover
         ? <div className="user-menus" onMouseEnter={setTrue}>

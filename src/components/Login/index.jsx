@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useSetState, useMount, useCookieState, useCountDown, useBoolean } from 'ahooks';
+import { useSetState, useCookieState, useCountDown, useBoolean } from 'ahooks';
 import { message } from 'antd';
 import logo from '~/assets/img/logo.png';
 import phoneIcon from '~/assets/img/phone.svg';
@@ -49,7 +49,7 @@ const Login = ({ loginSuccess }) => {
           })
         })
         if(code) {
-          message.warn(msg);
+          // message.warn(msg);
           captchaObj.reset();
         } else {
           setForm({smscode_key: data.smscode_key})
