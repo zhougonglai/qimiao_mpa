@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, lazy, Suspense } from 'react';
 import { useBoolean, useMount, useSessionStorageState, useSetState, useThrottleFn } from 'ahooks';
 import TrueItem from '~/assets/img/activitys/index/data-1.png';
 import TrueItemX from '~/assets/img/activitys/index/data-1@2x.png';
@@ -29,13 +29,14 @@ import anime from 'animejs/lib/anime.es';
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
 import Modal from '~/components/Modal';
+import Bouncing from '~/components/Bouncing';
 
-import ActivityHeader from '~/components/ActivityHeader';
-import SlotMachine from '~/components/SlotMachine';
-import Recharge from '~/components/Recharge';
-import Payment from '~/components/Payment';
-import UpgradeTip from '~/components/Payment/UpgradeTip';
-import PrizeRecord from '~/components/PrizeRecord';
+const ActivityHeader = lazy(() => import('~/components/ActivityHeader'));
+const SlotMachine = lazy(() => import('~/components/SlotMachine'));
+const Recharge = lazy(() => import('~/components/Recharge'));
+const Payment = lazy(() => import('~/components/Payment'));
+const UpgradeTip = lazy(() => import('~/components/Payment/UpgradeTip'));
+const PrizeRecord = lazy(() => import('~/components/PrizeRecord'));
 
 const activity_id = 1;
 
@@ -316,9 +317,11 @@ function App() {
 
   return (
     <>
-      <ActivityHeader ref={headerRef}
-        loginSuccess={handleTokenUpdate}
-        logout={handleTokenUpdate}/>
+      <Suspense fallback={<Bouncing /> }>
+        <ActivityHeader ref={headerRef}
+          loginSuccess={handleTokenUpdate}
+          logout={handleTokenUpdate}/>
+      </Suspense>
       <Modal size="small"
         defaultStyle={false}
         className="w-full"
@@ -326,14 +329,17 @@ function App() {
         title="选择支付方式"
         onClose={closeRecharge}
         content={
-          <Recharge
-            tokenExpired={() => {
-              closeRecharge()
-              handleTokenExpired()
-            }}
-            account_token={ userInfo?.login_info?.account_token }
-            done={handlePackageBuy}
-            packager={state.packager} />}
+          <Suspense fallback={<Bouncing />}>
+            <Recharge
+              tokenExpired={() => {
+                closeRecharge()
+                handleTokenExpired()
+              }}
+              account_token={ userInfo?.login_info?.account_token }
+              done={handlePackageBuy}
+              packager={state.packager} />
+          </Suspense>
+          }
       />
       <Modal
         defaultStyle={false}
@@ -341,11 +347,13 @@ function App() {
         title={state.payInfo?.payLabel}
         onClose={closePayment}
         content={
-          <Payment payInfo={state.payInfo}
-            closePayment={closePayment}
-            activity_id={activity_id}
-            paySuccess={handlePaySuccess}
-            account_token={ userInfo?.login_info?.account_token } />
+          <Suspense fallback={<Bouncing /> } >
+            <Payment payInfo={state.payInfo}
+              closePayment={closePayment}
+              activity_id={activity_id}
+              paySuccess={handlePaySuccess}
+              account_token={ userInfo?.login_info?.account_token } />
+          </Suspense>
         }
       />
       <Modal
@@ -368,7 +376,10 @@ function App() {
         isVisible={upgradeTip}
         title='温馨提示!'
         onClose={closeUpgradeTip}
-        content={<UpgradeTip />}
+        content={
+          <Suspense fallback={<Bouncing />}>
+            <UpgradeTip />
+          </Suspense>}
         footer={
           <div className="w-full flex items-center justify-center">
             <Button type="primary" shape="round" onClick={() => {
@@ -462,10 +473,13 @@ function App() {
         isVisible={prizeRecord}
         title="中奖记录"
         onClose={closePrizeRecord}
-        content={userInfo && <PrizeRecord tokenExpired={bool => {
-          closePrizeRecord()
-          handleTokenExpired()
-        }} account_token={userInfo?.login_info?.account_token}/>}
+        content={
+        <Suspense fallback={<Bouncing />}>
+          <PrizeRecord tokenExpired={bool => {
+            closePrizeRecord()
+            handleTokenExpired()
+          }} account_token={userInfo?.login_info?.account_token}/>
+        </Suspense>}
       />
       <section className="section-header">
         <div className="block">
@@ -481,7 +495,9 @@ function App() {
           <div className="block-subtitle cursor-default">在此页面或客户端购买年卡套餐均可获得1次抽奖机会</div>
           <div className="draw-block flex justify-between items-center">
             <div className="draw-content flex flex-col justify-end">
-              <SlotMachine defaultState={[ 1, 1, 1 ]} ref={drawRef} items={items} />
+              <Suspense fallback={<Bouncing /> }>
+                <SlotMachine defaultState={[ 1, 1, 1 ]} ref={drawRef} items={items} />
+              </Suspense>
               <div className="draw-action">
                 <button className="draw-btn" disabled={runing} onClick={handleDraw}></button>
               </div>

@@ -56,6 +56,8 @@ function Header({ logout = () => {} }) {
         </ul>
       </nav>
 
+      <div className="flex-1" />
+
       {
         userInfo
         ? <UserAvatar userInfo={userInfo.user_info} logout={handleLogout}/>

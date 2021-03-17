@@ -41,13 +41,14 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
   }
 
   return (
-    <header className="activity-header absolute top-0 flex justify-between items-center">
+    <header className="activity-header absolute top-0 flex items-center">
       <nav role="navigation" className="flex justify-center items-center">
         <a id="logo"  className="flex justify-center items-center" href="/">
           <img width="133" height="40" className="logo" src={logo} srcSet={`${logoX} 2x`} alt="奇妙加速器" />
           <img width="36" height="15" className="tag ml-2" src={logoTag} srcSet={`${logoTagX} 2x`} alt="免费" />
         </a>
       </nav>
+      <div className="flex-1" />
       {
         userInfo
         ? <div className="user-info">
