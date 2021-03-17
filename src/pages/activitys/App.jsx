@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useBoolean, useCookieState, useMount, useSessionStorageState, useSetState, useThrottleFn } from 'ahooks';
-import SlotMachine from '~/components/SlotMachine';
+import { useBoolean, useMount, useSessionStorageState, useSetState, useThrottleFn } from 'ahooks';
 import TrueItem from '~/assets/img/activitys/index/data-1.png';
 import TrueItemX from '~/assets/img/activitys/index/data-1@2x.png';
 import FalseItem from '~/assets/img/activitys/index/data-2.png';
@@ -13,7 +12,6 @@ import {
   getPackageLevel,
   getInvoicePrice,
 } from '~/service/activity';
-import ActivityHeader from '~/components/ActivityHeader';
 import rule1 from '~/assets/img/activitys/index/01.png';
 import rule1X from '~/assets/img/activitys/index/01@2x.png';
 import rule2 from '~/assets/img/activitys/index/02.png';
@@ -24,16 +22,19 @@ import rule4 from '~/assets/img/activitys/index/04.png';
 import rule4X from '~/assets/img/activitys/index/04@2x.png';
 import payDone from '~/assets/img/done.svg';
 import moment from 'moment';
+import { Button, message } from 'antd';
+import { take, concat, tail, isNumber } from 'lodash';
+import anime from 'animejs/lib/anime.es';
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
 import Modal from '~/components/Modal';
+
+import ActivityHeader from '~/components/ActivityHeader';
+import SlotMachine from '~/components/SlotMachine';
 import Recharge from '~/components/Recharge';
 import Payment from '~/components/Payment';
 import UpgradeTip from '~/components/Payment/UpgradeTip';
-import { Button, message } from 'antd';
-import anime from 'animejs/lib/anime.es';
-import { take, concat, tail, isNumber } from 'lodash';
 import PrizeRecord from '~/components/PrizeRecord';
 
 const activity_id = 1;
