@@ -46,6 +46,9 @@ function App() {
   const headerRef = useRef();
   const winRef = useRef();
   const [ userInfo, setUser ] = useSessionStorageState('userInfo');
+  const [ loginInfo, setLoginInfo ] = useSessionStorageState('loginInfo');
+  const [ activityInfo, updateActivity ] = useSessionStorageState('activity')
+  const [ packages, updatePackage ] = useSessionStorageState('packages')
 
   const [ runing, { setTrue, setFalse }] = useBoolean(false);
   const [ overTime, { setTrue: openOverTip , setFalse: closeOverTip }] = useBoolean(false);
@@ -58,8 +61,6 @@ function App() {
   const [ prizeRecord, { setTrue: openPrizeRecord, setFalse: closePrizeRecord } ] = useBoolean(false);
   const [ winTip, { setTrue: openWinTip, setFalse: closeWinTip } ] = useBoolean(false);
 
-  const [ activityInfo, updateActivity ] = useSessionStorageState('activity')
-  const [ packages, updatePackage ] = useSessionStorageState('packages')
 
   const [ state, setState ] = useSetState({
     packager: null,
@@ -80,7 +81,7 @@ function App() {
         }
         const { data, code, msg } = await activityDraw({
           activity_id,
-          account_token: userInfo.login_info.account_token
+          account_token: loginInfo.account_token
         })
         if(code) {
           if(code === 400006) {
@@ -207,7 +208,7 @@ function App() {
       setUser(user)
       updateActivity( await getActivity(activity_id, {
         activity_id,
-        account_token: user.login_info.account_token,
+        account_token: loginInfo.account_token,
         type: 1,
         plat_type: 1
       }).then(activity => activity.data));
@@ -234,7 +235,7 @@ function App() {
     if(userInfo){
       const { data } = await getInvoicePrice({
         price_id: packages[0].price[0].price_id,
-        account_token: userInfo.login_info.account_token
+        account_token: loginInfo.account_token
       })
       if (
         data.length && data.some(pkg => pkg.status
@@ -336,7 +337,7 @@ function App() {
                 closeRecharge()
                 handleTokenExpired()
               }}
-              account_token={ userInfo?.login_info?.account_token }
+              account_token={ loginInfo?.account_token }
               done={handlePackageBuy}
               packager={state.packager} />
           </Suspense>
@@ -353,7 +354,7 @@ function App() {
               closePayment={closePayment}
               activity_id={activity_id}
               paySuccess={handlePaySuccess}
-              account_token={ userInfo?.login_info?.account_token } />
+              account_token={ loginInfo?.account_token } />
           </Suspense>
         }
       />
@@ -479,7 +480,7 @@ function App() {
           <PrizeRecord tokenExpired={bool => {
             closePrizeRecord()
             handleTokenExpired()
-          }} account_token={userInfo?.login_info?.account_token}/>
+          }} account_token={ loginInfo?.account_token}/>
         </Suspense>}
       />
       <section className="section-header">

@@ -84,7 +84,7 @@ const Login = ({ loginSuccess }) => {
       saveUserData(JSON.stringify(data), {
         expires: (() => new Date(data.login_info.expiry_time))()
       })
-      if(typeof loginSuccess === 'function') loginSuccess(data);
+      if(typeof loginSuccess === 'function') loginSuccess(data.login_info.account_token);
     }
   }
 

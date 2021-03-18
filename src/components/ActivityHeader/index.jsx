@@ -1,5 +1,5 @@
-import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
-import { useCookieState, useSessionStorageState } from 'ahooks';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import { useCookieState, useMount, useSessionStorageState, useSetState } from 'ahooks';
 import logo from '~/assets/img/logo@1x.png';
 import logoX from '~/assets/img/logo@2x.png';
 import logoTag from '~/assets/img/logo-tag@1x.png';
@@ -7,11 +7,14 @@ import logoTagX from '~/assets/img/logo-tag@2x.png';
 import './index.scss';
 import Modal from '../Modal';
 import Login from '../Login';
+import { getUserInfo } from '~/service/user';
 
 export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, logout = () => {} }, ref) {
+  const [route, setRoute] = useSetState(location);
   const [userData, saveUserData] = useCookieState('userData');
-  const [isModal, setModal] = useState(false);
+  const [ loginInfo, setLoginInfo ] = useSessionStorageState('loginInfo');
   const [ userInfo, setUser ] = useSessionStorageState('userInfo');
+  const [isModal, setModal] = useState(false);
 
   useImperativeHandle(ref, () => ({
     openLogin: () => {
@@ -20,13 +23,38 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
     logout: handleLogout
   }))
 
-  useEffect(() => {
-    if(userData) {
-      handleLoginCB(JSON.parse(userData))
+  useMount(async () => {
+    if(route.search) {
+      const params = new URLSearchParams(route.search);
+      if(params.get('account_token')){
+        await handleUserInfo(params.get('account_token'));
+        params.delete('account_token')
+        history.pushState(null, document.title, `${route.pathname}${params.toString() ? `?${params}` : ''}`)
+      } else {
+        handleUserByConf()
+      }
     } else {
-      handleLogout()
+      handleUserByConf()
     }
-  }, [userData])
+  })
+
+  const handleUserByConf = async () => {
+    if(userData) {
+      const { login_info } = JSON.parse(userData);
+      setLoginInfo(login_info);
+      handleUserInfo(login_info.account_token)
+    } else if (loginInfo) {
+      handleUserInfo(loginInfo.account_token)
+    }
+  }
+
+  const handleUserInfo = async account_token => {
+    const { data, code, msg } = await getUserInfo({ account_token })
+    if(code === 0) {
+      handleLoginCB(data)
+    }
+    return { data, code, msg }
+  }
 
   const handleLoginCB = (userInfo) => {
     setModal(false);
@@ -52,7 +80,7 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
       {
         userInfo
         ? <div className="user-info">
-            {userInfo.user_info.mobile}
+            {userInfo.mobile}
             &nbsp;
             <button className="logout" onClick={handleLogout}>【退出】</button>
           </div>
@@ -63,7 +91,7 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
       <Modal
         round
         isVisible={isModal}
-        content={<Login loginSuccess={handleLoginCB}/>}
+        content={<Login loginSuccess={handleUserInfo}/>}
         onClose={() => setModal(false)}
       />
     </header>
