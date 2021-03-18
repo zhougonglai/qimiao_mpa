@@ -28,6 +28,7 @@ import anime from 'animejs/lib/anime.es';
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
+import { toast } from '~/utils/toast';
 import Modal from '~/components/Modal';
 import Bouncing from '~/components/Bouncing';
 
@@ -491,7 +492,7 @@ function App() {
       </section>
       <section className="section-draw">
         <div className="block">
-          <div className="block-title"></div>
+          <div className="block-title" ></div>
           <div className="block-subtitle cursor-default">在此页面或客户端购买年卡套餐均可获得1次抽奖机会</div>
           <div className="draw-block flex justify-between items-center">
             <div className="draw-content flex flex-col justify-end">
@@ -562,7 +563,7 @@ function App() {
                   <div className="rule-tile">
                     <p>
                       活动期间，<span className="mark-yellow">99元年卡套餐限时买一送一</span>，<br/>
-                      多买多得，赠送年卡时长实时到帐，不可转赠；
+                      多买多得，赠送年卡时长实时到账，不可转赠；
                     </p>
                   </div>
                 </li>

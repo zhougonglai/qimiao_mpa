@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useSetState, useCookieState, useCountDown, useBoolean } from 'ahooks';
+import { useMount, useSetState, useCookieState, useCountDown, useBoolean } from 'ahooks';
 import { message } from 'antd';
 import logo from '~/assets/img/logo.png';
 import phoneIcon from '~/assets/img/phone.svg';
@@ -23,7 +23,7 @@ const Login = ({ loginSuccess }) => {
     onEnd: () => setFalse()
   })
 
-  useEffect(async () => {
+  useMount(async () => {
     inputRef.current.focus();
     const { data } = await request(`${import.meta.env.VITE_BASE_PATH}tools/captcha/geetest/config`, {
       method: 'post',
@@ -49,7 +49,7 @@ const Login = ({ loginSuccess }) => {
           })
         })
         if(code) {
-          // message.warn(msg);
+          message.warn(msg);
           captchaObj.reset();
         } else {
           setForm({smscode_key: data.smscode_key})
@@ -59,7 +59,7 @@ const Login = ({ loginSuccess }) => {
         }
       });
     })
-  }, [])
+  })
 
   const handleSendSms = () => {
     formData.captchaObj.verify();
@@ -79,7 +79,7 @@ const Login = ({ loginSuccess }) => {
       })
     });
     if(code) {
-      message.info(msg);
+      message.warn(msg);
     } else {
       saveUserData(JSON.stringify(data), {
         expires: (() => new Date(data.login_info.expiry_time))()
