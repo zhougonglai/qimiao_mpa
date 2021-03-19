@@ -28,7 +28,6 @@ import anime from 'animejs/lib/anime.es';
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
-import { toast } from '~/utils/toast';
 import Modal from '~/components/Modal';
 import Bouncing from '~/components/Bouncing';
 
