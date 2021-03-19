@@ -45,6 +45,8 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
       handleUserInfo(login_info.account_token)
     } else if (loginInfo) {
       handleUserInfo(loginInfo.account_token)
+    } else {
+      handleLogout()
     }
   }
 

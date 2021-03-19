@@ -12,6 +12,8 @@ import Login from '../Login';
 import UserAvatar from './UserAvatar';
 import { getUserInfo } from '~/service/user';
 
+const isPreview = location.host === 'dev-preview.qimiao.com'
+
 function Header({ loginSuccess = () => {}, logout = () => {} }) {
   const [route, setRoute] = useSetState(location);
   const [isModal, setModal] = React.useState(false);
@@ -73,13 +75,19 @@ function Header({ loginSuccess = () => {}, logout = () => {} }) {
         </div>
         <ul className="nav-list">
           <li className={classNames("nav-item", {active: ['/', '/index.html'].includes(route.pathname) })}>
-            <a href="/index.html">首页</a>
+            <a href='/'>首页</a>
+          </li>
+          <li className={classNames("nav-item", {active: ['/announcement', '/announcement.html'].includes(route.pathname) })}>
+            <a href={isPreview ? '/announcement' : '/announcement.html'}>公告</a>
+          </li>
+          <li className={classNames("nav-item", {active: ['/infomation', '/infomation.html'].includes(route.pathname) })}>
+            <a href={isPreview ? '/infomation' : '/infomation.html'}>资讯</a>
           </li>
           <li className={classNames("nav-item", {active: ['/support', '/support.html'].includes(route.pathname)})}>
-            <a href="/support.html">游戏支持</a>
+            <a href={isPreview ? '/support' : "/support.html"}>游戏支持</a>
           </li>
           <li className={classNames("nav-item", {active: ['/about', '/about.html'].includes(route.pathname)})}>
-            <a href="/about.html">关于我们</a>
+            <a href={isPreview ? '/about' : "/about.html"}>关于我们</a>
           </li>
         </ul>
       </nav>

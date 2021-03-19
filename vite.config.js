@@ -27,6 +27,7 @@ export default defineConfig({
     },
   },
   build: {
+    manifest: true,
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
     rollupOptions: {
