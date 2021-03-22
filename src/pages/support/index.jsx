@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Header from '~/components/Header'
-import Footer from '~/components/Footer'
+import UserInfo from '~/components/UserInfo'
+import Photo from '~/pages/index/Photo'
 import 'antd/dist/antd.less'
 import '~/style/index.css'
 import '~/style/index.scss'
 import './index.scss'
 import App from './App'
-import Photo from '../index/Photo'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,12 +15,11 @@ ReactDOM.render(
   document.getElementById('game-support')
 )
 
-
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <UserInfo />
   </React.StrictMode>,
-  document.getElementById('header')
+  document.getElementById('user-info')
 )
 
 ReactDOM.render(

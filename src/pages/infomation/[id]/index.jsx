@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom'
 import 'antd/dist/antd.less'
 import '~/style/index.css'
 import './index.scss'
-import Header from '~/components/Header'
-import Footer from '~/components/Footer'
+import UserInfo from '~/components/UserInfo'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <UserInfo />
   </React.StrictMode>,
-  document.getElementById('header')
+  document.getElementById('user-info')
 )

@@ -6,6 +6,7 @@ import reactRefresh from '@vitejs/plugin-react-refresh'
 import legacy from '@vitejs/plugin-legacy'
 import lessToJS from 'less-vars-to-js'
 import 'module-alias/register'
+import handlebars from 'vite-plugin-handlebars';
 
 const themeVariables = lessToJS(
   fs.readFileSync(resolve(__dirname, './src/style/antd.less'), 'utf8')
@@ -16,6 +17,9 @@ export default defineConfig({
   root: resolve(__dirname, 'src'),
   plugins: [
     reactRefresh(),
+    handlebars({
+      partialDirectory: resolve(__dirname, 'src/partials/'),
+    }),
     legacy({
       targets: ['defaults', 'ie 11'],
       polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
@@ -32,6 +36,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: glob.sync('src/**/*.html'),
+
     }
   },
   css: {

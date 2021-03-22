@@ -20,7 +20,7 @@
 </head>
 
 <body class="has-background">
-  <header id="header" class="flex items-center justify-center"></header>
+  {{> header }}
   <main>
     <section class="title"></section>
     <section id="news" class="flex flex-col items-center justify-center">
@@ -56,22 +56,22 @@
       </ul>
       <div class="news-page w-full flex justify-start mb-10">
         <div class="page-controls flex gap-x-4">
-          <button class="page-control page-first">首页</button>
-          <button class="page-control page-prev">上一页</button>
-          <button class='page-index'>1</button>
+          <a class="page-control page-first">首页</a>
+          <a class="page-control page-prev">上一页</a>
+          <a class='page-index'>1</a>
           <div class="page-placehodle">...</div>
-          <button class='page-index'>3</button>
-          <button class='page-index active'>4</button>
-          <button class='page-index'>5</button>
+          <a class='page-index'>3</a>
+          <a class='page-index active'>4</a>
+          <a class='page-index'>5</a>
           <div class="page-placehodle">...</div>
-          <button class='page-index'>100</button>
-          <button class="page-control page-next">上一页</button>
-          <button class="page-control page-last">末页</button>
+          <a class='page-index'>100</a>
+          <a class="page-control page-next">上一页</a>
+          <a class="page-control page-last">末页</a>
         </div>
       </div>
     </section>
   </main>
-  <footer id="footer"></footer>
+  {{> footer }}
   <script type="module" src="/pages/announcement/index.jsx"></script>
 </body>
 

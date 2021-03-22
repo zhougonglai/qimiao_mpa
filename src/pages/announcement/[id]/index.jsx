@@ -4,11 +4,11 @@ import 'antd/dist/antd.less'
 import '~/style/index.css'
 import '~/style/index.scss'
 import './index.scss'
-import Header from '~/components/Header'
+import UserInfo from '~/components/UserInfo'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <UserInfo />
   </React.StrictMode>,
-  document.getElementById('header')
+  document.getElementById('user-info')
 )

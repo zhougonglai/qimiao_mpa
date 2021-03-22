@@ -21,7 +21,7 @@
 </head>
 
 <body class="has-background">
-  <header id="header" class="flex items-center justify-center"></header>
+  {{> header }}
 
   <main>
     <section id="jumbotron"></section>
@@ -108,6 +108,7 @@
         </div>
       </div>
     </section>
+
     <section id="noticeAndNews">
       <div class="block py-5">
         <div class="notice">
@@ -120,7 +121,7 @@
               <img src="./assets/img/index/notice-title@1x.png" srcset="./assets/img/index/notice-title@2x.png 2x"
                 width="105" height="22" />
             </div>
-            <a class="notice-extra" href="/announcement.html">
+            <a class="notice-extra" href="/announcement/">
               more>
             </a>
           </div>
@@ -203,7 +204,7 @@
               <img src="./assets/img/index/news-title@1x.png" srcset="./assets/img/index/news-title@2x.png 2x"
                 width="107" height="23" />
             </div>
-            <a class="news-extra extra" href="/infomation.html">
+            <a class="news-extra extra" href="/infomation/">
               more>
             </a>
           </div>
@@ -320,97 +321,7 @@
   </main>
 
   <!-- footer -->
-  <footer id="footer">
-    <div class="block">
-      <div class="contact">
-        <div class="tile">
-          联系我们
-        </div>
-        <ul class="list">
-          <li class="item">
-            <a href="/about.html" alt="关于我们" role="link">关于我们</a>
-          </li>
-        </ul>
-      </div>
-      <div class="service">
-        <div class="tile">
-          服务中心
-        </div>
-        <ul class="list">
-          <li class="item">
-            <a href="/about.html?index=service">
-              服务协议
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="links">
-        <div class="tile">
-          友情链接
-        </div>
-      </div>
-
-      <div class="about">
-        <div class="tile">
-          关注我们
-        </div>
-        <ul class="platforms flex justify-around">
-          <li class="platform wechat">
-            <div class="cover">
-
-            </div>
-            <div class="label text-sm leading-5 text-center">
-              微信
-            </div>
-          </li>
-          <li class="platform weibo">
-            <a href="https://m.weibo.cn/u/6579444407" target="_blank">
-              <div class="cover">
-
-              </div>
-              <div class="label text-sm leading-5 text-center">
-                微博
-              </div>
-            </a>
-          </li>
-          <li class="platform douyin">
-            <div class="cover">
-
-            </div>
-            <div class="label text-sm leading-5 text-center">
-              抖音
-            </div>
-          </li>
-          <li class="platform bilibili">
-            <a href="https://space.bilibili.com/359330172" target="_blank" alt="哔哩哔哩">
-              <div class="cover">
-
-              </div>
-              <div class="label text-sm leading-5 text-center">
-                哔哩哔哩
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="kefu">
-        <button class="kefu-btn">
-          联系客服
-        </button>
-      </div>
-
-      <address>
-        <div class="address-icp inline-block">
-          鄂ICP备18023477号@武汉奇妙网络科技有限公司
-        </div>
-        <div class="detail inline-block">
-          详细地址: 湖北省武汉市洪山区花山大道软件新城A2栋4楼
-        </div>
-      </address>
-    </div>
-  </footer>
+  {{> footer }}
 
   <script type="module" src="/pages/index/index.jsx"></script>
 </body>
