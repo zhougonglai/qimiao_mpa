@@ -5,7 +5,6 @@ import '~/style/index.css'
 import '~/style/index.scss'
 import './index.scss'
 import Header from '~/components/Header'
-import Footer from '~/components/Footer'
 import Jumbotron from './Jumbotron'
 import Photo from './Photo'
 
@@ -14,13 +13,6 @@ ReactDOM.render(
     <Header />
   </React.StrictMode>,
   document.getElementById('header')
-)
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Footer />
-  </React.StrictMode>,
-  document.getElementById('footer')
 )
 
 ReactDOM.render(

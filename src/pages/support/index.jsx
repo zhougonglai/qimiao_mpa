@@ -26,13 +26,6 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Footer />
-  </React.StrictMode>,
-  document.getElementById('footer')
-)
-
-ReactDOM.render(
-  <React.StrictMode>
     <Photo />
   </React.StrictMode>,
   document.getElementById('photo')

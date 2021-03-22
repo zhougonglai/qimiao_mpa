@@ -13,10 +13,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('header')
 )
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Footer />
-  </React.StrictMode>,
-  document.getElementById('footer')
-)

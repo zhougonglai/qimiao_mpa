@@ -77,11 +77,11 @@ function Header({ loginSuccess = () => {}, logout = () => {} }) {
           <li className={classNames("nav-item", {active: ['/', '/index.html'].includes(route.pathname) })}>
             <a href='/'>首页</a>
           </li>
-          <li className={classNames("nav-item", {active: ['/announcement', '/announcement.html'].includes(route.pathname) })}>
-            <a href={isPreview ? '/announcement' : '/announcement.html'}>公告</a>
+          <li className={classNames("nav-item", {active: route.pathname.includes('/announcement/') })}>
+            <a href='/announcement/'>公告</a>
           </li>
-          <li className={classNames("nav-item", {active: ['/infomation', '/infomation.html'].includes(route.pathname) })}>
-            <a href={isPreview ? '/infomation' : '/infomation.html'}>资讯</a>
+          <li className={classNames("nav-item", {active: route.pathname.includes('/infomation/') })}>
+            <a href='/infomation/'>资讯</a>
           </li>
           <li className={classNames("nav-item", {active: ['/support', '/support.html'].includes(route.pathname)})}>
             <a href={isPreview ? '/support' : "/support.html"}>游戏支持</a>

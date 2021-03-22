@@ -1,0 +1,131 @@
+@import '~/components/Footer';
+
+main{
+  background-color: #f5f5f5;
+  width: 100%;
+  section{
+    width: 1200px;
+    .block{
+      width: 750px;
+
+      article{
+        h1{
+          font-size: 25px;
+          line-height: 36px;
+          color: #333;
+        }
+        .timer{
+          color: #666;
+        }
+        time{
+          color: #999;
+        }
+
+        p{
+          color: #333333;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  aside.right-side{
+    width: 360px;
+    height: 100%;
+
+    .official{
+      &-title{
+        height: 24px;
+      }
+      &-extra{
+        color: #999999;
+      }
+
+      &-item{
+        width: 330px;
+        color: #333;
+        line-height: 25px;
+
+        & + .official-item{
+          margin-top: 16px;
+        }
+      }
+    }
+
+    .labeler{
+      &-title{
+        height: 24px;
+      }
+      &-extra{
+        color: #999999;
+      }
+
+      &-list{
+
+      }
+
+      &-item{
+        width: 80px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 3px;
+        background-color: white;
+        margin: 5px;
+        text-align: center;
+      }
+    }
+
+    .cover{
+      width: 130px;
+      height: 130px;
+      img{
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+
+    .download-btn{
+      width: 234px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(270deg, #9B66FF 0%, #7D59FF 100%);
+      box-shadow: 0px 5px 5px 0px rgba(0, 51, 157, 0.1);
+      border-radius: 27px;
+      color: white;
+      font-size: 20px;
+      line-height: 28px;
+      transition: all .25s ease;
+      outline: 0 !important;
+      &:hover{
+        box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
+        transform: translate(4px, -4px);
+      }
+    }
+  }
+
+  .breadcrumb{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .75rem 0;
+    list-style: none;
+    border-radius: .25rem;
+    &-item{
+      color: #666666;
+      &.active{
+        color: #333;
+        cursor: default;
+      }
+      +.breadcrumb-item{
+        padding-left: .5rem;
+        &::before {
+          float: left;
+          padding-right: .5rem;
+          color: #6c757d;
+          content: ">";
+        }
+      }
+    }
+  }
+}
