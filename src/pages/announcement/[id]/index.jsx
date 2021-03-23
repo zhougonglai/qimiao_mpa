@@ -5,10 +5,20 @@ import '~/style/index.css'
 import '~/style/index.scss'
 import './index.scss'
 import UserInfo from '~/components/UserInfo'
+import HelpBar from '~/components/HelpBar'
 
 ReactDOM.render(
   <React.StrictMode>
     <UserInfo />
   </React.StrictMode>,
   document.getElementById('user-info')
+)
+
+const helpBar = document.getElementById('help-bar')
+
+ReactDOM.render(
+  <React.StrictMode>
+    <HelpBar position={helpBar.getAttribute('position')}/>
+  </React.StrictMode>,
+  helpBar
 )

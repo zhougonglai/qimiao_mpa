@@ -2,10 +2,10 @@
   background-color: #fff;
   width: 80px;
   border-radius: 40px;
-  padding: 20px;
+  padding: 30px 20px;
   position: fixed;
   right: calc(50% - 740px);
-  top: 450px;
+  // top: 450px;
   box-shadow: 0px 1px 5px 0 rgba(#000000, 0.2);
 
   .help-item{
@@ -14,7 +14,7 @@
     cursor: pointer;
 
     + .help-item{
-      margin-top: 20px;
+      margin-top: 40px;
       position: relative;
 
       &::after{
@@ -23,8 +23,64 @@
         width: 40px;
         height: 1px;
         position: absolute;
-        top: -10px;
+        top: -20px;
         left: calc(50% - 20px);
+      }
+
+      &.relative {
+        .absolute {
+          transform: scale(0);
+          transition: transform 0.2s linear;
+          background-color: white;
+          right: calc(100% + 40px);
+          border-radius: 5px;
+          padding: 10px;
+          &::after{
+            content: '';
+            position: absolute;
+            right: -16px;
+            width: 0;
+            height: 0;
+            border-top: 16px solid transparent;
+            border-right: 0px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-left: 16px solid white;
+          }
+
+          &.top{
+            top: -110px;
+            transform-origin: right top;
+            &::after{
+              top: calc(33% - 56px);
+            }
+          }
+
+          &.center{
+            top: -210px;
+            transform-origin: right center;
+            &::after{
+              top: calc(50% - 40px);
+            }
+          }
+
+
+          .platform {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            + .platform{
+              margin-top: 20px;
+            }
+          }
+        }
+
+        &.active{
+
+          .absolute{
+            transform: scale(1);
+          }
+        }
       }
     }
   }

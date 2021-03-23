@@ -129,17 +129,17 @@
           </ul>
           <div class="infomation-page w-full flex justify-start mb-10">
             <div class="page-controls flex gap-x-4">
-              <button class="page-control page-first">首页</button>
-              <button class="page-control page-prev">上一页</button>
-              <button class='page-index'>1</button>
+              <a class="page-control page-first">首页</a>
+              <a class="page-control page-prev">上一页</a>
+              <a class='page-index'>1</a>
               <div class="page-placehodle">...</div>
-              <button class='page-index'>3</button>
-              <button class='page-index active'>4</button>
-              <button class='page-index'>5</button>
+              <a class='page-index'>3</a>
+              <a class='page-index active'>4</a>
+              <a class='page-index'>5</a>
               <div class="page-placehodle">...</div>
-              <button class='page-index'>100</button>
-              <button class="page-control page-next">上一页</button>
-              <button class="page-control page-last">末页</button>
+              <a class='page-index'>100</a>
+              <a class="page-control page-next">上一页</a>
+              <a class="page-control page-last">末页</a>
             </div>
           </div>
         </div>
@@ -275,12 +275,14 @@
             </div>
           </div>
 
-          <div id="help-bar" class="flex flex-col justify-center items-center"></div>
+          <div id="help-bar" style="top:450px;" position="center" class="flex flex-col justify-center items-center">
+          </div>
         </aside>
       </div>
     </section>
   </main>
-  {{> footer }}
+
+
   <script type="module" src="/pages/infomation/index.jsx"></script>
 </body>
 

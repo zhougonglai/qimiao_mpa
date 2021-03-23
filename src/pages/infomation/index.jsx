@@ -14,10 +14,12 @@ ReactDOM.render(
   document.getElementById('user-info')
 )
 
+const helpBar = document.getElementById('help-bar')
+
 ReactDOM.render(
   <React.StrictMode>
-    <HelpBar />
+    <HelpBar position={helpBar.getAttribute('position')}/>
   </React.StrictMode>,
-  document.getElementById('help-bar')
+  helpBar
 )
 
