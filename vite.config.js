@@ -20,10 +20,10 @@ export default defineConfig({
     handlebars({
       partialDirectory: resolve(__dirname, 'src/partials/'),
     }),
-    legacy({
-      targets: ['defaults', 'ie 11'],
-      polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
-    }),
+    // legacy({
+    //   targets: ['defaults', 'ie 11'],
+    //   polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
+    // }),
   ],
   resolve: {
     alias: {
@@ -36,7 +36,6 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: glob.sync('src/**/*.html'),
-
     }
   },
   css: {

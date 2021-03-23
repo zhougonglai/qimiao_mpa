@@ -77,7 +77,7 @@ footer{
             left: calc(50% - 125px);
             width: 250px;
             height: 250px;
-            background-image: url('~/assets/img/qrcode-wechat.png');
+            background-image: url('../../assets/img/qrcode-wechat.png');
             background-size: contain;
             background-color: white;
             box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
@@ -90,14 +90,14 @@ footer{
             transform: scale(0);
           }
           .cover {
-            background-image: url('~/assets/img/0.png');
+            background-image: url('../../assets/img/0.png');
             background-size: 31px 25px;
           }
           &:hover,
           &:focus,
           &:active{
             .cover {
-              background-image: url('~/assets/img/0-h.png');
+              background-image: url('../../assets/img/0-h.png');
             }
             &::before,
             &::after{
@@ -127,7 +127,7 @@ footer{
             left: calc(50% - 125px);
             width: 250px;
             height: 250px;
-            background-image: url('~/assets/img/qrcode-weibo.png');
+            background-image: url('../../assets/img/qrcode-weibo.png');
             background-size: contain;
             background-color: white;
             box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
@@ -140,13 +140,13 @@ footer{
             transform: scale(0);
           }
           .cover {
-            background-image: url('~/assets/img/1.png');
+            background-image: url('../../assets/img/1.png');
             background-size: 31px 27px;
           }
           &:hover,
           &:active{
             .cover {
-              background-image: url('~/assets/img/1-h.png');
+              background-image: url('../../assets/img/1-h.png');
             }
             &::before,
             &::after{
@@ -176,7 +176,7 @@ footer{
             left: calc(50% - 125px);
             width: 250px;
             height: 250px;
-            background-image: url('~/assets/img/qrcode-douyin.png');
+            background-image: url('../../assets/img/qrcode-douyin.png');
             background-size: contain;
             background-color: white;
             box-shadow: 0px 10px 10px 0px rgba(0, 51, 157, 0.2);
@@ -189,12 +189,12 @@ footer{
             transform: scale(0);
           }
           .cover {
-            background-image: url('~/assets/img/3.png');
+            background-image: url('../../assets/img/3.png');
             background-size: 25px 29px;
           }
           &:hover{
             .cover {
-              background-image: url('~/assets/img/3-h.png');
+              background-image: url('../../assets/img/3-h.png');
             }
             &::before,
             &::after{
@@ -204,12 +204,12 @@ footer{
         }
         &.bilibili{
           .cover {
-            background-image: url('~/assets/img/4.png');
+            background-image: url('../../assets/img/4.png');
             background-size: 53 25px;
           }
           &:hover{
             .cover {
-              background-image: url('~/assets/img/4-h.png');
+              background-image: url('../../assets/img/4-h.png');
             }
           }
         }
