@@ -28,7 +28,6 @@ import anime from 'animejs/lib/anime.es';
 
 import './App.scss';
 import { randomPhoneNumber, scrollToTop } from '~/utils/index';
-import { toast } from '~/utils/toast';
 import Modal from '~/components/Modal';
 import Bouncing from '~/components/Bouncing';
 
@@ -40,6 +39,7 @@ const UpgradeTip = lazy(() => import('~/components/Payment/UpgradeTip'));
 const PrizeRecord = lazy(() => import('~/components/PrizeRecord'));
 
 const activity_id = 1;
+const presenty = '奇妙免单券';
 
 function App() {
   const drawRef = useRef();
@@ -124,7 +124,7 @@ function App() {
     {
       id: 1,
       value: true,
-      label: '奇妙免单券',
+      label: presenty,
       img: TrueItem,
       large: TrueItemX
     },
@@ -296,13 +296,13 @@ function App() {
       const presenter = (
         phone = randomPhoneNumber(),
         user_id = Math.round(Math.random() * 3000),
-        create_time = moment(present.list[0].create_time).subtract(Math.round(Math.random() * 24 * 60 * 60), 'seconds').format("YYYY-MM-DD HH:mm:ss")
+        create_time = moment(activityInfo.detail.start_time).add(Math.round(Math.random() * 24 * 60 * 60), 'seconds').format("YYYY-MM-DD HH:mm:ss")
       ) => ({
         create_time,
         mail: '',
         mobile_num: phone,
         nickname: phone,
-        title: present.list[0].title,
+        title: present.list.length ? present.list[0].title : presenty,
         user_id,
         user_name: ''
       })

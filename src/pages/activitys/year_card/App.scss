@@ -9,7 +9,7 @@
     .buy-block{
       width: 620px;
       height: 162px;
-      background-image: url('../../assets/img/activitys/index/price.png');
+      background-image: url('~/assets/img/activitys/index/price.png');
       background-size: contain;
       background-position: center;
       margin-top: 360px;
@@ -20,7 +20,7 @@
       .buy-btn{
         width: 78px;
         height: 78px;
-        background-image: url('../../assets/img/activitys/index/price-btn@2x.png');
+        background-image: url('~/assets/img/activitys/index/price-btn@2x.png');
         background-size: contain;
         background-position: center;
         animation: activity-pulse 1s infinite;
@@ -45,11 +45,11 @@
       &-title{
         width: 477px;
         height: 135px;
-        background-image: url('../../assets/img/activitys/index/t1.png');
+        background-image: url('~/assets/img/activitys/index/t1.png');
         background-size: contain;
         background-position: center;
         @media screen and (min-resolution: 2dppx) {
-          background-image: url('../../assets/img/activitys/index/t1@2x.png');
+          background-image: url('~/assets/img/activitys/index/t1@2x.png');
         }
       }
       &-subtitle{
@@ -75,18 +75,18 @@
           width: 253px;
           height: 91px;
           outline: 0;
-          background-image: url('../../assets/img/activitys/index/draw-btn.png');
+          background-image: url('~/assets/img/activitys/index/draw-btn.png');
           background-size: 253px 91px;
           background-position: center bottom;
           background-repeat: no-repeat;
           &:hover{
-            background-image: url('../../assets/img/activitys/index/draw-btn-hover.png');
+            background-image: url('~/assets/img/activitys/index/draw-btn-hover.png');
           }
           &:active{
-            background-image: url('../../assets/img/activitys/index/draw-btn-active.png');
+            background-image: url('~/assets/img/activitys/index/draw-btn-active.png');
           }
           &:disabled{
-            background-image: url('../../assets/img/activitys/index/draw-btn-disable.png');
+            background-image: url('~/assets/img/activitys/index/draw-btn-disable.png');
           }
         }
 
@@ -105,7 +105,7 @@
         &-content{
           width: 508px;
           height: 541px;
-          background-image: url('../../assets/img/activitys/index/tiger.png');
+          background-image: url('~/assets/img/activitys/index/tiger.png');
           background-size: contain;
           background-position: center;
           position: relative;
@@ -113,7 +113,7 @@
           padding-right: 42px;
           padding-left: 3px;
           @media screen and (min-resolution: 2dppx) {
-            background-image: url('../../assets/img/activitys/index/tiger@2x.png');
+            background-image: url('~/assets/img/activitys/index/tiger@2x.png');
           }
 
           .slot-machine{
@@ -136,11 +136,11 @@
         &-winList{
           width: 492px;
           height: 524px;
-          background-image: url('../../assets/img/activitys/index/bg.png');
+          background-image: url('~/assets/img/activitys/index/bg.png');
           background-size: contain;
           background-position: center;
           @media screen and (min-resolution: 2dppx) {
-            background-image: url('../../assets/img/activitys/index/bg@2x.png');
+            background-image: url('~/assets/img/activitys/index/bg@2x.png');
           }
           padding: 20px;
 
@@ -193,11 +193,11 @@
       &-title{
         width: 340px;
         height: 134px;
-        background-image: url('../../assets/img/activitys/index/t2.png');
+        background-image: url('~/assets/img/activitys/index/t2.png');
         background-size: contain;
         background-position: center;
         @media screen and (min-resolution: 2dppx) {
-          background-image: url('../../assets/img/activitys/index/t2@2x.png');
+          background-image: url('~/assets/img/activitys/index/t2@2x.png');
         }
       }
 
@@ -207,11 +207,11 @@
         padding: 5px 35px;
         display: flex;
         flex-direction: column;
-        background-image: url('../../assets/img/activitys/index/block-1.png');
+        background-image: url('~/assets/img/activitys/index/block-1.png');
         background-size: contain;
         background-position: center;
         @media screen and (min-resolution: 2dppx) {
-          background-image: url('../../assets/img/activitys/index/block-1@2x.png');
+          background-image: url('~/assets/img/activitys/index/block-1@2x.png');
         }
 
         .rule{

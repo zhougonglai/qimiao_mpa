@@ -13,12 +13,12 @@ main#app{
   min-height: 100vh;
   height: 2322px;
 
-  background-image: url('../../assets/img/activitys/index/section-1.png'), url('../../assets/img/activitys/index/section-2.png'),  url('../../assets/img/activitys/index/section-3.png');
+  background-image: url('~/assets/img/activitys/index/section-1.png'), url('~/assets/img/activitys/index/section-2.png'),  url('~/assets/img/activitys/index/section-3.png');
   background-size: 2560px 800px, 2560px 800px, 2560px 724px;
   background-position: center 0, center 799px, center 1598px;
   background-repeat: no-repeat;
 
   @media screen and (min-resolution: 2dppx) {
-    background-image: url('../../assets/img/activitys/index/section-1@2x.png'), url('../../assets/img/activitys/index/section-2@2x.png'),  url('../../assets/img/activitys/index/section-3@2x.png');
+    background-image: url('~/assets/img/activitys/index/section-1@2x.png'), url('~/assets/img/activitys/index/section-2@2x.png'),  url('~/assets/img/activitys/index/section-3@2x.png');
   }
 }

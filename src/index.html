@@ -16,12 +16,12 @@
   <link rel="apple-touch-icon" href="https://www.qimiao.com/favicon.ico?v=20210303214610">
   <link rel="mask-icon" href="https://www.qimiao.com/favicon.ico?v=20210303214610" color="#00aba9">
   <script
-    src="https://polyfill.alicdn.com/polyfill.min.js?features=default,es2015,Intl,AbortController,queueMicrotask,requestAnimationFrame,Array.prototype.fill,Array.prototype.every,Promise.prototype.finally,Promise,fetch"></script>
+    src="https://polyfill.alicdn.com/polyfill.min.js?features=default,es2015,Intl,WebAnimations,AbortController,queueMicrotask,requestAnimationFrame,Array.prototype.fill,Array.prototype.every,Promise.prototype.finally,Promise,fetch"></script>
   <script src="/gt.js" defer async></script>
 </head>
 
 <body class="has-background">
-  <header id="header" class="flex items-center justify-center"></header>
+  {{> header }}
 
   <main>
     <section id="jumbotron"></section>
@@ -108,10 +108,220 @@
         </div>
       </div>
     </section>
+
+    <section id="noticeAndNews">
+      <div class="block py-5">
+        <div class="notice">
+          <div class="notice-title flex items-center">
+            <div class="notice-icon">
+              <img src="./assets/img/index/notice.png" srcset="./assets/img/index/notice@2x.png 2x" width="33"
+                height="28" />
+            </div>
+            <div class="notice-label ml-4 flex-1">
+              <img src="./assets/img/index/notice-title@1x.png" srcset="./assets/img/index/notice-title@2x.png 2x"
+                width="105" height="22" />
+            </div>
+            <a class="notice-extra" href="/announcement/">
+              more>
+            </a>
+          </div>
+          <div class="notice-body mt-6">
+            <ul class="notice-list list-disc">
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+              <li class="notice-item flex justify-between">
+                <a href="javascript:;" class="notice-item-tile flex-1">
+                  【独家】EPIC平台免费加速下载《流放之路国际服》
+                </a>
+                <time class="notice-item-time">
+                  09-19
+                </time>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="news flex flex-col">
+          <div class="news-title flex items-center">
+            <div class="news-icon">
+              <img src="./assets/img/index/news.png" srcset="./assets/img/index/news@2x.png 2x" width="33"
+                height="37" />
+            </div>
+            <div class="news-label flex-1 ml-4">
+              <img src="./assets/img/index/news-title@1x.png" srcset="./assets/img/index/news-title@2x.png 2x"
+                width="107" height="23" />
+            </div>
+            <a class="news-extra extra" href="/infomation/">
+              more>
+            </a>
+          </div>
+          <div class="news-body mt-6 flex-1">
+            <ul class="news-list list-disc h-full">
+              <li class="news-item flex justify-between items-center">
+                <div class="news-item-icon">
+                  <img src="https://picture.qimiao.com/uploads/images/2021-01-07/leigod1610007561501866.png"
+                    height="120" />
+                </div>
+                <div class="news-content flex-1 flex flex-col justify-between">
+                  <h3 class="news-tile truncate">
+                    《LOL》开发者2020年回顾务实基础，着眼于未来
+                  </h3>
+                  <p class="news-desc">
+                    近期，英雄联盟官方博客带来了新一期《英雄联盟》开发者日志，对今年的成绩进行了回顾和总结。这本杂志分为八个部分。在总结这一年的进步和不足的同时，设计师们也说只有英雄联盟的坚实基础才能支持我们实现我们的未来计划。
+                  </p>
+                  <time class="news-time">
+                    2020-03-16 15:3
+                  </time>
+                </div>
+                <time class="news-extra">
+                  09-19
+                </time>
+              </li>
+              <li class="news-item flex justify-between items-center">
+                <div class="news-item-icon">
+                  <img src="https://picture.qimiao.com/uploads/images/2021-01-04/leigod1609753288615207.png"
+                    height="120" />
+                </div>
+                <div class="news-content flex-1">
+                  <div class="news-tile truncate">
+                    如何评价命运2在Steam重新上架 命运2加速器就用奇妙
+                  </div>
+                  <div class="news-desc">
+                    近期，英雄联盟官方博客带来了新一期《英雄联盟》开发者日志，对今年的成绩进行了回顾和总结。这本杂志分为八个部分。在总结这一年的进步和不足的同时，设计师们也说只有英雄联盟的坚实基础才能支持我们实现我们的未来计划。
+                  </div>
+                  <time class="news-time">
+                    2020-03-16 15:3
+                  </time>
+                </div>
+                <time class="news-extra">
+                  09-19
+                </time>
+              </li>
+
+              <li class="news-item flex justify-between items-center">
+                <div class="news-item-icon">
+                  <img src="https://picture.qimiao.com/uploads/images/2021-01-04/leigod1609753157903200.png"
+                    height="120" />
+                </div>
+                <div class="news-content flex-1">
+                  <div class="news-tile truncate">
+                    全新剧情促使命运2众多NPC搬家撤离 命运2加速器选奇妙
+                  </div>
+                  <div class="news-desc">
+                    最在坊间流传很多关于命运2Steam传说，这里介绍就是游戏中即将出现全新东西和剧情内容。让各位玩家们毋庸置疑的就是新版本狙击枪简直是神一般存在，比如手雷效果非常强大。而且看命运2趋势，未来很可能不少职业会被强行改动成近战肉搏类型玩法，相信玩家也能诠释不一样MMOFPS作品。当然奇妙小编需要和大家说的就是为了畅玩，可以使用命运2加速器。
+                  </div>
+                  <time class="news-time">
+                    2020-03-16 15:3
+                  </time>
+                </div>
+                <time class="news-extra">
+                  09-19
+                </time>
+              </li>
+
+              <li class="news-item flex justify-between items-center">
+                <div class="news-item-icon">
+                  <img src="https://picture.qimiao.com/uploads/images/2021-01-07/leigod1610007561501866.png"
+                    height="120" />
+                </div>
+                <div class="news-content flex-1">
+                  <div class="news-tile truncate">
+                    《LOL》开发者2020年回顾务实基础，着眼于未来
+                  </div>
+                  <div class="news-desc">
+                    近期，英雄联盟官方博客带来了新一期《英雄联盟》开发者日志，对今年的成绩进行了回顾和总结。这本杂志分为八个部分。在总结这一年的进步和不足的同时，设计师们也说只有英雄联盟的坚实基础才能支持我们实现我们的未来计划。
+                  </div>
+                  <time class="news-time">
+                    2020-03-16 15:3
+                  </time>
+                </div>
+                <time class="news-extra">
+                  09-19
+                </time>
+              </li>
+
+              <li class="news-item flex justify-between items-center">
+                <div class="news-item-icon">
+                  <img src="https://picture.qimiao.com/uploads/images/2021-01-07/leigod1610007561501866.png"
+                    height="120" />
+                </div>
+                <div class="news-content flex-1">
+                  <div class="news-tile truncate">
+                    《LOL》开发者2020年回顾务实基础，着眼于未来
+                  </div>
+                  <div class="news-desc">
+                    近期，英雄联盟官方博客带来了新一期《英雄联盟》开发者日志，对今年的成绩进行了回顾和总结。这本杂志分为八个部分。在总结这一年的进步和不足的同时，设计师们也说只有英雄联盟的坚实基础才能支持我们实现我们的未来计划。
+                  </div>
+                  <time class="news-time">
+                    2020-03-16 15:3
+                  </time>
+                </div>
+                <time class="news-extra">
+                  09-19
+                </time>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- footer -->
-  <footer id="footer"></footer>
+  {{> footer }}
 
   <script type="module" src="/pages/index/index.jsx"></script>
 </body>

@@ -8,6 +8,7 @@ import './index.scss';
 import Modal from '../Modal';
 import Login from '../Login';
 import { getUserInfo } from '~/service/user';
+import { message } from 'antd';
 
 export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, logout = () => {} }, ref) {
   const [route, setRoute] = useSetState(location);
@@ -54,6 +55,9 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
     const { data, code, msg } = await getUserInfo({ account_token })
     if(code === 0) {
       handleLoginCB(data)
+    } else {
+      message.warn(msg)
+      handleLogout()
     }
     return { data, code, msg }
   }
@@ -66,6 +70,7 @@ export default forwardRef(function ActivityHeader({ loginSuccess = () => {}, log
 
   const handleLogout = () => {
     saveUserData()
+    setLoginInfo()
     setUser()
     logout()
   }
