@@ -41,6 +41,9 @@ section#jumbotron{
           .platform-action{
             height: 30px;
             opacity: 1;
+            button{
+              transform: scale(1);
+            }
           }
         }
 
@@ -51,7 +54,7 @@ section#jumbotron{
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.325s ease-out;
+          transition: all 0.325s ease-in;
           button.platform-download{
             background-color: #FFFFFF;
             text-align: center;
@@ -62,6 +65,13 @@ section#jumbotron{
             font-size: 12px;
             font-family: PingFangSC-Medium, PingFang SC;
             font-weight: 500;
+            transition: all 0.325s ease-in;
+            transform: scale(0.5);
+
+            &:disabled{
+              background-color: #ddd;
+              color: #666;
+            }
           }
         }
       }

@@ -61,8 +61,8 @@ function Jumbotron() {
             macOS版本
           </div>
           <div className="platform-action">
-            <button className="platform-download">
-              立即下载
+            <button className="platform-download" disabled>
+              敬请期待
             </button>
           </div>
         </a>
@@ -75,8 +75,8 @@ function Jumbotron() {
             iOS版本
           </div>
           <div className="platform-action">
-            <button className="platform-download">
-              立即下载
+            <button className="platform-download" disabled>
+              敬请期待
             </button>
           </div>
         </a>
@@ -89,8 +89,8 @@ function Jumbotron() {
             Android版本
           </div>
           <div className="platform-action">
-            <button className="platform-download">
-              立即下载
+            <button className="platform-download" disabled>
+              敬请期待
             </button>
           </div>
         </a>
@@ -103,8 +103,8 @@ function Jumbotron() {
             主机加速
           </div>
           <div className="platform-action">
-            <button className="platform-download">
-              立即下载
+            <button className="platform-download" disabled>
+              敬请期待
             </button>
           </div>
         </a>

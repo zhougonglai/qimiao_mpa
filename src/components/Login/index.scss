@@ -34,6 +34,7 @@
       padding: 0 15px;
       position: absolute;
       right: 5px;
+      top: calc(50% - 15px);
       color: white;
       transition: all .25s ease-out;
       &:disabled{
@@ -71,6 +72,7 @@
     height: 22px;
     position: absolute;
     left: 16px;
+    top: calc(50% - 11px);
   }
   &-input {
     border: 2px solid transparent;

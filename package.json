@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "autoprefix": "npx postcss public/*.css --use autoprefixer -d src/public/"
+    "serve": "vite preview"
   },
   "dependencies": {
     "ahooks": "^2.9.6",
@@ -33,6 +32,7 @@
     "sass": "^1.32.8",
     "tailwindcss": "^1.9.0",
     "vite": "^2.0.0-beta.70",
+    "vite-plugin-handlebars": "^1.4.1",
     "vite-plugin-imp": "^2.0.4"
   },
   "browserslist": [

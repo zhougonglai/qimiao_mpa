@@ -51,6 +51,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
   return (
     <>
       <Modal
+        className="z-10"
         isVisible={receive}
         size="small"
         title="兑换成功！"
@@ -69,6 +70,7 @@ function PrizeRecord({ account_token, tokenExpired = () => {} }) {
         }
       />
       <Modal
+        className="z-10"
         isVisible={detail}
         size="small"
         title="奖品发放中"

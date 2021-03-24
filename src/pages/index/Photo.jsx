@@ -2,46 +2,25 @@ import React from 'react';
 import './Photo.scss';
 import { useKeenSlider } from "keen-slider/react"
 
-import photo1 from '~/assets/img/index/photo-1.png';
-import photo2 from '~/assets/img/index/photo-2.png';
-import photo3 from '~/assets/img/index/photo-3.png';
-import photo4 from '~/assets/img/index/photo-4.png';
+import APEX from '~/assets/img/index/APEX.png';
+import Battlefield from '~/assets/img/index/Battlefield.png';
+import CODM from '~/assets/img/index/CODM.png';
+import CSGO from '~/assets/img/index/CSGO.png';
+import escapefromtarkov from '~/assets/img/index/escapefromtarkov.png';
+import GTA5 from '~/assets/img/index/GTA5.png';
+import LOL from '~/assets/img/index/LOL.png';
+import PUBG from '~/assets/img/index/PUBG.png';
+import siege from '~/assets/img/index/siege.png';
+import warthunder from '~/assets/img/index/warthunder.png';
+import wf from '~/assets/img/index/wf.png';
+
+
 import { useSetState } from 'ahooks';
-const images1 = [
-  "https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  photo1,
-]
-const images2 = [
-  "https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  photo1,
-  "https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-]
-const images3 = [
-  "https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  photo1,
-  "https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-]
-const images4 = [
-  "https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  photo1,
-  "https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-]
-const images5 = [
-  photo1,
-  "https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-  "https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80",
-]
+const images1 = [ APEX, Battlefield, CODM, CSGO, escapefromtarkov, GTA5, LOL, PUBG, siege, warthunder, wf ];
+const images2 = [ Battlefield, CODM, CSGO, escapefromtarkov, GTA5, LOL, PUBG, siege, warthunder, wf, APEX ];
+const images3 = [ CODM, CSGO, escapefromtarkov, GTA5, LOL, PUBG, siege, warthunder, wf, APEX, Battlefield ];
+const images4 = [ CSGO, escapefromtarkov, GTA5, LOL, PUBG, siege, warthunder, wf, APEX, Battlefield, CODM, ];
+const images5 = [ escapefromtarkov, GTA5, LOL, PUBG, siege, warthunder, wf, APEX, Battlefield, CODM, CSGO,  ];
 
 function Photo() {
   const [opacities, setOpacities] = useSetState([])

@@ -17,19 +17,19 @@
       cursor: default;
 
       + p{
-        margin-top: 20px;
+        margin-top: 1em;
       }
     }
 
     ul{
-      margin: 20px 0;
+      margin: 1em 0;
       li{
         cursor: default;
         +li{
-          margin-top: 20px;
+          margin-top: 1em;
         }
         ul{
-          margin-left: 20px;
+          margin-left: 1em;
         }
       }
     }

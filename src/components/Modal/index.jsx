@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.scss';
 
 const Modal = ({

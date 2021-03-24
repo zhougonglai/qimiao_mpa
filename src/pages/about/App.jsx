@@ -5,6 +5,11 @@ import './App.scss';
 import banner from '~/assets/img/about/aboutbanner.png';
 import { useMount, useSetState } from 'ahooks';
 
+const tabs = {
+  about: '关于我们',
+  service: '用户协议'
+}
+
 function App() {
   const tabRef = useRef()
   const [ route, setRoute ] = useSetState(location)
@@ -25,13 +30,13 @@ function App() {
       const params = new URLSearchParams(route.search);
       params.delete('index');
       const search = params.toString();
-      history.replaceState(null, document.title, `${location.pathname}${search ? `?${search}` : ''}`)
+      history.replaceState(null, null, `${location.pathname}${search ? `?${search}` : ''}`)
     }
   }
 
   return (
     <Tabs defaultIndex={state.index} className="qm-tabs flex" ref={tabRef} onTabClick={handleTabChange}>
-      <TabItem label="关于我们" index='about' className="qm-tab">
+      <TabItem label={tabs['about']} index='about' className="qm-tab">
         <div className="qm-tab-title">
           关于我们
         </div>
@@ -66,7 +71,7 @@ function App() {
           </p>
         </div>
       </TabItem>
-      <TabItem label="用户协议" index='service' className="qm-tab">
+      <TabItem label={tabs['service']} index='service' className="qm-tab">
         <div className="qm-tab-title">用户协议</div>
         <div className="qm-tab-content mt-4">
           <p className="indent-5">

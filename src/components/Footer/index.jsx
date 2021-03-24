@@ -21,12 +21,7 @@ function Footer() {
         </div>
         <ul className="list">
           <li className="item">
-            <a href="javascrit:;">
-              网站地图
-            </a>
-          </li>
-          <li className="item">
-            <a href="javascrit:;">
+            <a href="/about.html?index=service">
               服务协议
             </a>
           </li>
