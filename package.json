@@ -6,6 +6,9 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "ahooks": "^2.9.6",
     "animejs": "^3.2.1",

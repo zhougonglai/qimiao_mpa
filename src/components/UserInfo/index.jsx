@@ -6,6 +6,8 @@ import Login from '../Login';
 import UserAvatar from './UserAvatar';
 import { getUserInfo } from '~/service/user';
 
+const routers = ['/announcement/', '/infomation/', '/support', '/about', '/'];
+
 function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
   const [route, setRoute] = useSetState(location);
   const [isModal, setModal] = React.useState(false);
@@ -16,7 +18,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
   useMount(async () => {
     if(route.search) {
       const params = new URLSearchParams(route.search);
-      if(params.get('account_token')){
+      if(params.get('account_token')) {
         await handleUserInfo(params.get('account_token'));
         params.delete('account_token')
         history.pushState(null, document.title, `${route.pathname}${params.toString() ? `?${params}` : ''}`)
@@ -26,6 +28,24 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
     } else {
       handleUserByConf()
     }
+
+    if(route.pathname.includes('/announcement/')) {
+      const LinkDom = document.querySelector(`[href='/announcement/']`).parentElement;
+      LinkDom.classList.add('active');
+    } else if(route.pathname.includes('/infomation/')) {
+      const LinkDom = document.querySelector(`[href='/infomation/']`).parentElement;
+      LinkDom.classList.add('active');
+    } else if(route.pathname.includes('/support')) {
+      const LinkDom = document.querySelector(`[href='/support.html']`).parentElement;
+      LinkDom.classList.add('active');
+    } else if(route.pathname.includes('/about')) {
+      const LinkDom = document.querySelector(`[href='/about.html']`).parentElement;
+      LinkDom.classList.add('active');
+    } else if(route.pathname.includes('/')) {
+      const LinkDom = document.querySelector(`[href='/']`).parentElement;
+      LinkDom.classList.add('active');
+    }
+
   })
 
   const handleUserByConf = async () => {

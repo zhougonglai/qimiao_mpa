@@ -1,10 +1,35 @@
-- TDK
-  - 下载页
-  - 游戏支持
-  - 关于我们
+项目初始化命令
 
-- 下载地址
+```shell
+# npm i
+```
 
-- 相册 5张
+build命令
 
-- 联系客服
+```shell
+# npm run build
+```
+
+>  产出 --> /dist
+```
+dist
+├── dist/about.html                         不用管
+├── dist/activitys                          活动目录
+│   └── dist/activitys/year_card.html
+├── dist/announcement                       不用管
+├── dist/assets                             项目材料目录/
+│   └──...                                  静态资源
+├── dist/bshareC0.js                        不用管
+├── dist/buttonLite.js                      不用管
+├── dist/download.html                      不用管
+├── dist/gt.js                              项目材料
+├── dist/index.html                         不用管
+├── dist/infomation                         不用管
+├── dist/manifest.json                      不用管
+└── dist/support.html                       不用管
+```
+
+
+
+
+
