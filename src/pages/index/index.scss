@@ -201,17 +201,6 @@ main{
       &-extra{
         color: #999;
       }
-      &-item-icon{
-        width: 0;
-        height: 0;
-        transition: all 0.2s linear;
-        img {
-          object-fit: contain;
-          object-position: left center;
-          height: 100%;
-          border-radius: 15px;
-        }
-      }
       &-tile{
         height: 30px;
         line-height: 30px;
@@ -232,23 +221,10 @@ main{
         display: flex;
         height: 300px;
         flex-direction: column;
-        // align-content: space-between;
         &:not(:hover){
-
           .news-item:first-child{
             height: 120px;
             overflow: hidden;
-            .news-item-icon{
-              width: 240px;
-              height: 120px;
-              margin-right: 5px;
-              img {
-                object-fit: contain;
-                object-position: left center;
-                height: 100%;
-                border-radius: 15px;
-              }
-            }
             .news-content{
               height: 120px;
             }
@@ -273,20 +249,11 @@ main{
       &-item{
         cursor: pointer;
         height: 30px;
+        transition: height 0.2s linear;
+        transform-origin: top left;
         &:hover{
           height: 120px;
           overflow: hidden;
-          .news-item-icon{
-            width: 240px;
-            height: 120px;
-            margin-right: 5px;
-            img {
-              object-fit: contain;
-              object-position: left center;
-              height: 100%;
-              border-radius: 15px;
-            }
-          }
           .news-content{
             height: 120px;
           }

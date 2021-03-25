@@ -23,6 +23,8 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'ie 11'],
       polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
+      modernPolyfills: true,
+      renderLegacyChunks: false
     }),
   ],
   resolve: {
@@ -37,8 +39,8 @@ export default defineConfig({
     rollupOptions: {
       input: glob.sync('src/**/*.html'),
       output: {
-        entryFileNames: 'entry-[name].js',
-        chunkFileNames: '[name].js',
+        entryFileNames: 'assets/js/entry-[name].js',
+        chunkFileNames: 'assets/js/[name].js',
         assetFileNames: 'assets/[ext]/[name][extname]',
         manualChunks(id) {
           if (id.includes('node_modules')) {

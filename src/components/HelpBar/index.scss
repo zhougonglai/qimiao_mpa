@@ -49,7 +49,7 @@
 
           &.top{
             top: -110px;
-            transform-origin: right top;
+            transform-origin: right calc(33% - 56px);
             &::after{
               top: calc(33% - 56px);
             }
@@ -57,7 +57,7 @@
 
           &.center{
             top: -210px;
-            transform-origin: right center;
+            transform-origin: right calc(50% - 40px);
             &::after{
               top: calc(50% - 40px);
             }

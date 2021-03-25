@@ -29,11 +29,11 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
       handleUserByConf()
     }
 
-    if(route.pathname.includes('/announcement/')) {
-      const LinkDom = document.querySelector(`[href='/announcement/']`).parentElement;
+    if(route.pathname.includes('/announcement')) {
+      const LinkDom = document.querySelector(`[href='/announcement.html']`).parentElement;
       LinkDom.classList.add('active');
-    } else if(route.pathname.includes('/infomation/')) {
-      const LinkDom = document.querySelector(`[href='/infomation/']`).parentElement;
+    } else if(route.pathname.includes('/infomation')) {
+      const LinkDom = document.querySelector(`[href='/infomation.html']`).parentElement;
       LinkDom.classList.add('active');
     } else if(route.pathname.includes('/support')) {
       const LinkDom = document.querySelector(`[href='/support.html']`).parentElement;
@@ -45,7 +45,6 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
       const LinkDom = document.querySelector(`[href='/']`).parentElement;
       LinkDom.classList.add('active');
     }
-
   })
 
   const handleUserByConf = async () => {
@@ -82,7 +81,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
     <>
       {
         userInfo
-        ? <UserAvatar userInfo={userInfo} logout={handleLogout}/>
+        ? <UserAvatar userInfo={userInfo} logout={handleLogout} />
         : <div id="loginWrap">
             <button id="register" onClick={() => setModal(true)}>
               登录

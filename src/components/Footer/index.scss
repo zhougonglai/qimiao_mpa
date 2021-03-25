@@ -9,6 +9,7 @@ footer{
 
   .block{
     width: 1200px;
+    min-width: 1200px;
     color: white;
     display: flex;
     flex-wrap: wrap;
@@ -23,6 +24,7 @@ footer{
       li.item{
         font-size: smaller;
         line-height: 30px;
+        min-width: 72px;
         a{
           display: block;
           color: rgba(#fff, 0.7);
