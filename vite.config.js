@@ -36,6 +36,16 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: glob.sync('src/**/*.html'),
+      output: {
+        entryFileNames: 'entry-[name].js',
+        chunkFileNames: '[name].js',
+        assetFileNames: 'assets/[ext]/[name][extname]',
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
     }
   },
   css: {
