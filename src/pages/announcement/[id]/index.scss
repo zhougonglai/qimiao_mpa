@@ -43,8 +43,13 @@ main{
 
       &-item{
         width: 330px;
-        color: #333;
-        line-height: 25px;
+        a{
+          color: #333;
+          line-height: 25px;
+          &:hover{
+            color: #6236ff;
+          }
+        }
 
         & + .official-item{
           margin-top: 16px;
@@ -112,10 +117,11 @@ main{
     list-style: none;
     border-radius: .25rem;
     &-item{
-      color: #666666;
+      a{
+        color: #666666;
+      }
       &.active{
         color: #333;
-        cursor: default;
       }
       +.breadcrumb-item{
         padding-left: .5rem;

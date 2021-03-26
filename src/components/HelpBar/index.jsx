@@ -22,7 +22,7 @@ function HelpBar({ position = 'top' }) {
 
   return (
     <>
-      <div className="help-item">
+      <div className="help-item zhiCustomBtn">
         <img src={kefu} srcSet={`${kefuX} 2x`} width="40"/>
       </div>
       <div className={classNames("help-item relative", { active: debounceHover })} onMouseEnter={setTrue} onMouseLeave={setFalse}>

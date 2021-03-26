@@ -29,6 +29,7 @@ main{
           font-size: 16px;
           color: #999;
           line-height: 22px;
+          text-indent: 1rem;
         }
 
         + .news-item{
@@ -38,6 +39,10 @@ main{
           width: 1000px;
         }
       }
+    }
+
+    article{
+      overflow: hidden;
     }
 
     .page-control{

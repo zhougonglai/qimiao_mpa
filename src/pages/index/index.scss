@@ -1,3 +1,4 @@
+@import '~/style/index.scss';
 @import '~/components/Footer';
 
 main{
@@ -167,8 +168,16 @@ main{
     justify-content: center;
     .block{
       width: 1200px;
+      height: 380px;
       display: flex;
       justify-content: space-between;
+
+      a{
+        color: #333333;
+        &:hover{
+          color: #6236FF;
+        }
+      }
     }
 
     .notice{
@@ -183,9 +192,10 @@ main{
         list-style: inside !important;
       }
       &-item{
-        color: #333333;
-        height: 30px;
-        line-height: 30px;
+        &-tile{
+          line-height: 30px;
+          height: 30px;
+        }
 
         time{
           color: #999;
@@ -219,7 +229,7 @@ main{
       &-list{
         overflow: hidden;
         display: flex;
-        height: 300px;
+        // height: 300px;
         flex-direction: column;
         &:not(:hover){
           .news-item:first-child{
