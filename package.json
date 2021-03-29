@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "preview": "vite build --mode preview",
     "build": "vite build",
     "serve": "vite preview --port 3333"
   },
@@ -41,6 +42,7 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
+    "Chrome >= 61",
     "not ie <= 10"
   ],
   "eslintIgnore": [

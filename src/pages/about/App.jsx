@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Tabs from '~/components/Tabs';
 import TabItem from '~/components/Tabs/Tab';
 import './App.scss';
-import banner from '~/assets/img/about/aboutbanner.png';
-import { useMount, useSetState } from 'ahooks';
+import { useSetState } from 'ahooks';
 
 const tabs = {
   about: '关于我们',
@@ -41,7 +40,6 @@ function App() {
           关于我们
         </div>
         <div className="qm-tab-content flex flex-col mt-4">
-          <img src={banner} className="my-4"/>
           <p className="indent-5">
             武汉奇妙科技有限公司是一家专门从事计算机软硬件研发、提供专业技术服务的互联网公司。奇妙科技致力于通过部署自研软件系统实现全球加速，采用金融级专线，自建SDN虚拟化监控和调度平台，并制定有效的技术解决方案配合全节点顶级专线,达到行业顶尖的加速水平。
           </p>

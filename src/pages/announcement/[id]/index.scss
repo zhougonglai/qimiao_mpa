@@ -9,6 +9,10 @@ main{
       width: 750px;
 
       article{
+        -webkit-font-smoothing: antialiased;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        word-break: break-all;
         h1{
           font-size: 25px;
           line-height: 36px;
@@ -117,9 +121,7 @@ main{
     list-style: none;
     border-radius: .25rem;
     &-item{
-      a{
-        color: #666666;
-      }
+      color: #666666;
       &.active{
         color: #333;
       }

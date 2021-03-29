@@ -79,6 +79,7 @@ main{
   section.section-desc{
     height: 600px;
     min-width: 1920px;
+    width: 100%;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -243,11 +244,13 @@ main{
               font-weight: bold;
             }
             .news-desc{
+              padding-left: 5px;
               display: -webkit-box;
               margin-top: 5px;
               margin-bottom: 10px;
             }
             .news-time{
+              padding-left: 5px;
               display: block;
             }
             .news-extra{
@@ -272,11 +275,13 @@ main{
             font-weight: bold;
           }
           .news-desc{
+            padding-left: 5px;
             display: -webkit-box;
             margin-top: 5px;
             margin-bottom: 10px;
           }
           .news-time{
+            padding-left: 5px;
             display: block;
           }
           .news-extra{

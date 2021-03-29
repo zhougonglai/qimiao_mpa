@@ -4,11 +4,14 @@ main{
   section{
     width: 100%;
     &.title{
-      min-width: 1920px;
+      min-width: 2560px;
       height: 320px;
-      background-image: url('../../assets/img/infomation/title.png');
+      background-image: url('../../assets/img/infomation/title@1x.png');
       background-size: contain;
       background-position: center;
+      @media (min-resolution: 2dppx) {
+        background-image: url('../../assets/img/infomation/title@2x.png');
+      }
     }
 
     &.infomation{
@@ -16,10 +19,6 @@ main{
       .infomation{
         &-block{
           width: 1200px;
-        }
-
-        &-list{
-
         }
 
         &-item{

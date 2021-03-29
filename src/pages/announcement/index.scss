@@ -7,12 +7,15 @@ main{
   flex-direction: column;
   background-color: #F5F5F5;
   section.title{
-    min-width: 1920px;
+    min-width: 2560px;
     width: 100%;
     height: 320px;
-    background-image: url('../../assets/img/announcement/title.png');
+    background-image: url('../../assets/img/announcement/title@1x.png');
     background-size: contain;
     background-position: center;
+    @media (min-resolution: 2dppx) {
+      background-image: url('../../assets/img/announcement/title@2x.png');
+    }
   }
 
   section#news{
