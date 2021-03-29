@@ -6,6 +6,7 @@ main{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 2353px;
 
   .download{
     &-btn{
@@ -26,7 +27,7 @@ main{
       .icon{
         width: 27px;
         height: 27px;
-        margin-right: 20px;
+        margin-right: 10px;
       }
 
       &:hover{
@@ -46,7 +47,7 @@ main{
   }
 
   section#jumbotron{
-    min-width: 1920px;
+    min-width: 2560px;
     width: 100%;
     height: 820px;
     display: flex;
@@ -54,7 +55,7 @@ main{
   }
 
   section.section-info{
-    min-width: 1920px;
+    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;
@@ -78,7 +79,7 @@ main{
 
   section.section-desc{
     height: 600px;
-    min-width: 1920px;
+    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;
@@ -162,7 +163,7 @@ main{
   }
 
   section#noticeAndNews{
-    min-width: 1920px;
+    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;

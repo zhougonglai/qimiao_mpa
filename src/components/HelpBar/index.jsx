@@ -52,17 +52,13 @@ function HelpBar({ position = 'top' }) {
           </div>
         </div>
       </div>
-
-      <div className="help-item" onClick={scrollToTop}>
-        <img src={goup} srcSet={`${goupX} 2x`} width="40"/>
-      </div>
-      {/* {
+      {
         scroll.top > document.scrollingElement.clientHeight
-        ? <div className="help-item">
-            <img src={img} />
+        ? <div className="help-item" onClick={scrollToTop}>
+            <img src={goup} srcSet={`${goupX} 2x`} width="40"/>
           </div>
         : null
-      } */}
+      }
     </>
   );
 }

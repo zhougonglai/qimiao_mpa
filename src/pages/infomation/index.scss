@@ -43,6 +43,7 @@ main{
 
           &-time{
             color: #666666;
+            padding-left: 10px;
           }
 
           &-avatar{
@@ -71,6 +72,7 @@ main{
           }
 
           &-desc{
+            padding-left: 10px;
             color: #999999;
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -84,8 +86,10 @@ main{
         width: 360px;
 
         .official{
-          &-title{
-            height: 24px;
+          &-icon{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
           }
           &-extra{
             color: #999999;
@@ -105,8 +109,10 @@ main{
         }
 
         .labeler{
-          &-title{
-            height: 24px;
+          &-icon{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
           }
           &-extra{
             color: #999999;
@@ -118,7 +124,7 @@ main{
             line-height: 32px;
             border-radius: 3px;
             background-color: white;
-            margin: 5px;
+            margin: 2px;
             text-align: center;
           }
         }

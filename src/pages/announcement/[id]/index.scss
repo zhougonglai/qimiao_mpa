@@ -38,8 +38,10 @@ main{
     height: 100%;
 
     .official{
-      &-title{
-        height: 24px;
+      &-icon{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
       }
       &-extra{
         color: #999999;
@@ -62,8 +64,10 @@ main{
     }
 
     .labeler{
-      &-title{
-        height: 24px;
+      &-icon{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
       }
       &-extra{
         color: #999999;

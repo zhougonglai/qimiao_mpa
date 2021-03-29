@@ -6,7 +6,7 @@ import Login from '../Login';
 import UserAvatar from './UserAvatar';
 import { getUserInfo } from '~/service/user';
 
-const routers = ['/announcement/', '/infomation/', '/support', '/about', '/'];
+const isPreview = () => location.host.includes('preview')
 
 function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
   const [route, setRoute] = useSetState(location);
@@ -14,6 +14,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
   const [ userData, saveUserData ] = useCookieState('userData');
   const [ loginInfo, setLoginInfo ] = useSessionStorageState('loginInfo');
   const [userInfo, setUser ] = useSessionStorageState('userInfo');
+
 
   useMount(async () => {
     if(route.search) {
@@ -30,16 +31,16 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
     }
 
     if(route.pathname.includes('/announcement')) {
-      const LinkDom = document.querySelector(`[href='/announcement.html']`).parentElement;
+      const LinkDom = document.querySelector(isPreview() ? `[href='/announcement']`: `[href='/announcement.html']`).parentElement;
       LinkDom.classList.add('active');
     } else if(route.pathname.includes('/infomation')) {
-      const LinkDom = document.querySelector(`[href='/infomation.html']`).parentElement;
+      const LinkDom = document.querySelector(isPreview() ? `[href='/infomation']` : `[href='/infomation.html']`).parentElement;
       LinkDom.classList.add('active');
     } else if(route.pathname.includes('/support')) {
-      const LinkDom = document.querySelector(`[href='/support.html']`).parentElement;
+      const LinkDom = document.querySelector(isPreview() ? `[href='/support']` : `[href='/support.html']`).parentElement;
       LinkDom.classList.add('active');
     } else if(route.pathname.includes('/about')) {
-      const LinkDom = document.querySelector(`[href='/about.html']`).parentElement;
+      const LinkDom = document.querySelector(isPreview() ? `[href='/about']`: `[href='/about.html']`).parentElement;
       LinkDom.classList.add('active');
     } else if(route.pathname.includes('/')) {
       const LinkDom = document.querySelector(`[href='/']`).parentElement;

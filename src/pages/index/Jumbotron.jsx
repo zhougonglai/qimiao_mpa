@@ -17,6 +17,8 @@ import androidX from '~/assets/img/index/android@2x.png';
 import pc from '~/assets/img/index/pc@1x.png';
 import pcX from '~/assets/img/index/pc@2x.png';
 
+const isPreview = () => location.host.includes('preview')
+
 function Jumbotron() {
   const { clientX, clientY } = useMouse();
 
@@ -27,7 +29,7 @@ function Jumbotron() {
           <img width="491" height="161" src={jumbotronTitle} srcSet={`${jumbotronTitleX} 2x`} />
         </div>
         <div className="download">
-          <a className="download-btn" role="button" href="/download.html?platform=0">
+          <a className="download-btn" role="button" href={isPreview() ? "/download?platform=0":"/download.html?platform=0"}>
             <img src={downloadIcon} alt="免费下载" className="icon"/>
             免费下载
           </a>
@@ -39,7 +41,7 @@ function Jumbotron() {
         src={bgData} srcSet={`${bgDataX} 2x`} />
       </div>
       <div className="bottom-block">
-        <a className="platform platform-win active" role="button" href="/download.html?platform=0">
+        <a className="platform platform-win active" role="button" href={isPreview() ? "/download?platform=0" : "/download.html?platform=0"}>
           <div className="platform-cover">
             <img src={win} srcSet={`${winX} 2x`} alt="windows平台" />
           </div>

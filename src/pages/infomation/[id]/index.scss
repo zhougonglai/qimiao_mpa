@@ -90,8 +90,10 @@ main{
     height: 100%;
 
     .official{
-      &-title{
-        height: 24px;
+      &-icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       &-extra{
         color: #999999;
@@ -116,17 +118,13 @@ main{
         color: #999999;
       }
 
-      &-list{
-
-      }
-
       &-item{
         width: 80px;
         height: 32px;
         line-height: 32px;
         border-radius: 3px;
         background-color: white;
-        margin: 5px;
+        margin: 2px;
         text-align: center;
       }
     }
