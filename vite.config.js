@@ -22,9 +22,8 @@ export default defineConfig({
     }),
     legacy({
       targets: ['defaults', 'ie 11'],
-      polyfills: true,
-      modernPolyfills: true,
-      renderLegacyChunks: true
+      polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
+      modernPolyfills: ['es.promise'],
     }),
   ],
   resolve: {
