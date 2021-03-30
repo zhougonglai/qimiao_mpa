@@ -6,7 +6,7 @@ main{
   align-items: center;
   flex-direction: column;
   background-color: #F5F5F5;
-  min-height: 737px;
+  min-height: min-content;
   section.title{
     min-width: 2560px;
     width: 100%;

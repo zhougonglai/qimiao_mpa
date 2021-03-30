@@ -22,9 +22,9 @@ export default defineConfig({
     }),
     legacy({
       targets: ['defaults', 'ie 11'],
-      polyfills: ['es.promise', 'es.promise.finally', 'es.promise.all-settled'],
+      polyfills: true,
       modernPolyfills: true,
-      renderLegacyChunks: false
+      renderLegacyChunks: true
     }),
   ],
   resolve: {

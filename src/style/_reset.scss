@@ -26,6 +26,10 @@ body{
   overflow-x: hidden;
 }
 
+main{
+  min-height: min-content;
+}
+
 $indent : 1,2,3,4,5;
 
 @each $i in $indent {
