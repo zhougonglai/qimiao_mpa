@@ -16,7 +16,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
   const [userInfo, setUser ] = useSessionStorageState('userInfo');
 
 
-  useMount(async () => {
+  useEffect(async () => {
     if(route.search) {
       const params = new URLSearchParams(route.search);
       if(params.get('account_token')) {
@@ -80,7 +80,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
 
   return (
     <>
-      {
+      {/* {
         userInfo
         ? <UserAvatar userInfo={userInfo} logout={handleLogout} />
         : <div id="loginWrap">
@@ -94,7 +94,7 @@ function UserInfo({ loginSuccess = () => {}, logout = () => {} }) {
         isVisible={isModal}
         content={<Login loginSuccess={handleUserInfo}/>}
         onClose={() => setModal(false)}
-      />
+      /> */}
     </>
   );
 }

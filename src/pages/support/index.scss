@@ -1,3 +1,4 @@
+@import '~/style/index.scss';
 @import '~/components/Footer/index.scss';
 
 main{
@@ -8,15 +9,14 @@ main{
   background-color: #F5F5F5;
 
   section.jumbotron{
-    min-width: 2560px;
     width: 100%;
     display: flex;
     justify-content: center;
     .block{
       height: 320px;
-      width: 2560px;
+      width: 100%;
       background-image: url('../../assets/img/support/support-jumbotron@1x.png');
-      background-size: contain;
+      background-size: 2560px 320px;
       background-position: center;
 
       @media (min-resolution: 2dppx) {
@@ -27,7 +27,6 @@ main{
   }
 
   section.section-info{
-    min-width: 1920px;
     width: 100%;
     display: flex;
     justify-content: center;

@@ -8,6 +8,20 @@ $primary-active-color: #9B66FF;
     color: $primary-active-color;
   }
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(#9B66FF, 0.4);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6236FF;
+  border-radius: 12px;
+}
+
 
 button{
   outline: 0 !important;
@@ -28,6 +42,7 @@ body{
 
 main{
   min-height: min-content;
+  width: 100%;
 }
 
 $indent : 1,2,3,4,5;

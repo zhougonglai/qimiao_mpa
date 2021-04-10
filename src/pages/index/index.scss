@@ -46,7 +46,6 @@ main{
   }
 
   section#jumbotron{
-    min-width: 2560px;
     width: 100%;
     height: 800px;
     display: flex;
@@ -54,7 +53,6 @@ main{
   }
 
   section.section-info{
-    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;
@@ -78,7 +76,6 @@ main{
 
   section.section-desc{
     height: 600px;
-    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;
@@ -162,7 +159,6 @@ main{
   }
 
   section#noticeAndNews{
-    min-width: 2560px;
     width: 100%;
     background-color: white;
     display: flex;
@@ -246,6 +242,8 @@ main{
             .news-desc{
               padding-left: 5px;
               display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
               margin-top: 5px;
               margin-bottom: 10px;
             }

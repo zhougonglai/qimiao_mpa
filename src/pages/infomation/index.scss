@@ -4,10 +4,10 @@ main{
   section{
     width: 100%;
     &.title{
-      min-width: 2560px;
+      width: 100%;
       height: 320px;
       background-image: url('../../assets/img/infomation/title@1x.png');
-      background-size: contain;
+      background-size: 2560px 320px;
       background-position: center;
       @media (min-resolution: 2dppx) {
         background-image: url('../../assets/img/infomation/title@2x.png');

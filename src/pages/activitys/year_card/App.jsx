@@ -232,7 +232,7 @@ function App() {
 
   // 处理套餐升级
   const handlePackageUpgrade = async () => {
-    if(userInfo){
+    if(userInfo) {
       const { data } = await getInvoicePrice({
         price_id: packages[0].price[0].price_id,
         account_token: loginInfo.account_token

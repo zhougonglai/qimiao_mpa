@@ -1,3 +1,4 @@
+@import '~/style/index.scss';
 @import '~/components/Footer';
 
 main{
@@ -8,25 +9,23 @@ main{
   background-color: #F5F5F5;
 
   section.jumbotron{
-    min-width: 2560px;
     width: 100%;
     display: flex;
     justify-content: center;
     .block{
       height: 320px;
-      width: 2560px;
+      width: 100%;
       background-image: url('../../assets/img/about/about-jumbotron@1x.png');
-      background-size: contain;
+      background-size: 2560px 320px;
       background-position: center;
       @media (min-resolution: 2dppx) {
         background-image: url('../../assets/img/about/about-jumbotron@2x.png');
       }
     }
-
   }
 
   section#service-tabs{
-    min-width: 2560px;
+    background-color: white;
     width: 100%;
     display: flex;
     justify-content: center;

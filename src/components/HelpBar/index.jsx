@@ -9,7 +9,7 @@ import goup from '~/assets/img/goup@1x.png';
 import goupX from '~/assets/img/goup@2x.png';
 
 import wechat from '~/assets/img/qrcode-wechat.png';
-import weibo from '~/assets/img/qrcode-weibo.png';
+import weibo from '~/assets/img/qrcode-weibo.jpg';
 import douyin from '~/assets/img/qrcode-douyin.png';
 import classNames from 'classnames';
 

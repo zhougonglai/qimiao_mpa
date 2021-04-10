@@ -1,4 +1,4 @@
-import { random } from 'lodash'
+import random from 'lodash/random'
 
 export const scrollToTop = () => {
   const c = document.documentElement.scrollTop || document.body.scrollTop;

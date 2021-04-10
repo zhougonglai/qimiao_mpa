@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useMount, useLocalStorageState, useSetState, useDebounceEffect } from 'ahooks';
 import classNames from 'classnames'
 import request from '~/utils/request';
@@ -68,7 +68,6 @@ function GameSupport() {
   });
 
   useDebounceEffect(() => {
-    // console.log(state.search)
     if(state.search) {
       const filterGames = state.games.filter(game => game.title.includes(state.search));
       setState({
@@ -151,7 +150,6 @@ function GameSupport() {
         method: 'post'
       });
       const games = data.map((game, i) => ({...game, key: i}));
-      // const filterGames = games.filter(game => game.title.includes(state.search));
       setCache(games);
       setState({
         games,
@@ -206,6 +204,7 @@ function GameSupport() {
                 state.filterGames.slice((state.pages.index - 1) * state.pages.size, state.pages.index * state.pages.size).map((game, i) => <div className="support-game px-2 cursor-pointer truncate" key={game.key}>{game.title}</div>)
               }
             </div>
+
             <div className="support-pages flex justify-end my-2">
               <div className="page-contrls flex gap-x-4">
                 <button
@@ -306,6 +305,7 @@ function GameSupport() {
                 </button>
               </div>
             </div>
+
           </>
           : <div className="games-empty flex justify-center items-center text-lg text-gray-500 cursor-default">
           没有该类型的游戏
