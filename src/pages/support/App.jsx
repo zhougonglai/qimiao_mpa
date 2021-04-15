@@ -199,7 +199,7 @@ function GameSupport() {
           state.games.length
           ?
             <>
-            <div className="support-games py-2 grid grid-cols-8">
+            <div className="support-games py-2 flex flex-wrap grid grid-cols-8">
               {
                 state.filterGames.slice((state.pages.index - 1) * state.pages.size, state.pages.index * state.pages.size).map((game, i) => <div className="support-game px-2 cursor-pointer truncate" key={game.key}>{game.title}</div>)
               }

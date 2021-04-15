@@ -1,4 +1,4 @@
-import { useBoolean, useDebounce, useScroll } from 'ahooks';
+import { useBoolean, useDebounce, useMount, useSetState } from 'ahooks';
 import React from 'react';
 import './index.scss';
 import kefu from '~/assets/img/kefu@1x.png';
@@ -17,15 +17,23 @@ import { scrollToTop } from '~/utils';
 
 function HelpBar({ position = 'top' }) {
   const [ hovering, { setTrue, setFalse } ] = useBoolean(false);
-  const debounceHover = useDebounce(hovering, { wait: 500 });
-  const scroll = useScroll();
+  const activer = useDebounce(hovering, { wait: 500});
+  const [ state, setState ] = useSetState({ y: 0 })
+  useMount(() => {
+    window.onscroll = () => {
+      setState({
+        y: document.documentElement.scrollTop || document.body.scrollTop
+      })
+    }
+    return () => window.onscroll = null
+  })
 
   return (
     <>
       <div className="help-item zhiCustomBtn">
         <img src={kefu} srcSet={`${kefuX} 2x`} width="40"/>
       </div>
-      <div className={classNames("help-item relative", { active: debounceHover })} onMouseEnter={setTrue} onMouseLeave={setFalse}>
+      <div className={classNames("help-item relative", { active: activer })} onMouseEnter={setTrue} onMouseLeave={setFalse}>
         <img src={qrcode} srcSet={`${qrcodeX} 2x`} width="40"/>
         <div className={classNames("content absolute flex flex-col items-center", position )} onMouseEnter={setTrue}>
           <div className="wechat platform">
@@ -53,7 +61,7 @@ function HelpBar({ position = 'top' }) {
         </div>
       </div>
       {
-        scroll.top > document.scrollingElement.clientHeight
+        state.y > (document.documentElement.clientHeight || document.body.clientHeight)
         ? <div className="help-item" onClick={scrollToTop}>
             <img src={goup} srcSet={`${goupX} 2x`} width="40"/>
           </div>

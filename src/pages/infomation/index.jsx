@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.less'
 import '~/style/index.css'
-import '~/style/index.scss'
 import './index.scss'
 import UserInfo from '~/components/UserInfo'
 import HelpBar from '~/components/HelpBar'
+
+const helpBar = document.getElementById('help-bar')
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,8 +14,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('user-info')
 )
-
-const helpBar = document.getElementById('help-bar')
 
 ReactDOM.render(
   <React.StrictMode>

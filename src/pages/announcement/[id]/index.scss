@@ -36,6 +36,12 @@ main{
   aside.right-side{
     width: 360px;
     height: 100%;
+    a{
+      color: #333;
+      &:hover{
+        color: #875eff;
+      }
+    }
 
     .official{
       &-icon{
@@ -125,7 +131,12 @@ main{
     list-style: none;
     border-radius: .25rem;
     &-item{
-      color: #666666;
+      a{
+        color: #666666;
+        &:hover{
+          color: #875eff;
+        }
+      }
       &.active{
         color: #333;
       }
